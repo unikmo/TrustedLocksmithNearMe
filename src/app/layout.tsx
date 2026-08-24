@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PAGE_VISUALS } from "@/lib/visuals";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trustedlocksmithnearme.com";
@@ -20,12 +21,14 @@ export const metadata: Metadata = {
     description:
       "Choose the locksmith service you need, see the standard total first, then request a participating independent local provider.",
     url: siteUrl,
+    images: [PAGE_VISUALS.services.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trusted Locksmith Near Me | Upfront prices. Local providers.",
     description:
       "See the standard price and scope before requesting a participating independent local locksmith provider.",
+    images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true },
 };
