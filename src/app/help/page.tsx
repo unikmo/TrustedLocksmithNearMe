@@ -3,11 +3,14 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "Help Center",
   description: "Answers about Trusted Locksmith, Digital Access, locksmith requests, provider matching, membership and trusted access.",
   alternates: { canonical: "/help" },
+  openGraph: { images: [PAGE_VISUALS.help.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.help.src] },
 };
 
 const SECTIONS = [
@@ -77,6 +80,7 @@ export default function HelpCenterPage() {
           eyebrow="Help center"
           title="Clear answers before you find a locksmith"
           body="Understand Digital Access, local provider matching, pricing and membership in plain language."
+          visual={PAGE_VISUALS.help}
         />
 
         <section className="py-16 sm:py-20">
