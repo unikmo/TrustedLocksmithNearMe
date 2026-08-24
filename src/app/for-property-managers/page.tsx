@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "Standardize resident lockouts, turnover rekeys, access records and independent-locksmith coordination across properties with Trusted Locksmith.";
 
@@ -14,11 +15,13 @@ export const metadata: Metadata = {
     title: "Trusted Locksmith for property managers",
     description: metaDescription,
     url: "/for-property-managers",
+    images: [PAGE_VISUALS.propertyManagers.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trusted Locksmith for property managers",
     description: metaDescription,
+    images: [PAGE_VISUALS.propertyManagers.src],
   },
 };
 
@@ -44,6 +47,7 @@ export default function PropertyManagersPage() {
           eyebrow="Trusted Locksmith for property managers"
           title="Fewer lockout calls. Cleaner turnover rekeys. One access workflow."
           body="Give property teams a consistent way to handle resident access requests, rekeys, independent locksmith coordination and property-level service history."
+          visual={PAGE_VISUALS.propertyManagers}
         />
 
         <section className="border-b border-line/70 py-20">
