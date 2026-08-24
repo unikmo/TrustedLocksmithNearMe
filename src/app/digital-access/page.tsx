@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "Keep access codes, spare-key locations, trusted key holders, photos and recovery instructions together so you can check backup options before a lockout becomes a service call.";
 
@@ -15,11 +16,13 @@ export const metadata: Metadata = {
     title: "Digital Access | Your property-access backup plan",
     description: metaDescription,
     url: "/digital-access",
+    images: [PAGE_VISUALS.digitalAccess.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Digital Access | Your property-access backup plan",
     description: metaDescription,
+    images: [PAGE_VISUALS.digitalAccess.src],
   },
 };
 
@@ -39,6 +42,7 @@ export default function DigitalAccessPage() {
           eyebrow="Digital Access"
           title="Your backup plan for getting back in."
           body="Keep codes, spare-key details, trusted people and recovery instructions together so your first response to an access problem is not automatically a locksmith call."
+          visual={PAGE_VISUALS.digitalAccess}
         />
 
         <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
