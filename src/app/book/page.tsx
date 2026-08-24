@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Keyhole } from "@/components/Keyhole";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "Find a Locksmith | Choose Service & See Price",
   description:
     "Choose a lockout, rekey, lock change or smart-lock service and see the standard Trusted Locksmith price before you submit a request.",
   alternates: { canonical: "/book" },
+  openGraph: { images: [PAGE_VISUALS.booking.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.booking.src] },
 };
 
 const urgentServices = SERVICE_MENU.filter((service) => service.jobType === "lockout");
@@ -16,7 +19,7 @@ const scheduledServices = SERVICE_MENU.filter((service) => service.jobType !== "
 export default function BookPage() {
   return (
     <div className="min-h-screen bg-ink px-5 py-8 sm:py-12">
-      <div className="mx-auto w-full max-w-3xl">
+      <div className="mx-auto w-full max-w-4xl">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
             <span className="grid h-8 w-8 place-items-center rounded-xl border border-brass/30 bg-brass/10">
@@ -27,13 +30,31 @@ export default function BookPage() {
           <Link href="/services" className="text-sm text-parchment-dim hover:text-parchment">Services & prices</Link>
         </div>
 
-        <div className="mt-10 border-b border-line/70 pb-8 text-center sm:mt-14">
-          <Progress current={1} />
-          <div className="mt-6 eyebrow">Find a locksmith</div>
-          <h1 className="mt-3 font-display text-4xl font-medium leading-tight tracking-[-.025em] text-parchment sm:text-5xl">What do you need help with?</h1>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-parchment-dim sm:text-base">
-            Choose the service first. You will see the standard total throughout the request. Provider travel/service call is included.
-          </p>
+        <div className="mt-10 grid gap-7 border-b border-line/70 pb-8 sm:mt-14 lg:grid-cols-[1.08fr_.92fr] lg:items-center lg:gap-9">
+          <div className="text-center lg:text-left">
+            <div className="lg:inline-block"><Progress current={1} /></div>
+            <div className="mt-6 eyebrow">Find a locksmith</div>
+            <h1 className="mt-3 font-display text-4xl font-medium leading-tight tracking-[-.025em] text-parchment sm:text-5xl">What do you need help with?</h1>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-parchment-dim sm:text-base lg:mx-0">
+              Choose the service first. You will see the standard total throughout the request. Provider travel/service call is included.
+            </p>
+          </div>
+
+          <figure className="relative overflow-hidden rounded-[22px] border border-sky/18 bg-surface-raised shadow-[0_18px_42px_rgba(3,18,37,0.2)]">
+            <img
+              src={PAGE_VISUALS.booking.src}
+              alt={PAGE_VISUALS.booking.alt}
+              width={1600}
+              height={1000}
+              fetchPriority="high"
+              decoding="async"
+              style={{ objectPosition: PAGE_VISUALS.booking.objectPosition }}
+              className="h-[190px] w-full object-cover sm:h-[230px] lg:h-[260px]"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/62 to-transparent px-4 pb-4 pt-12 text-[11px] font-medium leading-5 text-parchment sm:px-5">
+              {PAGE_VISUALS.booking.label}
+            </figcaption>
+          </figure>
         </div>
 
         <ServiceChoiceGroup title="Locked out now" note="Choose the timing that matches your request." services={urgentServices} />
@@ -86,7 +107,7 @@ function ServiceChoiceGroup({
 
 function Progress({ current }: { current: 1 | 2 | 3 }) {
   return (
-    <div className="mx-auto flex max-w-sm items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim" aria-label={`Step ${current} of 3`}>
+    <div className="mx-auto flex max-w-sm items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim lg:mx-0 lg:justify-start" aria-label={`Step ${current} of 3`}>
       {["Service", "Details", "Review"].map((label, index) => {
         const step = index + 1;
         return (
