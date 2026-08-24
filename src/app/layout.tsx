@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trustedlocksmithnearme.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Trusted Locksmith | Vetted Local Locksmiths & Upfront Prices",
+    default: "Trusted Locksmith Near Me | Upfront Prices, Local Providers",
     template: "%s | Trusted Locksmith",
   },
   description:
-    "Find vetted local locksmiths for home lockouts, rekeys, lock changes and smart-lock installation. See upfront standard prices before you request service.",
+    "Find participating independent local locksmiths for home lockouts, rekeys, lock changes and smart-lock installation. See the standard price and scope before you request service.",
   applicationName: "Trusted Locksmith",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Trusted Locksmith",
-    title: "Trusted Locksmith | Vetted local locksmiths. Upfront prices.",
+    title: "Trusted Locksmith Near Me | Upfront prices. Independent local providers.",
     description:
-      "Find a trusted locksmith near you with upfront standard prices for lockouts, rekeys, lock changes and smart-lock services.",
+      "Choose the locksmith service you need, see the standard total first, then request a participating independent local provider.",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith | Vetted local locksmiths. Upfront prices.",
+    title: "Trusted Locksmith Near Me | Upfront prices. Local providers.",
     description:
-      "Find a trusted locksmith near you with upfront standard prices for lockouts, rekeys, lock changes and smart-lock services.",
+      "See the standard price and scope before requesting a participating independent local locksmith provider.",
   },
   robots: { index: true, follow: true },
 };
@@ -40,7 +40,7 @@ const organizationSchema = {
     name: "Trusted Locksmith",
   },
   description:
-    "PlanetHike OÜ operates Trusted Locksmith, a platform that helps customers find independent local locksmith providers with clearly scoped services and upfront standard pricing.",
+    "PlanetHike OÜ operates Trusted Locksmith, a platform that helps customers request participating independent local locksmith providers with clearly scoped services and upfront standard pricing.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
