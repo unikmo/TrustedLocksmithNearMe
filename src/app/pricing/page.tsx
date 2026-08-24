@@ -32,7 +32,7 @@ const FAQ = [
   { q: "What is the 14-day waiting period?", a: "Digital Access is available with the account. Paid field-service membership benefits, including the Household+ Lock & Access Audit, become eligible 14 days after paid membership activation. One-off fixed-price service remains available at any time." },
   { q: "What does Household+ include?", a: "Household+ is $89/year and includes Digital Access, household/trusted-access tools, priority matching when supply is available, and one included Lock & Access Audit every three years." },
   { q: "Can the provider sell work during the audit?", a: "The audit provider submits a standardized report to Trusted Locksmith. Any follow-up work is offered separately through the platform so scope and price are clear before approval." },
-  { q: "Who performs the service?", a: "Participating independent local providers perform field service. Trusted Locksmith handles the customer flow, published standard pricing, access records and request workflow." },
+  { q: "Who performs the service?", a: "Participating independent local providers perform field service. Trusted Locksmith manages the customer request flow, published standard pricing and Digital Access experience." },
 ];
 
 export default async function PricingPage() {
@@ -107,14 +107,14 @@ export default async function PricingPage() {
                     <ul className="mt-6 space-y-3 text-sm">{features.map((feature) => <li key={feature} className="flex items-start gap-2 text-navy-text"><span className="mt-0.5 text-[#3f8c7d]">✓</span><span>{feature}</span></li>)}</ul>
                     {addOns && <ul className="mt-4 space-y-2 border-t border-[#c7d9ec] pt-4 text-sm">{addOns.map((addOn) => <li key={addOn.label} className="flex items-start justify-between gap-3 text-[#536e8a]"><span>{addOn.label}</span><span className="whitespace-nowrap font-mono text-xs text-[#8c6d31]">{addOn.price}</span></li>)}</ul>}
                     <div className="flex-1" />
-                    <Link href={`/signup?plan=${plan.id}`} className={`mt-8 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${highlighted ? "bg-brass text-ink hover:brightness-105" : "border border-[#aebfd2] text-navy-text hover:border-[#7f9bb9]"}`}>Choose {plan.name}</Link>
+                    <Link href={`/signup?plan=${plan.id}`} className={`mt-8 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${highlighted ? "bg-brass text-ink hover:brightness-105" : "border border-[#aebfd2] text-navy-text hover:border-[#7f9bb9]"}`}>Create account</Link>
                   </div>
                 );
               })}
             </div>
 
-            <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[#c7d9ec] bg-white/70 p-6 text-sm leading-6 text-[#536e8a]">
-              <strong className="text-navy-text">Before payment is connected:</strong> choosing a plan creates your Trusted Locksmith account and saves the selected tier. It does not charge a card or activate paid field-service benefits.
+            <div className="mx-auto mt-8 max-w-3xl border-t border-[#c7d9ec] pt-6 text-center text-sm leading-6 text-[#536e8a]">
+              <strong className="text-navy-text">Account first, activation second.</strong> Create an account to save your selected plan and use Digital Access. Paid membership benefits begin only after membership activation is confirmed.
             </div>
           </div>
         </section>
