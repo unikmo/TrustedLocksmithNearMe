@@ -3,11 +3,14 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "Trusted Locksmith for Second Homes",
   description: "Organize trusted property access, local locksmith requests and access history for second homes and properties you do not occupy full-time.",
   alternates: { canonical: "/second-homes" },
+  openGraph: { images: [PAGE_VISUALS.secondHomes.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.secondHomes.src] },
 };
 
 const USE_CASES = [
@@ -26,6 +29,7 @@ export default function SecondHomesPage() {
           eyebrow="Trusted Locksmith for second homes"
           title="Your property still needs an access plan when you are not there"
           body="Organize the people, access information and local locksmith requests behind a second home so distance does not turn a small issue into a scramble."
+          visual={PAGE_VISUALS.secondHomes}
         />
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-6xl px-6">

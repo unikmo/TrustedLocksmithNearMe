@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "Compare upfront Trusted Locksmith prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
 
@@ -17,11 +18,13 @@ export const metadata: Metadata = {
     title: "Trusted Locksmith pricing | One-off service or optional membership",
     description: metaDescription,
     url: "/pricing",
+    images: [PAGE_VISUALS.services.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trusted Locksmith pricing | One-off service or optional membership",
     description: metaDescription,
+    images: [PAGE_VISUALS.services.src],
   },
 };
 
@@ -45,6 +48,7 @@ export default async function PricingPage() {
           eyebrow="Transparent locksmith pricing"
           title="Know the standard price before you choose a locksmith."
           body="Lockout, rekey and lock-change pricing is shown before you request a local provider. Provider travel/service call is included in the standard total."
+          visual={PAGE_VISUALS.services}
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">

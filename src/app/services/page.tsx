@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "See upfront standard prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local locksmith through Trusted Locksmith.";
 
@@ -15,11 +16,13 @@ export const metadata: Metadata = {
     title: "Locksmith services & upfront standard prices",
     description: metaDescription,
     url: "/services",
+    images: [PAGE_VISUALS.services.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Locksmith services & upfront standard prices",
     description: metaDescription,
+    images: [PAGE_VISUALS.services.src],
   },
 };
 
@@ -35,6 +38,7 @@ export default function ServicesPage() {
           eyebrow="Locksmith services & prices"
           title="See the standard price before you request a locksmith."
           body="Every published standard total includes provider travel/service call. If the actual job needs work outside the stated scope, that extra work must be priced and approved separately."
+          visual={PAGE_VISUALS.services}
         />
 
         <section className="border-b border-line/70 py-14 sm:py-18">

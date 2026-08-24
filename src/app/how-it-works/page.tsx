@@ -3,11 +3,14 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "How Trusted Locksmith Works | Lockout, Rekey & Access",
   description: "See how Trusted Locksmith moves from saved access options to upfront locksmith pricing and a real independent local provider match.",
   alternates: { canonical: "/how-it-works" },
+  openGraph: { images: [PAGE_VISUALS.booking.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.booking.src] },
 };
 
 const STEPS = [
@@ -26,6 +29,7 @@ export default function HowItWorksPage() {
           eyebrow="How Trusted Locksmith works"
           title="Upfront pricing. A vetted local network. Backup access when you want it."
           body="Trusted Locksmith gives you a simpler path from an access problem to a clearly priced local locksmith, with Digital Access available to help prevent some service calls altogether."
+          visual={PAGE_VISUALS.booking}
         />
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-5xl px-6">
