@@ -50,7 +50,7 @@ export default function PropertyManagersPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid gap-6 md:grid-cols-3">
               {PROBLEMS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
+                <div key={item.title} className="border-t border-line pt-5">
                   <h2 className="font-display text-xl text-parchment">{item.title}</h2>
                   <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.body}</p>
                 </div>
@@ -68,7 +68,7 @@ export default function PropertyManagersPage() {
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {WORKFLOWS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
+                <div key={item.title} className="border-t border-line pt-5">
                   <h3 className="font-display text-xl text-parchment">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.body}</p>
                 </div>
@@ -78,18 +78,18 @@ export default function PropertyManagersPage() {
         </section>
 
         <section className="py-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="rounded-3xl border border-brass/25 bg-brass/[0.06] p-8">
-              <div className="eyebrow">Start narrow</div>
-              <h2 className="mt-3 font-display text-3xl text-parchment">Begin with the access jobs that create the most friction.</h2>
-              <p className="mt-4 leading-7 text-parchment-dim">Set up a small property group, route repeat lockouts and turnover rekeys through Trusted Locksmith, then expand once the workflow is working for your team and provider network.</p>
+          <div className="mx-auto grid max-w-5xl gap-8 px-6 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+            <div>
+              <div className="eyebrow">Flexible rollout</div>
+              <h2 className="mt-3 font-display text-3xl text-parchment">Start with one building or a wider portfolio.</h2>
             </div>
+            <p className="text-base leading-7 text-parchment-dim">Add the properties you want to manage through Trusted Locksmith and use the same service, approval and history workflow across them. The structure stays consistent whether you begin with a few units or manage a larger portfolio.</p>
           </div>
         </section>
 
         <CTABand
           title="Standardize locksmith work across your properties"
-          body="Create a property-manager workspace and start with a focused property set."
+          body="Create a property-manager workspace and bring resident access requests, turnover rekeys and service history into one workflow."
           ctaLabel="Start property-manager setup"
           ctaHref="/property-manager"
           secondaryLabel="See locksmith pricing"

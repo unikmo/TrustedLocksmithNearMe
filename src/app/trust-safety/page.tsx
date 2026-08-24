@@ -6,26 +6,26 @@ import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
-  description: "How Trusted Locksmith vets provider information, separates platform responsibilities from independent provider responsibilities and handles property-access information.",
+  description: "How Trusted Locksmith reviews provider information, protects access details and keeps pricing and service status clear before work begins.",
   alternates: { canonical: "/trust-safety" },
 };
 
 const PILLARS = [
   {
-    title: "Provider information is reviewed",
-    body: "Provider activation is based on the business, service-area and credential information required by the onboarding standard. Trusted Locksmith only displays verification claims supported by the provider record.",
+    title: "Business information is reviewed",
+    body: "Before a provider can receive requests, Trusted Locksmith reviews the business connection and the credential or insurance information relevant to the work and service area.",
   },
   {
-    title: "No fictional provider status",
-    body: "Trusted Locksmith does not show a provider name, rating, verification badge or ETA until that information comes from a real provider record and accepted request.",
+    title: "Provider details appear after acceptance",
+    body: "A provider name or ETA is shown only after a participating provider has actually accepted your request. Availability is never presented as guaranteed in advance.",
   },
   {
-    title: "Clear platform role",
-    body: "Trusted Locksmith structures requests, pricing rules and property records. Independent providers perform field service and remain responsible for their own work.",
+    title: "Price and scope stay clear",
+    body: "The standard service price and included scope are shown before you submit a request. Any additional work requires a separate price and your approval before it begins.",
   },
   {
-    title: "Scope before extra work",
-    body: "You see the requested service scope and any additional price before authorizing work beyond the published standard scope.",
+    title: "Access information stays private",
+    body: "Digital Access details are kept private and encrypted. Trusted key holders do not automatically receive access to your saved codes or other sensitive information.",
   },
 ];
 
@@ -35,12 +35,16 @@ const FAQ = [
     a: "No. Trusted Locksmith is a platform operated by PlanetHike OÜ. Participating locksmith providers are independent businesses or professionals, not PlanetHike OÜ employees.",
   },
   {
-    q: "How does provider vetting work?",
-    a: "Provider information required by the onboarding standard and relevant service area is reviewed before activation. Trusted Locksmith only displays verification claims that are supported by the provider record.",
+    q: "How does provider verification work?",
+    a: "We review the provider's connection to the business and the information relevant to the services and jurisdiction before the provider can receive requests. Verification claims are shown only when they are supported by the information on file.",
   },
   {
     q: "Can a locksmith request be unavailable?",
-    a: "Yes. Local provider availability varies. A request is not the same thing as a confirmed provider match; a provider name and ETA appear only after a real provider accepts.",
+    a: "Yes. Local provider availability varies by location and time. Your request is confirmed with a specific provider only after that provider accepts it.",
+  },
+  {
+    q: "What happens if the job needs extra work?",
+    a: "The provider must explain any work outside the published standard scope and show the additional price before that work begins. You decide whether to approve it.",
   },
   {
     q: "Is membership insurance?",
@@ -55,22 +59,25 @@ export default function TrustSafetyPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Trust & safety"
-          title="Trust starts before a locksmith reaches your door."
-          body="Provider information, pricing and service status should reflect real platform records and real provider actions—not placeholders presented as facts."
+          title="Know who is coming, what the job costs and what you are approving."
+          body="Trusted Locksmith is designed to make the most important parts of a locksmith request clear before anyone starts work."
         />
-        <section className="border-b border-line/70 py-20">
-          <div className="mx-auto grid max-w-6xl gap-5 px-6 sm:grid-cols-2">
-            {PILLARS.map((pillar) => (
-              <div key={pillar.title} className="rounded-2xl border border-line bg-surface p-7">
-                <h2 className="font-display text-2xl text-parchment">{pillar.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-parchment-dim">{pillar.body}</p>
-              </div>
-            ))}
+        <section className="border-b border-line/70 py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {PILLARS.map((pillar) => (
+                <div key={pillar.title} className="border-t border-line pt-5">
+                  <h2 className="font-display text-2xl text-parchment">{pillar.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-parchment-dim">{pillar.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
-        <section className="py-20">
+        <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="text-center font-display text-3xl text-parchment">Common questions</h2>
+            <div className="eyebrow text-center">Common questions</div>
+            <h2 className="mt-3 text-center font-display text-3xl text-parchment">Trust should be easy to understand.</h2>
             <div className="mt-10 space-y-6">
               {FAQ.map((item) => (
                 <div key={item.q} className="border-b border-line/70 pb-6">
@@ -83,7 +90,7 @@ export default function TrustSafetyPage() {
         </section>
         <CTABand
           title="Have a trust or safety concern?"
-          body="Use the contact form for provider, account, privacy or safety concerns."
+          body="Contact Trusted Locksmith about a provider, request, account, privacy or safety concern."
           ctaLabel="Contact Trusted Locksmith"
           ctaHref="/contact?topic=Trust%20%26%20safety"
         />

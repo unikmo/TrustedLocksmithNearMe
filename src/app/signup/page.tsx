@@ -35,7 +35,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
           <button type="submit" className="mt-2 w-full rounded-full bg-brass px-4 py-3 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.14)] transition hover:brightness-110">Create account</button>
         </form>
 
-        <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim/75">Your plan choice is saved with the account. This screen does not process a card payment.</p>
+        <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim/75">Your selected plan is saved with the account. Paid membership benefits begin only after membership activation is confirmed.</p>
         <p className="mt-5 text-center text-xs leading-5 text-parchment-dim">By continuing, you agree to the <Link href="/terms" className="text-brass hover:underline">Terms</Link> and acknowledge the <Link href="/privacy" className="text-brass hover:underline">Privacy Policy</Link>.</p>
         <p className="mt-4 text-center text-xs text-parchment-dim">Already have an account? <Link href="/login" className="text-brass hover:underline">Log in</Link></p>
       </div>

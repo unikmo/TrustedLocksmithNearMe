@@ -3,25 +3,48 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
-const metaDescription = "Join the Trusted Locksmith Provider Network as an independent local locksmith. See job scope and fixed payout before accepting lockout, rekey, lock-change and smart-lock requests.";
+const metaDescription = "Join the Trusted Locksmith Provider Network as an independent local locksmith. Receive clearly scoped local requests, control your availability and review job terms privately before accepting.";
 
 export const metadata: Metadata = {
-  title: "Provider Network | Fixed-Payout Locksmith Jobs",
+  title: "Provider Network | Local Locksmith Opportunities",
   description: metaDescription,
   alternates: { canonical: "/partner-tech" },
   openGraph: {
-    title: "Trusted Locksmith Provider Network | No bidding, payout shown upfront",
+    title: "Trusted Locksmith Provider Network | Local requests, clear terms",
     description: metaDescription,
     url: "/partner-tech",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith Provider Network | No bidding, payout shown upfront",
+    title: "Trusted Locksmith Provider Network | Local requests, clear terms",
     description: metaDescription,
   },
 };
+
+const BENEFITS = [
+  {
+    n: "01",
+    title: "Clearly scoped requests",
+    body: "See the service type, location context and expected scope before deciding whether a request fits your business.",
+  },
+  {
+    n: "02",
+    title: "You stay in control",
+    body: "Set your service area and availability, then accept or decline requests according to your schedule and capabilities.",
+  },
+  {
+    n: "03",
+    title: "Private commercial terms",
+    body: "Job-specific compensation and acceptance terms are shown only inside the verified provider workflow—not on the public marketplace.",
+  },
+];
+
+const STEPS = [
+  ["1", "Create or claim your business profile", "Register a new business or claim an existing profile built from public business information."],
+  ["2", "Complete verification", "We review the business connection and the information relevant to your service area before requests are enabled."],
+  ["3", "Review requests privately", "Once verified, use your provider dashboard to manage availability and review individual job offers before accepting."],
+] as const;
 
 export default function PartnerTechPage() {
   return (
@@ -30,65 +53,65 @@ export default function PartnerTechPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Trusted Locksmith Provider Network"
-          title="No bidding. Know your payout before you accept."
-          body="Trusted Locksmith routes clearly scoped locksmith requests from local customers. You control availability, see the payout up front and accept only the jobs that fit your schedule and service area."
+          title="Local locksmith requests. Your schedule. Your decision."
+          body="Trusted Locksmith connects customers with independent local providers through a structured request flow. You decide when you are available and which jobs you accept."
         />
 
-        <section className="border-b border-line/70 py-16">
-          <div className="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
-            {[
-              ["01", "Transparent payout", "See the service scope and fixed payout before you accept. No guessing what the job is worth."],
-              ["02", "You stay in control", "Set availability and service area, then accept or decline each request based on your schedule."],
-              ["03", "Cleaner customer expectations", "Trusted Locksmith shows the standard customer price and scope before the request, reducing avoidable pricing friction at the door."],
-            ].map(([n, title, body]) => (
-              <div key={n} className="rounded-2xl border border-line bg-surface p-6">
-                <div className="font-mono text-xs text-brass">{n}</div>
-                <h2 className="mt-3 font-display text-xl text-parchment">{title}</h2>
-                <p className="mt-2 text-sm leading-6 text-parchment-dim">{body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-3 px-6 sm:flex-row sm:flex-wrap">
-            <Link href="/providers/claim" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">
-              Claim an existing profile
-            </Link>
-            <Link href="/providers/register" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-6 py-3 text-sm font-semibold text-parchment hover:border-sky/55">
-              Register a new business
-            </Link>
-            <Link href="/provider" className="inline-flex min-h-12 items-center justify-center px-4 py-3 text-sm font-semibold text-parchment-dim hover:text-parchment">
-              Provider login →
-            </Link>
-          </div>
-        </section>
-
-        <section className="border-b border-line/70 bg-surface/15 py-16">
+        <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="eyebrow">Provider economics</div>
-            <h2 className="mt-3 max-w-2xl font-display text-3xl text-parchment">See what the customer pays—and what you earn.</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-              The current payout schedule is shown transparently. Availability and live request volume vary by service area and time.
-            </p>
-            <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
-              <div className="divide-y divide-line">
-                {SERVICE_MENU.map((service) => (
-                  <div key={service.id} className="grid gap-2 px-5 py-4 sm:grid-cols-[1.3fr_.8fr_.7fr_.7fr] sm:items-center">
-                    <div className="text-sm font-medium text-parchment">{service.title}</div>
-                    <div className="text-xs text-parchment-dim">{service.timing}</div>
-                    <div className="text-xs text-parchment-dim">Customer {formatServicePrice(service.customerPriceCents)}</div>
-                    <div className="font-mono text-sm text-verdigris">You earn {formatServicePrice(service.providerPayoutCents)}</div>
-                  </div>
-                ))}
-              </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {BENEFITS.map((item) => (
+                <div key={item.n} className="border-t border-line pt-5">
+                  <div className="font-mono text-xs text-brass">{item.n}</div>
+                  <h2 className="mt-3 font-display text-2xl text-parchment">{item.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-parchment-dim">{item.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href="/providers/claim" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">
+                Claim an existing profile
+              </Link>
+              <Link href="/providers/register" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-6 py-3 text-sm font-semibold text-parchment hover:border-sky/55">
+                Register a new business
+              </Link>
+              <Link href="/provider" className="inline-flex min-h-12 items-center justify-center px-4 py-3 text-sm font-semibold text-parchment-dim hover:text-parchment">
+                Provider login →
+              </Link>
             </div>
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+            <div>
+              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">How joining works</div>
+              <h2 className="mt-4 font-display text-4xl leading-[1.05] tracking-[-.025em] text-navy-text">A professional network starts with verified businesses.</h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#536e8a]">
+                Customers should know they are dealing with a real local business. Providers should know the job details before they commit. The network is designed around both expectations.
+              </p>
+            </div>
+            <div className="divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
+              {STEPS.map(([n, title, body]) => (
+                <div key={n} className="grid grid-cols-[42px_1fr] gap-4 py-5">
+                  <div className="font-mono text-xs text-[#8c6d31]">0{n}</div>
+                  <div>
+                    <h3 className="font-semibold text-navy-text">{title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-[#536e8a]">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <div className="eyebrow">Provider standards</div>
-            <h2 className="mt-3 font-display text-3xl text-parchment">Trust starts before the first job.</h2>
+            <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Trust starts before the first request.</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Provider activation is based on business ownership, service area and the credentials or insurance relevant to the work and jurisdiction. Trusted Locksmith only displays verification claims supported by the provider record.
+              Provider activation depends on verified business ownership and the credentials or insurance relevant to the work and jurisdiction. Verification claims are shown only when supported by the provider information on file.
             </p>
             <Link href="/providers/register" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Join Trusted Locksmith</Link>
           </div>

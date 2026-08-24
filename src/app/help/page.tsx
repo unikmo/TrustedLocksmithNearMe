@@ -20,15 +20,15 @@ const SECTIONS = [
       },
       {
         q: "Does submitting a request mean a locksmith is already assigned?",
-        a: "No. A request is submitted first. A provider name and ETA appear only after a participating independent local provider actually accepts the request.",
+        a: "No. A request is submitted first. A provider name and ETA appear only after a participating independent local provider accepts the request.",
       },
       {
         q: "Who performs the field work?",
-        a: "Independent local providers perform field service. Trusted Locksmith, operated by PlanetHike OÜ, manages the platform, request flow, pricing rules and property-access records.",
+        a: "Independent local providers perform field service. Trusted Locksmith, operated by PlanetHike OÜ, provides the platform that connects customers with participating providers and keeps the service request and pricing clear.",
       },
       {
         q: "Can a provider add charges after arriving?",
-        a: "Only when the job is genuinely outside the published standard scope. Any additional work and price should be shown and approved before that additional work starts.",
+        a: "Only when the job is genuinely outside the published standard scope. Any additional work and price must be shown and approved before that additional work starts.",
       },
     ],
   },
@@ -44,8 +44,8 @@ const SECTIONS = [
         a: "No. A person can be recorded as holding a spare key or being able to help without automatically receiving access to your saved sensitive details.",
       },
       {
-        q: "How are sensitive access details stored?",
-        a: "Sensitive text is stored as server-encrypted ciphertext. Reference photos use private storage with time-limited signed access. Trusted Locksmith does not describe this as zero-knowledge or end-to-end encryption.",
+        q: "How are sensitive access details protected?",
+        a: "Sensitive access details are encrypted and kept private. You control who is recorded as a trusted key holder and who is allowed to see specific Digital Access information.",
       },
     ],
   },
@@ -58,11 +58,11 @@ const SECTIONS = [
       },
       {
         q: "When do field-service membership benefits begin?",
-        a: "Digital Access is available immediately. Field-service membership benefits use the waiting period shown on the pricing page. One-off service can still be requested separately.",
+        a: "Digital Access is available with your account. Paid field-service membership benefits begin after membership activation and the waiting period shown on the pricing page. One-off locksmith service remains available separately.",
       },
       {
-        q: "Does creating an account charge my card?",
-        a: "No. Account creation stores your profile and selected plan. Payment activation is handled separately through checkout once payment processing is enabled.",
+        q: "What happens after I create an account?",
+        a: "Your selected plan is saved with the account so you can continue setup. Paid membership benefits begin only after membership activation is confirmed.",
       },
     ],
   },
@@ -76,7 +76,7 @@ export default function HelpCenterPage() {
         <PageHero
           eyebrow="Help center"
           title="Clear answers before you find a locksmith"
-          body="Understand Digital Access, local provider matching, pricing and membership without having to decode marketplace jargon."
+          body="Understand Digital Access, local provider matching, pricing and membership in plain language."
         />
 
         <section className="py-16 sm:py-20">
@@ -99,7 +99,7 @@ export default function HelpCenterPage() {
 
         <CTABand
           title="Still need help?"
-          body="Use the contact form for account, provider, privacy or general support questions."
+          body="Contact us about an account, provider, privacy or general support question."
           ctaLabel="Contact Trusted Locksmith"
           ctaHref="/contact"
           secondaryLabel="View locksmith services"

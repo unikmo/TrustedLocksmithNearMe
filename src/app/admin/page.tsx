@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { defaultServiceForJobType, formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 import { offerJob, reviewProviderClaim } from "./actions";
 
-export const metadata: Metadata = { title: "Keepwell network operations", robots: { index: false } };
+export const metadata: Metadata = { title: "Trusted Locksmith network operations", robots: { index: false } };
 
 export default async function AdminPage({
   searchParams,
@@ -53,8 +53,8 @@ export default async function AdminPage({
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div className="eyebrow">Internal operations</div>
-              <h1 className="mt-2 font-display text-4xl text-parchment">Keepwell network dashboard</h1>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">Manual pilot control: provider claims, supply availability, service requests, fixed-payout offers and accepted jobs.</p>
+              <h1 className="mt-2 font-display text-4xl text-parchment">Trusted Locksmith network dashboard</h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">Provider claims, supply availability, service requests, private commercial offers and accepted jobs.</p>
             </div>
             <a href="/admin/v4" className="text-sm text-brass">Audit & B2B operations →</a>
           </div>
@@ -116,7 +116,7 @@ export default async function AdminPage({
                           <option value="">Choose verified provider</option>
                           {verifiedProviders.map((provider: any) => <option key={provider.id} value={provider.id}>{provider.business_name}{provider.is_available ? " · available" : ""}</option>)}
                         </select>
-                        <input name="payout_cents" type="number" min={100} defaultValue={service.providerPayoutCents} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
+                        <input name="payout_cents" type="number" min={100} required placeholder="Payout cents" className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
                         <button className="rounded-full bg-brass px-4 py-2 text-xs font-semibold text-ink">Send offer</button>
                       </form>
                     </div>
@@ -145,7 +145,7 @@ export default async function AdminPage({
                           <option value="">Choose verified provider</option>
                           {verifiedProviders.map((provider: any) => <option key={provider.id} value={provider.id}>{provider.business_name}{provider.is_available ? " · available" : ""}</option>)}
                         </select>
-                        <input name="payout_cents" type="number" min={100} defaultValue={6000} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
+                        <input name="payout_cents" type="number" min={100} required placeholder="Payout cents" className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
                         <button className="rounded-full bg-brass px-4 py-2 text-xs font-semibold text-ink">Send offer</button>
                       </form>
                     </div>
