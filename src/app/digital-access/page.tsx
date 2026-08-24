@@ -82,10 +82,10 @@ export default function DigitalAccessPage() {
 
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-4xl px-6">
-            <div className="rounded-3xl border border-sky/20 bg-surface/55 p-8 sm:p-10">
-              <div className="eyebrow">Privacy by role</div>
-              <h2 className="mt-3 font-display text-3xl text-parchment">Trusted people do not automatically see your saved codes.</h2>
-              <p className="mt-4 text-sm leading-6 text-parchment-dim">Someone can be recorded as holding a spare key without being given access to sensitive Digital Access details. Sensitive text is stored as server-encrypted ciphertext and reference photos use private storage with time-limited signed access.</p>
+            <div className="border-y border-line py-10 sm:py-12">
+              <div className="eyebrow">Private by design</div>
+              <h2 className="mt-3 max-w-2xl font-display text-3xl text-parchment">Trusted people do not automatically see your saved codes.</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">Sensitive access details are encrypted and kept private. You decide who is recorded as a trusted key holder and who, if anyone, is allowed to see specific Digital Access information.</p>
               <Link href="/privacy" className="mt-5 inline-flex text-sm font-semibold text-brass hover:underline">Read the privacy approach →</Link>
             </div>
           </div>
