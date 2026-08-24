@@ -3,11 +3,14 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
   description: "How Trusted Locksmith reviews provider information, protects access details and keeps pricing and service status clear before work begins.",
   alternates: { canonical: "/trust-safety" },
+  openGraph: { images: [PAGE_VISUALS.trust.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.trust.src] },
 };
 
 const PILLARS = [
@@ -61,6 +64,7 @@ export default function TrustSafetyPage() {
           eyebrow="Trust & safety"
           title="Know who is coming, what the job costs and what you are approving."
           body="Trusted Locksmith is designed to make the most important parts of a locksmith request clear before anyone starts work."
+          visual={PAGE_VISUALS.trust}
         />
         <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-6">
