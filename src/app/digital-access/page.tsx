@@ -59,13 +59,32 @@ export default function DigitalAccessPage() {
         </section>
 
         <section className="border-b border-line/70 py-16 sm:py-20">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+          <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
             <div>
               <div className="eyebrow">Before you find a locksmith</div>
               <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Check the access you already have.</h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access turns scattered codes, key locations and trusted contacts into a simple backup plan. If none of those options works, continue into Trusted Locksmith's clearly priced service flow.</p>
+
+              <div className="mt-7 overflow-hidden rounded-[26px] border border-sky/18 bg-surface shadow-[0_22px_52px_rgba(3,18,37,0.2)]" aria-label="Digital Access product preview">
+                <div className="flex items-center justify-between border-b border-line/70 px-5 py-4">
+                  <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Digital Access</div>
+                    <div className="mt-1 font-display text-xl text-parchment">Lake House</div>
+                  </div>
+                  <span className="rounded-full border border-verdigris/30 bg-verdigris/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-verdigris">Private</span>
+                </div>
+                <div className="space-y-3 p-5">
+                  <AccessRow label="Front door keypad" value="•••• 4821" meta="Recovery code saved" />
+                  <AccessRow label="Spare key" value="With Maya" meta="Trusted key holder" />
+                  <AccessRow label="Garage access" value="Saved" meta="Reference photo attached" />
+                </div>
+                <div className="border-t border-line/70 bg-surface-raised/55 px-5 py-4 text-xs leading-5 text-parchment-dim">
+                  Check your own backup access first. Request a local locksmith only when on-site help is still needed.
+                </div>
+              </div>
             </div>
-            <div className="space-y-3">
+
+            <div className="space-y-3 lg:pt-8">
               {[
                 ["01", "Check saved access", "Review keypad, lockbox, smart-lock or garage access details."],
                 ["02", "Reach a trusted key holder", "Contact the person you recorded as holding a spare."],
@@ -105,6 +124,18 @@ export default function DigitalAccessPage() {
         />
       </main>
       <Footer />
+    </div>
+  );
+}
+
+function AccessRow({ label, value, meta }: { label: string; value: string; meta: string }) {
+  return (
+    <div className="grid grid-cols-[1fr_auto] gap-4 rounded-2xl border border-line/80 bg-surface-raised/65 px-4 py-3">
+      <div>
+        <div className="text-sm font-medium text-parchment">{label}</div>
+        <div className="mt-1 text-[11px] text-parchment-dim">{meta}</div>
+      </div>
+      <div className="self-center font-mono text-xs text-brass">{value}</div>
     </div>
   );
 }
