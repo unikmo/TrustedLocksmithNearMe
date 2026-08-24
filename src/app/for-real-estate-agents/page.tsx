@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "Give homebuyers a practical closing gift with Digital Access, trusted key-holder setup and clearly priced local locksmith services through Trusted Locksmith.";
 
@@ -14,11 +15,13 @@ export const metadata: Metadata = {
     title: "A closing gift homebuyers can actually use",
     description: metaDescription,
     url: "/for-real-estate-agents",
+    images: [PAGE_VISUALS.realEstate.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "A closing gift homebuyers can actually use",
     description: metaDescription,
+    images: [PAGE_VISUALS.realEstate.src],
   },
 };
 
@@ -38,6 +41,7 @@ export default function RealEstateAgentsPage() {
           eyebrow="Trusted Locksmith for real estate professionals"
           title="A closing gift that solves a real homeowner problem."
           body="Give buyers a practical property-access setup: Digital Access for codes and spare-key details, trusted contacts, and clearly priced local locksmith service when they need on-site help."
+          visual={PAGE_VISUALS.realEstate}
         />
 
         <section className="border-b border-line/70 py-20">
