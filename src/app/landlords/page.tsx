@@ -3,11 +3,14 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 export const metadata: Metadata = {
   title: "Trusted Locksmith for Landlords",
   description: "Coordinate rental-property lockouts, rekeys, trusted access and locksmith service history through one focused platform.",
   alternates: { canonical: "/landlords" },
+  openGraph: { images: [PAGE_VISUALS.landlords.src] },
+  twitter: { card: "summary_large_image", images: [PAGE_VISUALS.landlords.src] },
 };
 
 const BENEFITS = [
@@ -26,6 +29,7 @@ export default function LandlordsPage() {
           eyebrow="Trusted Locksmith for landlords"
           title="Access work should not restart from zero at every turnover"
           body="Give rental properties a consistent workflow for rekeys, lockouts, trusted access and the locksmith service record behind them."
+          visual={PAGE_VISUALS.landlords}
         />
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-6xl px-6">
