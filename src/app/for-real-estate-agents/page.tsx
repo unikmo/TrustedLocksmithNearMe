@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const REASONS = [
   { title: "Useful on day one", body: "New owners already need to think about keys, rekeys and who can access the property. Trusted Locksmith fits naturally into that move-in moment." },
   { title: "Useful long after closing", body: "Digital Access, trusted key holders and clearly priced locksmith service remain relevant after the welcome basket is gone." },
-  { title: "Designed for bulk gifting", body: "Brokerages can prepare memberships and activation codes across multiple closings instead of buying one-off gifts individually." },
+  { title: "Built for repeat gifting", body: "Brokerages can prepare memberships and activation codes across multiple closings instead of managing one-off gifts individually." },
   { title: "The buyer owns the account", body: "The recipient activates and controls their own Trusted Locksmith account. Gifted access does not create an ongoing account relationship with the agent." },
 ];
 
@@ -42,9 +42,9 @@ export default function RealEstateAgentsPage() {
 
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
               {REASONS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
+                <div key={item.title} className="border-t border-line pt-5">
                   <h2 className="font-display text-xl text-parchment">{item.title}</h2>
                   <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.body}</p>
                 </div>
@@ -57,8 +57,8 @@ export default function RealEstateAgentsPage() {
           <div className="mx-auto max-w-5xl px-6">
             <div className="grid gap-8 md:grid-cols-3">
               {[
-                { n: "01", title: "Choose the buyer program", body: "Select the membership tier and batch size that fits your closing volume." },
-                { n: "02", title: "Prepare activation codes", body: "Once payment is enabled and confirmed, individual activation codes can be assigned across closings." },
+                { n: "01", title: "Choose the buyer program", body: "Select the membership tier and quantity that fit your closing volume." },
+                { n: "02", title: "Confirm the brokerage order", body: "Once the order is confirmed, individual activation codes are issued for use across your closings." },
                 { n: "03", title: "Buyer activates", body: "The buyer creates and controls their own Trusted Locksmith account while the brokerage can track unused versus activated codes." },
               ].map((step) => (
                 <div key={step.n} className="border-t border-line pt-5">
@@ -73,7 +73,7 @@ export default function RealEstateAgentsPage() {
 
         <CTABand
           title="Give buyers something they can still use a year later"
-          body="Create a brokerage workspace and prepare a repeatable Trusted Locksmith closing-gift program."
+          body="Create a brokerage workspace and build a repeatable Trusted Locksmith closing-gift program."
           ctaLabel="Open brokerage workspace"
           ctaHref="/brokerage"
           secondaryLabel="See membership"
