@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { getPlans, formatUsd } from "@/lib/plans";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1711098256657-f40961037781?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const KEY_IMAGE = "https://images.unsplash.com/photo-1733244766159-f58f4184fd38?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const QUICK_SERVICE_IDS = ["home_lockout_day", "standard_rekey", "standard_lock_change"];
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trustedlocksmithnearme.com";
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -16,8 +15,25 @@ const websiteSchema = {
   url: siteUrl,
 };
 
-export default async function Home() {
-  const plans = await getPlans();
+const STEPS = [
+  {
+    n: "01",
+    title: "Choose the service",
+    body: "Start with the job you actually need and see the published standard price and scope before entering your details.",
+  },
+  {
+    n: "02",
+    title: "Send one clear request",
+    body: "Add the service address and contact details. Trusted Locksmith makes the request available to participating independent local providers.",
+  },
+  {
+    n: "03",
+    title: "See who accepts",
+    body: "A provider name and ETA appear only after a real provider accepts. Out-of-scope work requires a separate price and your approval.",
+  },
+];
+
+export default function Home() {
   const quickServices = QUICK_SERVICE_IDS
     .map((id) => SERVICE_MENU.find((service) => service.id === id))
     .filter((service): service is NonNullable<typeof service> => Boolean(service));
@@ -28,161 +44,218 @@ export default async function Home() {
       <Nav />
       <main className="flex-1">
         <section className="border-b border-line/70">
-          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 sm:px-8 sm:py-18 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-10 lg:py-20">
+          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-12 sm:px-8 sm:py-16 lg:grid-cols-[.92fr_1.08fr] lg:items-center lg:gap-14 lg:px-10 lg:py-20">
             <div className="max-w-2xl">
-              <div className="eyebrow">Vetted local locksmiths. Upfront prices.</div>
-              <h1 className="mt-5 font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[72px]">
+              <div className="eyebrow">Local providers · price shown first</div>
+              <h1 className="mt-5 font-display text-5xl font-medium leading-[.96] tracking-[-.04em] text-parchment sm:text-6xl lg:text-[72px]">
                 Find a trusted locksmith
                 <span className="block italic text-brass">near you.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-parchment-dim">
-                Get help with lockouts, rekeys, lock changes and smart locks without the pricing scramble. See the standard price before you request a local provider. Travel is included.
+                Choose the locksmith service you need, see the standard total and scope first, then request a participating independent local provider. No mystery call-out fee added later.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
-                  Find a locksmith
-                </Link>
-                <Link href="/services" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
-                  See prices
-                </Link>
+
+              <div className="mt-8 overflow-hidden rounded-2xl border border-sky/18 bg-surface/66 shadow-[0_20px_54px_rgba(3,18,37,0.18)]">
+                <div className="border-b border-line/70 px-5 py-3 font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">
+                  Start with the service
+                </div>
+                <div className="divide-y divide-line/70">
+                  {quickServices.map((service) => (
+                    <Link
+                      key={service.id}
+                      href={`/book/details?service_id=${service.id}`}
+                      className="group grid gap-2 px-5 py-4 transition hover:bg-surface-raised/75 sm:grid-cols-[1fr_auto] sm:items-center"
+                    >
+                      <span>
+                        <span className="block font-semibold text-parchment">{service.title}</span>
+                        <span className="mt-1 block text-xs text-parchment-dim">{service.timing}</span>
+                      </span>
+                      <span className="flex items-center justify-between gap-4 sm:justify-end">
+                        <span className="font-display text-2xl text-brass">{formatServicePrice(service.customerPriceCents)}</span>
+                        <span className="text-brass transition group-hover:translate-x-0.5" aria-hidden="true">→</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-2 border-t border-line/70 px-5 py-4 text-xs text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
+                  <span>Provider travel/service call is included in each standard total shown.</span>
+                  <Link href="/services" className="font-semibold text-parchment hover:text-brass">All services & prices →</Link>
+                </div>
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[34px] border border-sky/20 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.32)]">
-              <img src={HERO_IMAGE} alt="Modern residential front entrance" className="h-[430px] w-full object-cover sm:h-[520px]" loading="eager" />
+            <div className="relative overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.28)]">
+              <img
+                src={HERO_IMAGE}
+                alt="Residential front entrance"
+                width={1800}
+                height={1125}
+                fetchPriority="high"
+                decoding="async"
+                className="h-[430px] w-full object-cover sm:h-[540px]"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/65 to-transparent px-5 pb-5 pt-16 sm:px-6 sm:pb-6">
+                <div className="max-w-md text-sm leading-6 text-parchment">
+                  <strong>Platform, not the locksmith.</strong>{" "}
+                  <span className="text-parchment-dim">Field work is performed by participating independent local providers.</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line/70 bg-surface/55">
+        <section className="border-b border-line/70 bg-surface/48">
           <div className="mx-auto grid max-w-[1400px] gap-5 px-6 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
             {[
-              ["Vetted local providers", "Provider information is reviewed before activation"],
-              ["Price shown upfront", "Know the standard total before you request service"],
-              ["Extras need approval", "Approve additional work before it starts"],
+              ["Price before request", "See the published standard total and scope before you continue."],
+              ["Real provider acceptance", "A provider name and ETA appear only after someone accepts the request."],
+              ["Extras need approval", "Additional work must be priced and approved before it starts."],
             ].map(([title, body]) => (
-              <div key={title} className="rounded-xl border border-sky/10 bg-ink/10 px-4 py-3 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
+              <div key={title} className="py-1">
                 <div className="text-sm font-semibold text-parchment">{title}</div>
-                <div className="mt-1 text-sm text-parchment-dim">{body}</div>
+                <div className="mt-1 text-sm leading-6 text-parchment-dim">{body}</div>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
-          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16 lg:px-10">
-            <div className="overflow-hidden rounded-[30px] border border-[#c7d9ec] bg-white shadow-[0_24px_60px_rgba(28,65,105,0.14)]">
-              <img src={KEY_IMAGE} alt="House keys held near an open front door" className="h-[420px] w-full object-cover sm:h-[500px]" loading="lazy" />
-            </div>
-            <div className="max-w-xl">
-              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Digital Access</div>
-              <h2 className="mt-4 font-display text-4xl font-medium leading-[1.04] tracking-[-.025em] text-navy-text sm:text-5xl">
-                Your easiest lockout may be the one you solve yourself.
+        <section id="how-it-works" className="border-b border-line/70 py-16 sm:py-20">
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
+            <div className="max-w-2xl">
+              <div className="eyebrow">How Trusted Locksmith works</div>
+              <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-[-.03em] text-parchment sm:text-5xl">
+                Three steps. No guessing about the process.
               </h2>
-              <p className="mt-5 text-lg leading-8 text-[#46617f]">
-                Keep access codes, spare-key details, trusted key holders and recovery instructions attached to the property so your backup options are easy to find when access goes wrong.
-              </p>
-              <div className="mt-7 divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
-                {[
-                  ["01", "Saved access", "Retrieve a keypad, smart-lock or lockbox instruction."],
-                  ["02", "Trusted key holder", "Reach the person who already has a spare."],
-                  ["03", "Physical backup", "Find the spare-key location or recovery note."],
-                ].map(([n, title, body]) => (
-                  <div key={n} className="grid grid-cols-[42px_1fr] gap-4 py-5">
-                    <div className="font-mono text-xs text-[#8c6d31]">{n}</div>
+            </div>
+            <div className="mt-12 grid gap-8 border-t border-line/70 pt-8 md:grid-cols-3 md:gap-10">
+              {STEPS.map((step) => (
+                <div key={step.n}>
+                  <div className="font-mono text-xs text-brass">{step.n}</div>
+                  <h3 className="mt-4 font-display text-2xl text-parchment">{step.title}</h3>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-parchment-dim">{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
+            <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start lg:gap-16">
+              <div className="max-w-lg">
+                <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Common locksmith prices</div>
+                <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-[-.03em] text-navy-text sm:text-5xl">
+                  See the price before the pressure starts.
+                </h2>
+                <p className="mt-5 text-base leading-7 text-[#536e8a]">
+                  Published standard totals make it easier to decide before a provider is involved. If the actual job falls outside the stated scope, you approve any extra work separately.
+                </p>
+                <Link href="/services" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(150,119,59,0.16)] transition hover:brightness-105">
+                  See all services & prices
+                </Link>
+              </div>
+
+              <div className="border-y border-[#c7d9ec]">
+                {quickServices.map((service) => (
+                  <div key={service.id} className="grid gap-3 border-b border-[#c7d9ec] py-6 last:border-b-0 sm:grid-cols-[1fr_auto] sm:items-center">
                     <div>
-                      <div className="font-semibold text-navy-text">{title}</div>
-                      <div className="mt-1 text-sm leading-6 text-[#536e8a]">{body}</div>
+                      <h3 className="font-display text-2xl text-navy-text">{service.title}</h3>
+                      <p className="mt-1 text-sm text-[#536e8a]">{service.timing}</p>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <div className="font-display text-4xl text-[#8c6d31]">{formatServicePrice(service.customerPriceCents)}</div>
+                      <Link href={`/book/details?service_id=${service.id}`} className="font-semibold text-navy-text hover:underline">Choose →</Link>
                     </div>
                   </div>
                 ))}
               </div>
-              <Link href="/digital-access" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(150,119,59,0.18)] transition hover:brightness-105">
-                See how Digital Access works
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 py-16 sm:py-20">
+          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 sm:px-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:px-10">
+            <div className="max-w-xl">
+              <div className="eyebrow">Trust without invented promises</div>
+              <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-[-.03em] text-parchment sm:text-5xl">
+                Clear rules matter more than flashy claims.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-parchment-dim">
+                Trusted Locksmith is designed to make the decision safer and easier without pretending every market has the same response time or provider availability.
+              </p>
+            </div>
+            <div className="divide-y divide-line/70 border-y border-line/70">
+              {[
+                ["Provider review", "Provider information is reviewed before activation on the platform."],
+                ["No fake ETA", "We show a provider identity and ETA only after a participating provider actually accepts."],
+                ["Scope control", "Standard scope is visible first. Extra work requires a separate price and approval."],
+              ].map(([title, body]) => (
+                <div key={title} className="py-5">
+                  <div className="font-semibold text-parchment">{title}</div>
+                  <p className="mt-1 text-sm leading-6 text-parchment-dim">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
+          <div className="mx-auto grid max-w-[1400px] gap-10 px-6 sm:px-8 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:gap-16 lg:px-10">
+            <div className="overflow-hidden rounded-[26px] border border-[#c7d9ec] bg-white shadow-[0_22px_55px_rgba(28,65,105,0.12)]">
+              <img
+                src={KEY_IMAGE}
+                alt="House keys near a residential entrance"
+                width={1800}
+                height={1125}
+                loading="lazy"
+                decoding="async"
+                className="h-[360px] w-full object-cover sm:h-[450px]"
+              />
+            </div>
+            <div className="max-w-xl">
+              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Digital Access · optional</div>
+              <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-[-.03em] text-navy-text sm:text-5xl">
+                Before calling anyone, check the access you already have.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-[#536e8a]">
+                Membership adds Digital Access for codes, spare-key locations, trusted key holders and recovery instructions attached to the property. It is a prevention layer—not a requirement for one-off locksmith service.
+              </p>
+              <Link href="/digital-access" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full border border-[#9fb5cc] px-6 py-2.5 text-sm font-semibold text-navy-text transition hover:border-[#718faa]">
+                Explore Digital Access
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line/70 bg-surface/45 py-16 sm:py-20">
-          <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
-            <div className="max-w-2xl">
-              <div className="eyebrow">Locksmith services</div>
-              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith near you? See the price first.</h2>
-              <p className="mt-4 text-base leading-7 text-parchment-dim">Start with a published standard total for the job you need. Provider travel/service call is included.</p>
+        <section className="border-b border-line/70 py-14">
+          <div className="mx-auto grid max-w-[1400px] gap-8 px-6 sm:px-8 md:grid-cols-2 md:gap-0 lg:px-10">
+            <div className="md:border-r md:border-line/70 md:pr-10">
+              <div className="eyebrow">Property managers</div>
+              <h2 className="mt-3 font-display text-3xl text-parchment">Standardize lockouts and turnover rekeys.</h2>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-parchment-dim">Give teams a clearer service workflow without turning Trusted Locksmith into your maintenance department.</p>
+              <Link href="/for-property-managers" className="mt-5 inline-flex text-sm font-semibold text-brass hover:underline">For property managers →</Link>
             </div>
-
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              {quickServices.map((service) => (
-                <div key={service.id} className="rounded-[24px] border border-sky/15 bg-ink/28 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{service.timing}</div>
-                      <h3 className="mt-3 font-display text-2xl text-parchment">{service.title}</h3>
-                    </div>
-                    <div className="font-display text-4xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
-                  </div>
-                  <Link href={`/book/details?service_id=${service.id}`} className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Choose this service →</Link>
-                </div>
-              ))}
+            <div className="md:pl-10">
+              <div className="eyebrow">Real estate professionals</div>
+              <h2 className="mt-3 font-display text-3xl text-parchment">A useful move-in and closing benefit.</h2>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-parchment-dim">Help buyers organize access and get clearly priced locksmith help when they need it.</p>
+              <Link href="/for-real-estate-agents" className="mt-5 inline-flex text-sm font-semibold text-brass hover:underline">For real estate professionals →</Link>
             </div>
-            <Link href="/services" className="mt-6 inline-flex text-sm font-semibold text-parchment hover:text-brass">See all services and prices →</Link>
-          </div>
-        </section>
-
-        <section className="border-b border-line/70 py-16 sm:py-20">
-          <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-              <div className="max-w-lg">
-                <div className="eyebrow">Membership</div>
-                <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">A backup plan for the property, not just the emergency.</h2>
-                <p className="mt-4 text-base leading-7 text-parchment-dim">Membership adds Digital Access and trusted-access tools. You can still use Trusted Locksmith for one-off service without joining.</p>
-                <Link href="/pricing" className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Compare membership →</Link>
-              </div>
-              <div className="grid gap-4 md:grid-cols-3">
-                {plans.map((plan) => (
-                  <div key={plan.id} className={`rounded-[22px] border p-5 ${plan.id === "household_plus" ? "border-brass/45 bg-brass/[.075]" : "border-sky/15 bg-surface/62"}`}>
-                    <div className="text-sm font-semibold text-parchment">{plan.name}</div>
-                    <div className="mt-3 flex items-end gap-1">
-                      <span className="font-display text-4xl text-parchment">{formatUsd(plan.price_cents)}</span>
-                      <span className="pb-1 text-xs text-parchment-dim">/year</span>
-                    </div>
-                    <div className="mt-4 text-sm leading-6 text-parchment-dim">
-                      {plan.id === "individual" && "Digital Access + 1 trusted key holder."}
-                      {plan.id === "household" && "Household access profiles + unlimited trusted contacts."}
-                      {plan.id === "household_plus" && "Priority matching + Lock & Access Audit every 3 years."}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-line/70 bg-surface/42 py-10">
-          <div className="mx-auto grid max-w-[1400px] gap-4 px-6 sm:px-8 md:grid-cols-2 lg:px-10">
-            <Link href="/for-property-managers" className="group rounded-2xl border border-sky/15 bg-ink/20 p-5 transition hover:border-brass/45 hover:bg-ink/30">
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Property managers</div>
-              <div className="mt-2 font-display text-2xl text-parchment">Reduce lockout calls and standardize turnover rekeys →</div>
-            </Link>
-            <Link href="/for-real-estate-agents" className="group rounded-2xl border border-sky/15 bg-ink/20 p-5 transition hover:border-brass/45 hover:bg-ink/30">
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Real estate professionals</div>
-              <div className="mt-2 font-display text-2xl text-parchment">Give buyers a closing gift they can actually use →</div>
-            </Link>
           </div>
         </section>
 
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
-            <div className="eyebrow">Ready when you need it</div>
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith now—or want to be ready next time?</h2>
+            <div className="eyebrow">Need locksmith help?</div>
+            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.03em] text-parchment sm:text-5xl">
+              Start with the service. See the price. Then decide.
+            </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-parchment-dim">
-              Find a clearly priced local locksmith today, or set up Digital Access so your backup options are ready before the next access problem.
+              No membership required. Choose the job you need and review the standard total before sending a request to participating local providers.
             </p>
-            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Find a locksmith</Link>
-              <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">Explore Digital Access</Link>
-            </div>
+            <Link href="/book" className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)] transition hover:brightness-110">
+              Find a locksmith
+            </Link>
           </div>
         </section>
       </main>
