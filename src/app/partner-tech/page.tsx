@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
+import { PAGE_VISUALS } from "@/lib/visuals";
 
 const metaDescription = "Join the Trusted Locksmith Provider Network as an independent local locksmith. Receive clearly scoped local requests, control your availability and review job terms privately before accepting.";
 
@@ -14,11 +15,13 @@ export const metadata: Metadata = {
     title: "Trusted Locksmith Provider Network | Local requests, clear terms",
     description: metaDescription,
     url: "/partner-tech",
+    images: [PAGE_VISUALS.providers.src],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trusted Locksmith Provider Network | Local requests, clear terms",
     description: metaDescription,
+    images: [PAGE_VISUALS.providers.src],
   },
 };
 
@@ -55,6 +58,7 @@ export default function PartnerTechPage() {
           eyebrow="Trusted Locksmith Provider Network"
           title="Local locksmith requests. Your schedule. Your decision."
           body="Trusted Locksmith connects customers with independent local providers through a structured request flow. You decide when you are available and which jobs you accept."
+          visual={PAGE_VISUALS.providers}
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
