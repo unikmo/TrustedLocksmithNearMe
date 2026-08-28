@@ -39,14 +39,14 @@ const BENEFITS = [
   {
     n: "03",
     title: "Private commercial terms",
-    body: "Job-specific compensation and acceptance terms are shown only inside the verified provider workflow—not on the public marketplace.",
+    body: "Job-specific compensation and acceptance terms are shown only inside the provider workflow after profile activation—not on the public marketplace.",
   },
 ];
 
 const STEPS = [
   ["1", "Create or claim your business profile", "Register a new business or claim an existing profile built from public business information."],
-  ["2", "Complete verification", "We review the business connection and the information relevant to your service area before requests are enabled."],
-  ["3", "Review requests privately", "Once verified, use your provider dashboard to manage availability and review individual job offers before accepting."],
+  ["2", "Confirm your business connection", "Trusted Locksmith reviews the provider account's connection to the business profile before that profile can receive requests."],
+  ["3", "Review requests privately", "Once the profile is activated, use your provider dashboard to manage availability and review individual job offers before accepting."],
 ] as const;
 
 export default function PartnerTechPage() {
@@ -91,9 +91,9 @@ export default function PartnerTechPage() {
           <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
             <div>
               <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">How joining works</div>
-              <h2 className="mt-4 font-display text-4xl leading-[1.05] tracking-[-.025em] text-navy-text">A professional network starts with verified businesses.</h2>
+              <h2 className="mt-4 font-display text-4xl leading-[1.05] tracking-[-.025em] text-navy-text">A professional network starts with a real business connection.</h2>
               <p className="mt-5 max-w-xl text-base leading-7 text-[#536e8a]">
-                Customers should know they are dealing with a real local business. Providers should know the job details before they commit. The network is designed around both expectations.
+                Customers should know that the provider account is connected to the business profile. Providers should know the job details before they commit. The network is designed around both expectations.
               </p>
             </div>
             <div className="divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
@@ -113,9 +113,9 @@ export default function PartnerTechPage() {
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <div className="eyebrow">Provider standards</div>
-            <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Trust starts before the first request.</h2>
+            <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">A verified business claim has a specific meaning.</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Provider activation depends on verified business ownership and the credentials or insurance relevant to the work and jurisdiction. Verification claims are shown only when supported by the provider information on file.
+              Claim approval means Trusted Locksmith has reviewed the provider account's connection to the business profile. It does not by itself represent every credential, insurance, licensing or KYC requirement that may be required for unrestricted paid launch.
             </p>
             <Link href="/providers/register" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Join Trusted Locksmith</Link>
           </div>
