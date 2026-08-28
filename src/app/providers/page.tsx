@@ -5,8 +5,8 @@ import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Keepwell provider directory",
-  description: "Provider profiles being assembled for the Keepwell marketplace.",
+  title: "Trusted Locksmith provider directory",
+  description: "Provider profiles being assembled for the Trusted Locksmith marketplace.",
   robots: { index: false, follow: true },
 };
 
@@ -25,7 +25,7 @@ export default async function ProvidersPage() {
           <div className="eyebrow">Provider network</div>
           <h1 className="mt-3 font-display text-4xl text-parchment">Greater Boston provider profiles</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-            Preloaded profiles are marked unclaimed until the business owner or authorized representative verifies ownership. Keepwell does not present an unclaimed listing as an active partner.
+            Preloaded profiles are marked unclaimed until the business owner or authorized representative verifies ownership. Trusted Locksmith does not present an unclaimed listing as an active partner.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(providers ?? []).map((provider: any) => (
