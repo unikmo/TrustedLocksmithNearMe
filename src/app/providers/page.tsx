@@ -33,7 +33,7 @@ export default async function ProvidersPage() {
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="font-display text-xl text-parchment">{provider.business_name}</h2>
                   <span className={`rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-wide ${provider.claim_status === "verified" ? "bg-verdigris/10 text-verdigris" : "bg-brass/10 text-brass"}`}>
-                    {provider.claim_status === "verified" ? "Verified" : "Unclaimed"}
+                    {provider.claim_status === "verified" ? "Claim verified" : "Unclaimed"}
                   </span>
                 </div>
                 <p className="mt-2 text-xs text-parchment-dim">{[provider.city, provider.state].filter(Boolean).join(", ") || "Greater Boston"}</p>
