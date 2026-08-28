@@ -23,7 +23,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
           <Link href="/providers" className="text-xs text-parchment-dim hover:text-parchment">← Provider directory</Link>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-wide ${verified ? "bg-verdigris/10 text-verdigris" : "bg-brass/10 text-brass"}`}>
-              {verified ? "Keepwell verified" : "Unclaimed profile"}
+              {verified ? "Trusted Locksmith verified" : "Unclaimed profile"}
             </span>
             {provider.is_available && verified ? <span className="rounded-full bg-verdigris/10 px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">Available</span> : null}
           </div>
@@ -31,15 +31,15 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
           <p className="mt-2 text-sm text-parchment-dim">{[provider.city, provider.state, provider.postal_code].filter(Boolean).join(", ") || "Greater Boston"}</p>
           <p className="mt-6 text-sm leading-7 text-parchment-dim">
             {provider.description || (verified
-              ? "This business has claimed and verified its Keepwell provider profile."
-              : "Keepwell created this profile from public business information to build the initial marketplace directory. The business has not yet claimed or activated it.")}
+              ? "This business has claimed and verified its Trusted Locksmith provider profile."
+              : "Trusted Locksmith created this profile from public business information to build the initial marketplace directory. The business has not yet claimed or activated it.")}
           </p>
 
           <div className="mt-8 rounded-2xl border border-line bg-surface p-6">
             <div className="font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim">Marketplace status</div>
             <p className="mt-2 text-sm leading-6 text-parchment-dim">
               {verified
-                ? "Verified profiles can receive Keepwell job offers when they set availability on."
+                ? "Verified profiles can receive Trusted Locksmith job offers when they set availability on."
                 : "Unclaimed profiles cannot receive customer jobs. Claim and verification must happen first."}
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -49,7 +49,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
                 </Link>
               )}
               <Link href="/book" className="rounded-full border border-line px-5 py-2.5 text-center text-sm font-semibold text-parchment">
-                Request service through Keepwell
+                Request service through Trusted Locksmith
               </Link>
             </div>
           </div>
