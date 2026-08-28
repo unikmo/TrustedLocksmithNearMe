@@ -36,7 +36,7 @@ export default async function ClaimProviderPage({
             <div className="eyebrow">Claim your profile</div>
             <h1 className="mt-3 font-display text-4xl text-parchment">Find your locksmith business</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Your business may already have a basic Trusted Locksmith profile built from public business information. Find it here and claim it so you can verify the details and control the provider account.
+              Your business may already have a basic Trusted Locksmith profile built from public business information. Find it here and claim it so you can review the details and connect the provider account to the business profile.
             </p>
             <div className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface">
               {(providers ?? []).map((item: any) => (
@@ -103,7 +103,7 @@ export default async function ClaimProviderPage({
               </Field>
               <Field label="Verification note (optional)"><textarea className="input min-h-24" name="notes" placeholder="Website domain, public business email, or anything that helps verify your connection to the business." /></Field>
               <button className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Submit profile claim</button>
-              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Trusted Locksmith reviews the business connection before the provider can receive job offers.</p>
+              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Trusted Locksmith reviews the account&apos;s connection to the business profile before it can receive job offers. Claim approval does not by itself represent every launch credential or insurance check.</p>
             </form>
           )}
         </div>
