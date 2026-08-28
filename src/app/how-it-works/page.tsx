@@ -27,7 +27,7 @@ export default function HowItWorksPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="How Trusted Locksmith works"
-          title="Upfront pricing. Provider checks before activation. Backup access when you want it."
+          title="Upfront pricing. Business-profile checks before activation. Backup access when you want it."
           body="Trusted Locksmith gives you a simpler path from an access problem to a clearly priced local locksmith, with Digital Access available to help prevent some service calls altogether."
           visual={PAGE_VISUALS.booking}
         />
