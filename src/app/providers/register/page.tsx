@@ -32,7 +32,7 @@ export default async function ProviderRegisterPage({
           <button className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Create provider account</button>
         </form>
 
-        <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim">Business verification is completed before a provider profile can receive customer requests.</p>
+        <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim">Business connection and applicable provider requirements are reviewed before a profile can receive customer requests.</p>
         <p className="mt-5 text-center text-xs text-parchment-dim">
           Already have an account? <Link href={`/login?next=${encodeURIComponent(provider ? `/providers/claim?provider=${provider}` : "/providers/claim")}`} className="text-brass hover:underline">Log in</Link>
         </p>
