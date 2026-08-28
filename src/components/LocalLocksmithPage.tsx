@@ -72,7 +72,7 @@ function cityServiceHref(city: MaCity, slug: MaServiceSlug) {
 
 function TrustStrip() {
   const items = [
-    ["Vetted local providers", "Provider information is reviewed before network activation"],
+    ["Provider checks before activation", "Business connection and applicable provider requirements are reviewed before marketplace activation"],
     ["Price shown upfront", "See the standard total before you request service"],
     ["Extras need approval", "Additional work is priced and approved before it starts"],
   ];
