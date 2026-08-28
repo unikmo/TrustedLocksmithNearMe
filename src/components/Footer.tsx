@@ -30,7 +30,7 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Vetted local locksmiths. Upfront prices. Digital Access helps keep backup options ready before an access problem becomes urgent.
+              Independent local locksmith providers. Upfront standard prices. Digital Access helps keep backup options ready before an access problem becomes urgent.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
               Trusted Locksmith is operated by PlanetHike OÜ. Field work is performed by independent local providers.
