@@ -2,17 +2,17 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
+import { SITE_URL } from "@/lib/site";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1711098256657-f40961037781?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const KEY_IMAGE = "https://images.unsplash.com/photo-1733244766159-f58f4184fd38?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const QUICK_SERVICE_IDS = ["home_lockout_day", "standard_rekey", "standard_lock_change"];
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://trustedlocksmithnearme.com";
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Trusted Locksmith",
-  url: siteUrl,
+  url: SITE_URL,
 };
 
 const STEPS = [
@@ -186,7 +186,7 @@ export default function Home() {
             </div>
             <div className="divide-y divide-line/70 border-y border-line/70">
               {[
-                ["Provider review", "Provider information is reviewed before activation on the platform."],
+                ["Provider checks", "Business connection and applicable provider requirements are reviewed before marketplace activation."],
                 ["No fake ETA", "We show a provider identity and ETA only after a participating provider actually accepts."],
                 ["Scope control", "Standard scope is visible first. Extra work requires a separate price and approval."],
               ].map(([title, body]) => (
