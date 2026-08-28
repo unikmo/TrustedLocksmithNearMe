@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 const PILLARS = [
   {
-    title: "Business information is reviewed",
-    body: "Before a provider can receive requests, Trusted Locksmith reviews the business connection and the credential or insurance information relevant to the work and service area.",
+    title: "Business-profile connection is reviewed",
+    body: "Before a provider profile can receive requests, Trusted Locksmith reviews the provider account's connection to that business profile. A business-claim approval does not by itself represent every credential, insurance, licensing or KYC check that may be required for launch.",
   },
   {
     title: "Provider details appear after acceptance",
@@ -38,8 +38,8 @@ const FAQ = [
     a: "No. Trusted Locksmith is a platform operated by PlanetHike OÜ. Participating locksmith providers are independent businesses or professionals, not PlanetHike OÜ employees.",
   },
   {
-    q: "How does provider verification work?",
-    a: "We review the provider's connection to the business and the information relevant to the services and jurisdiction before the provider can receive requests. Verification claims are shown only when they are supported by the information on file.",
+    q: "What does a verified business claim mean?",
+    a: "It means Trusted Locksmith has reviewed the provider account's connection to the business profile. It should not be read as a blanket claim that every possible credential, insurance, licensing or KYC requirement has been completed.",
   },
   {
     q: "Can a locksmith request be unavailable?",
