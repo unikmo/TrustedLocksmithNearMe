@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import { LocalServicePage } from "@/components/LocalLocksmithPage";
 import { MA_CITIES, MA_SERVICE_CONTENT, getMaCity, getMaService } from "@/lib/massachusetts-seo";
 import { formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -41,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
 
   const title = titleFor(city.name, service.slug);
   const description = service.description(city.name);
-  const canonical = `${siteUrl}/${city.slug}/${service.slug}`;
+  const canonical = `${SITE_URL}/${city.slug}/${service.slug}`;
 
   return {
     title,
@@ -52,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
       description,
       url: canonical,
       type: "website",
-      siteName: "Trusted Locksmith",
+      siteName: SITE.brandName,
     },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -64,7 +63,7 @@ export default async function MassachusettsServicePage({ params }: { params: Pro
   const service = getMaService(serviceSlug);
   if (!city || !service || !city.services.includes(service.slug)) notFound();
 
-  const cityUrl = `${siteUrl}/${city.slug}`;
+  const cityUrl = `${SITE_URL}/${city.slug}`;
   const url = `${cityUrl}/${service.slug}`;
   const schemas = [
     {
@@ -73,14 +72,14 @@ export default async function MassachusettsServicePage({ params }: { params: Pro
       name: `${service.shortTitle} in ${city.name}, Massachusetts`,
       url,
       description: service.description(city.name),
-      isPartOf: { "@type": "WebSite", name: "Trusted Locksmith", url: siteUrl },
+      isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
       about: { "@type": "Thing", name: `${service.shortTitle} in ${city.name}, Massachusetts` },
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Trusted Locksmith", item: siteUrl },
+        { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
         { "@type": "ListItem", position: 2, name: `${city.name}, MA locksmith`, item: cityUrl },
         { "@type": "ListItem", position: 3, name: service.shortTitle, item: url },
       ],
