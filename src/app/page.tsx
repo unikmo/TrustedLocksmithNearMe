@@ -186,7 +186,7 @@ export default function Home() {
             </div>
             <div className="divide-y divide-line/70 border-y border-line/70">
               {[
-                ["Provider checks", "Business connection and applicable provider requirements are reviewed before marketplace activation."],
+                ["Business connection", "A provider account's connection to the business profile is reviewed before that profile can receive requests."],
                 ["No fake ETA", "We show a provider identity and ETA only after a participating provider actually accepts."],
                 ["Scope control", "Standard scope is visible first. Extra work requires a separate price and approval."],
               ].map(([title, body]) => (
