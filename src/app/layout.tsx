@@ -6,27 +6,27 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Trusted Locksmith Near Me | Upfront Prices, Local Providers",
+    default: "Boston Locksmith | Upfront Standard Prices | Trusted Locksmith",
     template: `%s | ${SITE.brandName}`,
   },
   description:
-    "Find participating independent local locksmiths for home lockouts, rekeys, lock changes and smart-lock installation. See the standard price and scope before you request service.",
+    "Request participating independent locksmith providers in Boston and Greater Boston. See the published standard price and scope before you send the request.",
   applicationName: SITE.brandName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.brandName,
-    title: "Trusted Locksmith Near Me | Upfront prices. Independent local providers.",
+    title: "Boston Locksmith | Upfront standard prices",
     description:
-      "Choose the locksmith service you need, see the standard total first, then request a participating independent local provider.",
+      "Choose the locksmith service you need, see the published standard total first, then request a participating independent local provider.",
     url: SITE.url,
     images: [PAGE_VISUALS.services.src],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith Near Me | Upfront prices. Local providers.",
+    title: "Boston Locksmith | Upfront standard prices",
     description:
-      "See the standard price and scope before requesting a participating independent local locksmith provider.",
+      "See the published standard price and scope before requesting a participating independent Boston-area locksmith provider.",
     images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true },
@@ -42,7 +42,7 @@ const organizationSchema = {
     name: SITE.brandName,
   },
   description:
-    "PlanetHike OÜ operates Trusted Locksmith, a platform that helps customers request participating independent local locksmith providers with clearly scoped services and upfront standard pricing.",
+    "PlanetHike OÜ operates Trusted Locksmith, a Boston-first platform that helps customers request participating independent local locksmith providers with clearly scoped services and upfront standard pricing.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
