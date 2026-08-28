@@ -17,6 +17,7 @@ The public product is deliberately narrow:
 
 - **Brand:** Trusted Locksmith
 - **Public domain:** `https://trustedlocksmithnearme.com`
+- **Repository:** `unikmo/TrustedLocksmithNearMe`
 - **Launch focus:** Boston / Greater Boston first
 - **Operator:** PlanetHike OÜ
 - **Provider status:** submitting a customer request does not mean a provider has accepted it
