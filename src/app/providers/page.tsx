@@ -25,7 +25,7 @@ export default async function ProvidersPage() {
           <div className="eyebrow">Provider network</div>
           <h1 className="mt-3 font-display text-4xl text-parchment">Greater Boston provider profiles</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-            Preloaded profiles are marked unclaimed until the business owner or authorized representative verifies ownership. Trusted Locksmith does not present an unclaimed listing as an active partner.
+            Preloaded profiles are marked unclaimed until a business owner or authorized representative connects a provider account to the business profile. An approved claim confirms that account-to-business connection; it does not by itself represent every launch credential, insurance, licensing or KYC check.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(providers ?? []).map((provider: any) => (
@@ -33,7 +33,7 @@ export default async function ProvidersPage() {
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="font-display text-xl text-parchment">{provider.business_name}</h2>
                   <span className={`rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-wide ${provider.claim_status === "verified" ? "bg-verdigris/10 text-verdigris" : "bg-brass/10 text-brass"}`}>
-                    {provider.claim_status === "verified" ? "Claim verified" : "Unclaimed"}
+                    {provider.claim_status === "verified" ? "Business claim verified" : "Unclaimed"}
                   </span>
                 </div>
                 <p className="mt-2 text-xs text-parchment-dim">{[provider.city, provider.state].filter(Boolean).join(", ") || "Greater Boston"}</p>
