@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Trusted Locksmith — vetted local locksmiths with upfront prices";
+export const alt = "Trusted Locksmith — local locksmith requests with upfront prices";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -58,7 +58,7 @@ export default function OpenGraphImage() {
             <span style={{ color: "#D6AD57" }}>near you.</span>
           </div>
           <div style={{ display: "flex", fontSize: 28, lineHeight: 1.4, color: "#B8C7DA" }}>
-            <span>Vetted local locksmiths. Upfront prices.</span>
+            <span>Participating local providers. Upfront standard prices.</span>
           </div>
         </div>
 
