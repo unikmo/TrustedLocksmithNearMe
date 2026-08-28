@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { MA_CITIES, MA_LOCAL_ROUTES } from "@/lib/massachusetts-seo";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -20,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const corePages: MetadataRoute.Sitemap = routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${SITE_URL}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : route === "/services" || route === "/pricing" || route === "/digital-access" ? 0.9 : 0.7,
@@ -28,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const citySlugs = new Set(MA_CITIES.map((city) => `/${city.slug}`));
   const localPages: MetadataRoute.Sitemap = MA_LOCAL_ROUTES.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${SITE_URL}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: citySlugs.has(route) ? 0.82 : 0.76,
