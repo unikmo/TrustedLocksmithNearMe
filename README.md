@@ -40,7 +40,7 @@ Public SEO/entity URLs must use the branded production domain, never a Vercel pr
 - `/how-it-works` — request flow and platform/provider role separation
 - `/digital-access` — Digital Access product
 - `/partner-tech` — provider network information
-- `/providers` — public provider-profile directory/status
+- `/providers` — prelaunch provider-profile directory/status; currently noindex
 - `/trust-safety` — platform trust model and verification-scope explanation
 - `/boston-ma` and supported Massachusetts city/service routes — local locksmith information
 
