@@ -1,60 +1,61 @@
-# Trusted Locksmith Near Me
+# Trusted Locksmith
 
-Trusted Locksmith is a Boston-first locksmith marketplace and property-access platform operated by PlanetHike OÜ. Customers can see a defined standard service scope and price before submitting a request; field work is performed by participating independent local providers.
+Trusted Locksmith is a Boston-first locksmith request and access-management platform operated by PlanetHike OÜ.
 
-The product currently includes:
+The public product is deliberately narrow:
 
-- one-off locksmith service requests
-- published standard service pricing and scope
-- provider registration, profile claims and private job acceptance
-- trusted contacts and Digital Access records
-- membership and property-access workflows that remain subject to launch-readiness gates
-- property-manager and real-estate workflows
-- Massachusetts city/service discovery pages
+- clearly scoped one-off locksmith requests
+- published standard prices before a request is submitted
+- provider identity and ETA only after a real provider accepts
+- Digital Access for codes, spare-key locations, trusted contacts and recovery information
+- optional membership and property-access workflows
+- independent local provider participation
 
-**Platform model:** Trusted Locksmith operates the software, marketplace rules and customer/provider workflows. Field services are performed by independent local providers. A provider identity or ETA must not be presented as real until that provider has actually accepted the request.
+**Platform model:** PlanetHike OÜ operates Trusted Locksmith, the software and marketplace workflow. Field services are performed by participating independent local providers.
 
-## Canonical project identity
+## Canonical launch truth
 
-- Brand: Trusted Locksmith
-- Public domain: https://trustedlocksmithnearme.com
-- Repository: `unikmo/TrustedLocksmithNearMe`
-- Operator: PlanetHike OÜ
-- Initial launch market: Boston, Massachusetts
+- **Brand:** Trusted Locksmith
+- **Public domain:** `https://trustedlocksmithnearme.com`
+- **Launch focus:** Boston / Greater Boston first
+- **Operator:** PlanetHike OÜ
+- **Provider status:** submitting a customer request does not mean a provider has accepted it
+- **Provider claim verification:** the current `verified` provider-profile state confirms an approved account-to-business-profile claim. It must not be presented as blanket completion of every credential, insurance, licensing or KYC requirement that may apply to unrestricted paid launch.
+
+Public SEO/entity URLs must use the branded production domain, never a Vercel preview hostname.
 
 ## Stack
 
 - Next.js 16 — App Router, Server Actions, TypeScript
 - Tailwind CSS v4
 - Supabase — auth and Postgres with row-level security
-- Vercel — preview and production deployment
 
-## Core routes
+## Core public routes
 
-- `/` — customer marketplace homepage
-- `/services` — locksmith services and standard prices
+- `/` — Trusted Locksmith homepage
+- `/services` — locksmith service categories and standard pricing
 - `/book` — one-off service-request flow
-- `/boston-ma` — Boston local discovery page
-- `/boston-ma/[service]` — Boston/local service-intent pages
-- `/partner-tech` — independent provider acquisition
-- `/providers/claim` — provider profile claim flow
-- `/providers/register` — new provider registration
-- `/provider` — authenticated provider dashboard
-- `/digital-access` — Digital Access product surface
-- `/pricing` — membership options
-- `/trust-safety` — platform trust model
-- `/for-property-managers` — property-management use case
-- `/for-real-estate-agents` — real-estate use case
-- `/app` — authenticated customer area
+- `/pricing` — optional membership plans
+- `/how-it-works` — request flow and platform/provider role separation
+- `/digital-access` — Digital Access product
+- `/partner-tech` — provider network information
+- `/providers` — public provider-profile directory/status
+- `/trust-safety` — platform trust model and verification-scope explanation
+- `/boston-ma` and supported Massachusetts city/service routes — local locksmith information
+
+Additional authenticated routes support customers, providers, property managers, brokerages and internal operations. Do not remove an authenticated workspace simply because a similarly named marketing page exists.
 
 ## Environment variables
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SENTINEL_ENCRYPTION_KEY=...
 ```
 
-Public SEO/entity URLs are pinned in `src/lib/site.ts` to the branded production domain so preview/deployment hostnames cannot accidentally become canonical URLs.
+`SENTINEL_ENCRYPTION_KEY` is server-only. Do not expose it with a `NEXT_PUBLIC_` prefix.
+
+The public canonical domain is defined in `src/lib/site.ts`; preview/deployment hostnames must not become SEO canonicals.
 
 Do not commit production secrets.
 
@@ -71,16 +72,16 @@ npm run dev
 npm run build
 ```
 
-## Launch blockers still requiring completion and verification
+## Launch blockers still requiring implementation or finalization
 
-Do not treat a successful website deployment as paid marketplace launch readiness. Before unrestricted paid production launch, verify at minimum:
+A successful deployment is **not** evidence that the marketplace is ready for unrestricted paid production use. Before paid public launch, complete and verify:
 
-1. Sufficient verified Boston provider supply and measurable acceptance/fill coverage.
-2. Production payment authorization/capture, refunds and membership activation where paid flows are enabled.
-3. Provider KYC/payout or transfer mechanics required by the chosen payment model.
-4. Production communications and request lifecycle handling, including failure/no-match/no-show paths.
-5. Final provider credential/insurance rules by service type and jurisdiction.
-6. Massachusetts legal review of marketplace, pricing, provider and membership terms.
-7. Monitoring, recovery and end-to-end lifecycle tests with release evidence.
+1. Real customer payment authorization, capture, refunds and membership activation.
+2. Final provider credential, insurance, licensing/KYC rules required for the launch services and jurisdiction, with enforcement evidence beyond business-profile claim approval.
+3. Production provider supply and operational acceptance coverage for the launch geography.
+4. Production communications for offers, acceptance, customer updates and operational exceptions.
+5. Explicit request/payment lifecycle handling for cancellation, failed matching, no-show, completion, disputes and recovery.
+6. Final legal review for the actual operating entity, marketplace role, provider model, payment terms and launch geography.
+7. End-to-end release QA and live post-release verification.
 
-Historical migration filenames may retain the former internal codename and should not be renamed solely for branding cleanup.
+Historical database migration filenames are retained intentionally. Renaming an already-applied migration for branding cleanup creates unnecessary database-history risk.
