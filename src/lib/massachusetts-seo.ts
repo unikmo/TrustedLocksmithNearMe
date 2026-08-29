@@ -40,7 +40,7 @@ export const MA_SERVICE_CONTENT: Record<MaServiceSlug, MaServiceContent> = {
     title: (city) => `Emergency locksmith help in ${city}`,
     shortTitle: "Emergency locksmith",
     description: (city) =>
-      `Need urgent locksmith help in ${city}, MA? See standard lockout prices before you request a vetted local provider. No invented dispatch or ETA.`,
+      `Need urgent locksmith help in ${city}, MA? See standard lockout prices before you request a participating local provider. Provider identity and ETA appear only after acceptance.`,
     intent: "Use this route when access is urgent and you want the standard scope and price clear before a local provider accepts the request.",
     serviceIds: ["home_lockout_day", "home_lockout_evening_weekend", "home_lockout_overnight_holiday"],
     scopeBullets: [
