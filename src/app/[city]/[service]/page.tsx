@@ -32,13 +32,6 @@ function titleFor(cityName: string, serviceSlug: keyof typeof MA_SERVICE_CONTENT
   }
 }
 
-function publicDescription(description: string) {
-  return description.replace(
-    "See standard lockout prices before you request a vetted local provider. No invented dispatch or ETA.",
-    "See standard lockout prices before you request a participating local provider. Provider identity and ETA appear only after acceptance.",
-  );
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ city: string; service: string }> }): Promise<Metadata> {
   const { city: citySlug, service: serviceSlug } = await params;
   const city = getMaCity(citySlug);
@@ -46,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   if (!city || !service || !city.services.includes(service.slug)) return {};
 
   const title = titleFor(city.name, service.slug);
-  const description = publicDescription(service.description(city.name));
+  const description = service.description(city.name);
   const canonical = `${SITE_URL}/${city.slug}/${service.slug}`;
 
   return {
@@ -72,8 +65,7 @@ export default async function MassachusettsServicePage({ params }: { params: Pro
 
   const cityUrl = `${SITE_URL}/${city.slug}`;
   const url = `${cityUrl}/${service.slug}`;
-  const description = publicDescription(service.description(city.name));
-  const serviceForPage = { ...service, description: () => description };
+  const description = service.description(city.name);
   const offers = service.serviceIds
     .map((id) => getServiceMenuItem(id))
     .filter((item): item is NonNullable<typeof item> => Boolean(item))
@@ -133,7 +125,7 @@ export default async function MassachusettsServicePage({ params }: { params: Pro
       {schemas.map((schema, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
-      <LocalServicePage city={city} service={serviceForPage} />
+      <LocalServicePage city={city} service={service} />
     </>
   );
 }
