@@ -11,18 +11,22 @@ async function getOwnedProvider() {
 
   const { data: provider } = await supabase
     .from("provider_profiles")
-    .select("id")
+    .select("*")
     .eq("claimed_user_id", user.id)
     .eq("claim_status", "verified")
     .maybeSingle();
 
   if (!provider) redirect("/provider?error=Provider profile is not verified yet.");
+  if (!provider.stripe_payouts_enabled) redirect("/provider/onboarding?error=Complete secure payout onboarding before activating or accepting paid work.");
   return { supabase, user, provider };
 }
 
 export async function setAvailability(formData: FormData) {
   const { supabase, provider } = await getOwnedProvider();
   const isAvailable = String(formData.get("is_available") ?? "false") === "true";
+  if (isAvailable && (!(provider.services ?? []).length || !(provider.service_area ?? []).length)) {
+    redirect("/provider/onboarding?error=Choose services and service areas before going available.");
+  }
 
   const { error } = await supabase.from("provider_profiles").update({ is_available: isAvailable }).eq("id", provider.id);
   if (error) redirect(`/provider?error=${encodeURIComponent(error.message)}`);
@@ -33,17 +37,13 @@ export async function setAvailability(formData: FormData) {
 
 export async function respondToOffer(formData: FormData) {
   const { supabase, provider } = await getOwnedProvider();
+  if (!provider.is_available) redirect("/provider?error=Turn availability on before accepting paid job offers.");
+
   const offerId = String(formData.get("offer_id") ?? "");
   const decision = String(formData.get("decision") ?? "");
   const etaMinutes = Number(formData.get("eta_minutes") ?? 0);
 
-  const { data: offer } = await supabase
-    .from("provider_job_offers")
-    .select("id,status")
-    .eq("id", offerId)
-    .eq("provider_id", provider.id)
-    .maybeSingle();
-
+  const { data: offer } = await supabase.from("provider_job_offers").select("id,status").eq("id", offerId).eq("provider_id", provider.id).maybeSingle();
   if (!offer || offer.status !== "offered") redirect("/provider?error=That offer is no longer open.");
 
   const update = decision === "accept"
@@ -60,22 +60,13 @@ export async function respondToOffer(formData: FormData) {
 export async function completeFulfillmentOffer(formData: FormData) {
   const { supabase, provider } = await getOwnedProvider();
   const offerId = String(formData.get("offer_id") ?? "");
-  const { data: offer } = await supabase
-    .from("provider_job_offers")
-    .select("id,status,request_type")
-    .eq("id", offerId)
-    .eq("provider_id", provider.id)
-    .maybeSingle();
+  const { data: offer } = await supabase.from("provider_job_offers").select("id,status,request_type").eq("id", offerId).eq("provider_id", provider.id).maybeSingle();
 
   if (!offer || !["pm_request", "audit_followup"].includes(offer.request_type) || offer.status !== "accepted") {
     redirect("/provider?error=Only an accepted managed-property or audit follow-up job can be completed here.");
   }
 
-  const { error } = await supabase
-    .from("provider_job_offers")
-    .update({ status: "completed", completed_at: new Date().toISOString(), responded_at: new Date().toISOString() })
-    .eq("id", offer.id)
-    .eq("provider_id", provider.id);
+  const { error } = await supabase.from("provider_job_offers").update({ status: "completed", completed_at: new Date().toISOString(), responded_at: new Date().toISOString() }).eq("id", offer.id).eq("provider_id", provider.id);
   if (error) redirect(`/provider?error=${encodeURIComponent(error.message)}`);
 
   revalidatePath("/provider");

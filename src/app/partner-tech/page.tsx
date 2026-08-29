@@ -5,108 +5,36 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { PAGE_VISUALS } from "@/lib/visuals";
 
-const metaDescription = "Join the Trusted Locksmith Provider Network in Greater Boston. Review clearly scoped local requests and private job terms, control your availability, and accept only the requests you want.";
+const metaDescription = "Join the Trusted Locksmith Greater Boston provider network: claim your business, choose coverage, complete Stripe-hosted payout onboarding, then control availability and accept the jobs you want.";
 
 export const metadata: Metadata = {
-  title: "Boston Locksmith Provider Network | Local Job Requests",
+  title: "Boston Locksmith Provider Network | Claim & Activate Your Profile",
   description: metaDescription,
   alternates: { canonical: "/partner-tech" },
-  openGraph: {
-    title: "Boston locksmith provider network | Local requests, clear terms",
-    description: metaDescription,
-    url: "/partner-tech",
-    images: [PAGE_VISUALS.providers.src],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Boston locksmith provider network | Local requests, clear terms",
-    description: metaDescription,
-    images: [PAGE_VISUALS.providers.src],
-  },
+  openGraph: { title: "Greater Boston locksmith provider network", description: metaDescription, url: "/partner-tech", images: [PAGE_VISUALS.providers.src] },
+  twitter: { card: "summary_large_image", title: "Greater Boston locksmith provider network", description: metaDescription, images: [PAGE_VISUALS.providers.src] },
 };
+
+const STEPS = [
+  ["01", "Claim your business profile", "Use the secure invitation sent to your verified business email, or find your profile directly. Matching invited claims are linked automatically; exception cases can still be reviewed."],
+  ["02", "Choose services and coverage", "Select the locksmith jobs you want and the Greater Boston locations you are willing to serve."],
+  ["03", "Complete secure payout onboarding", "Stripe collects the business, identity and bank payout information it requires. Trusted Locksmith does not collect bank account or routing numbers in its own forms."],
+  ["04", "Turn availability on when you want work", "Once your profile is payout-ready, you control whether you are available for new offers."],
+  ["05", "Review each offer before accepting", "See the service scope, local request context, payout and private job terms before you accept or decline."],
+] as const;
 
 export default function PartnerTechPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Nav />
-      <main className="flex-1">
-        <PageHero
-          eyebrow="For Greater Boston locksmith businesses"
-          title="Local requests. Clear details. You decide what to accept."
-          body="Trusted Locksmith is building the Boston provider side around a simple rule: you should see the request and private commercial terms before you commit to the job."
-          visual={PAGE_VISUALS.providers}
-        />
+    <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1">
+      <PageHero eyebrow="For Greater Boston locksmith businesses" title="Claim your profile. Set up payouts securely. Accept only the jobs you want." body="Trusted Locksmith is building the provider network as a self-serve marketplace: clear requests, private commercial terms, provider-controlled availability and Stripe-hosted payout onboarding." visual={PAGE_VISUALS.providers} />
 
-        <section className="border-b border-line/60 py-14 sm:py-16">
-          <div className="mx-auto grid max-w-[1180px] gap-10 px-6 sm:px-8 lg:grid-cols-[.78fr_1.22fr] lg:items-start lg:px-10">
-            <div className="max-w-md">
-              <div className="eyebrow">Why join</div>
-              <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment">Less ambiguity before you say yes.</h2>
-            </div>
-            <div className="divide-y divide-line/70 border-y border-line/70">
-              {[
-                ["Clear request scope", "See the service type, location context and expected scope before deciding whether the request fits your business."],
-                ["Control your availability", "Turn availability on or off and accept or decline requests according to your schedule and capabilities."],
-                ["Private job terms", "Job-specific compensation and acceptance terms stay inside the provider workflow rather than being advertised publicly."],
-              ].map(([title, body]) => (
-                <div key={title} className="py-5">
-                  <h3 className="font-semibold text-parchment">{title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-parchment-dim">{body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className="border-b border-line/60 py-14 sm:py-16"><div className="mx-auto grid max-w-[1180px] gap-10 px-6 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:px-10"><div><div className="eyebrow">Self-serve activation</div><h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment">From public profile to active provider without a routine admin queue.</h2><p className="mt-4 text-sm leading-6 text-parchment-dim">The secure invitation path verifies the business-email connection automatically. Manual review is kept only for claims that cannot be verified through that path.</p></div><div className="divide-y divide-line/70 border-y border-line/70">{STEPS.map(([n,title,body])=><div key={n} className="grid gap-3 py-5 sm:grid-cols-[48px_.42fr_.58fr] sm:gap-6"><div className="font-mono text-xs text-brass">{n}</div><h3 className="font-display text-xl text-parchment">{title}</h3><p className="text-sm leading-6 text-parchment-dim">{body}</p></div>)}</div></div></section>
 
-        <section className="border-b border-[#c7d9ec] bg-mist py-14 text-navy-text sm:py-16">
-          <div className="mx-auto grid max-w-[1180px] gap-10 px-6 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start lg:px-10">
-            <div>
-              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">How joining works</div>
-              <h2 className="mt-3 font-display text-4xl tracking-[-.03em]">Three steps to the provider dashboard.</h2>
-            </div>
-            <div className="divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
-              {[
-                ["01", "Claim or create the business profile", "Use an existing Greater Boston profile where one exists, or register a new provider account."],
-                ["02", "Confirm the business connection", "Trusted Locksmith reviews the provider account's connection to the business profile before that profile can receive requests."],
-                ["03", "Review requests privately", "Once activated, use the provider dashboard to control availability and review individual offers before accepting."],
-              ].map(([n, title, body]) => (
-                <div key={n} className="grid grid-cols-[42px_1fr] gap-4 py-5">
-                  <div className="font-mono text-xs text-[#8c6d31]">{n}</div>
-                  <div><h3 className="font-semibold text-navy-text">{title}</h3><p className="mt-1 text-sm leading-6 text-[#536e8a]">{body}</p></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className="border-b border-[#c7d9ec] bg-mist py-14 text-navy-text sm:py-16"><div className="mx-auto grid max-w-[1180px] gap-10 px-6 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start lg:px-10"><div><div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Payout privacy</div><h2 className="mt-3 font-display text-4xl tracking-[-.03em]">Your bank details stay with Stripe.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-[#536e8a]">Trusted Locksmith creates and tracks the connected provider account, but the payout onboarding itself is hosted by Stripe. We store only the Stripe account identifier and readiness state needed to know whether a provider can be paid.</p></div><div className="divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">{[["Trusted Locksmith stores","Provider profile, chosen services/areas, Stripe connected-account ID, payout-readiness flags and job activity."],["Stripe handles","Identity/business verification plus the financial account details needed to send payouts."],["Activation rule","Paid job acceptance stays locked until the connected account reports payout readiness."]].map(([title,body])=><div key={title} className="py-5"><h3 className="font-semibold text-navy-text">{title}</h3><p className="mt-1 text-sm leading-6 text-[#536e8a]">{body}</p></div>)}</div></div></section>
 
-        <section className="border-b border-line/60 py-14 sm:py-16">
-          <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">
-            <div className="rounded-[28px] border border-brass/25 bg-brass/[.07] p-7 sm:p-9">
-              <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-end">
-                <div className="max-w-2xl">
-                  <div className="eyebrow">Provider verification boundary</div>
-                  <h2 className="mt-3 font-display text-3xl tracking-[-.02em] text-parchment sm:text-4xl">Business-claim approval has a specific meaning.</h2>
-                  <p className="mt-4 text-sm leading-6 text-parchment-dim">Claim approval means Trusted Locksmith has reviewed the provider account's connection to the business profile. It does not by itself represent completion of every credential, insurance, licensing or KYC requirement that may apply to unrestricted paid launch.</p>
-                </div>
-                <Link href="/trust-safety" className="text-sm font-semibold text-brass hover:underline">Trust & safety →</Link>
-              </div>
-            </div>
-          </div>
-        </section>
+      <section className="border-b border-line/60 py-14 sm:py-16"><div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10"><div className="grid gap-6 md:grid-cols-3">{[["Clear scope","Review the service type and expected scope before accepting."],["Private payout terms","See the provider payout inside the authenticated job-offer workflow."],["Your availability","Pause or resume availability instead of being treated as permanently on-call."]].map(([title,body])=><div key={title} className="border-t border-line pt-5"><h2 className="font-display text-2xl text-parchment">{title}</h2><p className="mt-3 text-sm leading-6 text-parchment-dim">{body}</p></div>)}</div></div></section>
 
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
-            <div className="eyebrow">Ready to join?</div>
-            <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">Start with your business profile.</h2>
-            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/providers/claim" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">Claim an existing profile</Link>
-              <Link href="/providers/register" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/25 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/50">Register a new business</Link>
-            </div>
-            <Link href="/provider" className="mt-5 inline-flex text-sm font-semibold text-parchment-dim hover:text-parchment">Provider login →</Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+      <section className="py-16 sm:py-20"><div className="mx-auto max-w-3xl px-6 text-center sm:px-8"><div className="eyebrow">Start with your profile</div><h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">Already received an invitation? Use that link for the fastest claim.</h2><p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Otherwise, find your existing business profile or create a provider account. No bank information is requested on the claim form.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/providers/claim" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">Find & claim my profile</Link><Link href="/providers/register" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/25 px-7 py-3 text-sm font-semibold text-parchment">Create provider account</Link></div><Link href="/provider" className="mt-5 inline-flex text-sm font-semibold text-parchment-dim hover:text-parchment">Provider login →</Link></div></section>
+    </main><Footer /></div>
   );
 }
