@@ -3,10 +3,9 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { CTABand } from "@/components/CTABand";
 import { PAGE_VISUALS } from "@/lib/visuals";
 
-const metaDescription = "Keep access codes, spare-key locations, trusted key holders, photos and recovery instructions together so you can check backup options before a lockout becomes a service call.";
+const metaDescription = "Keep access codes, spare-key locations and trusted key holders together so you can check backup options before an access problem becomes a locksmith request.";
 
 export const metadata: Metadata = {
   title: "Digital Access | Codes, Spare Keys & Trusted Contacts",
@@ -26,12 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
-const ITEMS = [
-  ["Access codes", "Keep keypad, lockbox, smart-lock recovery and garage-access details attached to the right property."],
-  ["Spare-key details", "Record where a spare exists and who physically holds it, so you know your backup options before calling anyone."],
-  ["Reference photos", "Save a private reference photo when seeing the location or device is more useful than another note."],
-  ["Trusted people", "Keep the neighbor, family member or friend who can help with a spare key or authorize access easy to find."],
-];
+const CHECKS = [
+  ["Codes", "Keep keypad, lockbox, smart-lock recovery and garage-access details with the property."],
+  ["Spare keys", "Record where a spare exists and who physically holds it."],
+  ["Trusted people", "Keep the person who can help with access easy to find when you need them."],
+] as const;
 
 export default function DigitalAccessPage() {
   return (
@@ -39,103 +37,88 @@ export default function DigitalAccessPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Digital Access"
-          title="Your backup plan for getting back in."
-          body="Keep codes, spare-key details, trusted people and recovery instructions together so your first response to an access problem is not automatically a locksmith call."
+          eyebrow="Digital Access · optional"
+          title="Check your backup access before you request a locksmith."
+          body="Keep the few access details that matter together: codes, spare-key information and trusted people. One-off locksmith service remains available without membership."
           visual={PAGE_VISUALS.digitalAccess}
         />
 
-        <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {ITEMS.map(([title, body]) => (
-                <div key={title} className="rounded-2xl border border-[#c7d9ec] bg-white p-6 shadow-[0_16px_38px_rgba(28,65,105,0.08)]">
-                  <h2 className="font-display text-xl text-navy-text">{title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-[#536e8a]">{body}</p>
+        <section className="border-b border-line/70 py-14 sm:py-16">
+          <div className="mx-auto grid max-w-[1080px] gap-10 px-6 sm:px-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-14 lg:px-10">
+            <div>
+              <div className="eyebrow">Before on-site help</div>
+              <h2 className="mt-3 font-display text-4xl tracking-[-.03em] text-parchment">Check three things first.</h2>
+              <p className="mt-4 text-sm leading-6 text-parchment-dim">
+                Digital Access is a prevention layer. If your saved backup access solves the problem, you may not need a service request at all.
+              </p>
+            </div>
+
+            <div className="divide-y divide-line/70 border-y border-line/70">
+              {CHECKS.map(([title, body], index) => (
+                <div key={title} className="grid grid-cols-[42px_1fr] gap-4 py-5">
+                  <div className="font-mono text-xs text-brass">0{index + 1}</div>
+                  <div>
+                    <h3 className="font-semibold text-parchment">{title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-parchment-dim">{body}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line/70 py-16 sm:py-20">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
+        <section className="border-b border-[#c7d9ec] bg-mist py-14 text-navy-text sm:py-16">
+          <div className="mx-auto grid max-w-[1080px] gap-10 px-6 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start lg:px-10">
             <div>
-              <div className="eyebrow">Before you find a locksmith</div>
-              <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Check the access you already have.</h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access turns scattered codes, key locations and trusted contacts into a simple backup plan. If none of those options works, continue into Trusted Locksmith's clearly priced service flow.</p>
-
-              <div className="mt-7 overflow-hidden rounded-[26px] border border-sky/18 bg-surface shadow-[0_22px_52px_rgba(3,18,37,0.2)]" aria-label="Digital Access product preview">
-                <div className="flex items-center justify-between border-b border-line/70 px-5 py-4">
-                  <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Digital Access</div>
-                    <div className="mt-1 font-display text-xl text-parchment">Lake House</div>
-                  </div>
-                  <span className="rounded-full border border-verdigris/30 bg-verdigris/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-verdigris">Private</span>
-                </div>
-                <div className="space-y-3 p-5">
-                  <AccessRow label="Front door keypad" value="•••• 4821" meta="Recovery code saved" />
-                  <AccessRow label="Spare key" value="With Maya" meta="Trusted key holder" />
-                  <AccessRow label="Garage access" value="Saved" meta="Reference photo attached" />
-                </div>
-                <div className="border-t border-line/70 bg-surface-raised/55 px-5 py-4 text-xs leading-5 text-parchment-dim">
-                  Check your own backup access first. Request a local locksmith only when on-site help is still needed.
-                </div>
-              </div>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">What it looks like</div>
+              <h2 className="mt-3 font-display text-4xl tracking-[-.03em]">One property. One backup-access record.</h2>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-[#536e8a]">
+                The record is private. Trusted key holders do not automatically receive access to saved codes or other sensitive details.
+              </p>
+              <Link href="/privacy" className="mt-5 inline-flex text-sm font-semibold text-navy-text hover:underline">Read the privacy approach →</Link>
             </div>
 
-            <div className="space-y-3 lg:pt-8">
-              {[
-                ["01", "Check saved access", "Review keypad, lockbox, smart-lock or garage access details."],
-                ["02", "Reach a trusted key holder", "Contact the person you recorded as holding a spare."],
-                ["03", "Use physical backup access", "Follow the spare-key location or recovery instructions you saved."],
-                ["04", "Still need a locksmith?", "See the standard service price and request an independent local provider through Trusted Locksmith."],
-              ].map(([n, title, body]) => (
-                <div key={n} className="grid grid-cols-[42px_1fr] gap-3 rounded-2xl border border-sky/15 bg-surface/65 p-4">
-                  <div className="font-mono text-xs text-brass">{n}</div>
-                  <div>
-                    <div className="font-medium text-parchment">{title}</div>
-                    <p className="mt-1 text-xs leading-5 text-parchment-dim">{body}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-hidden rounded-[24px] border border-[#c7d9ec] bg-white shadow-[0_18px_45px_rgba(28,65,105,0.09)]" aria-label="Digital Access example">
+              <div className="border-b border-[#c7d9ec] px-5 py-4">
+                <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#536e8a]">Digital Access</div>
+                <div className="mt-1 font-display text-xl text-navy-text">Home</div>
+              </div>
+              <div className="divide-y divide-[#dce7f2] px-5">
+                <AccessRow label="Front door keypad" value="Saved privately" />
+                <AccessRow label="Spare key" value="Trusted holder recorded" />
+                <AccessRow label="Recovery instructions" value="Saved" />
+              </div>
             </div>
           </div>
         </section>
 
         <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="border-y border-line py-10 sm:py-12">
-              <div className="eyebrow">Private by design</div>
-              <h2 className="mt-3 max-w-2xl font-display text-3xl text-parchment">Trusted people do not automatically see your saved codes.</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">Sensitive access details are encrypted and kept private. You decide who is recorded as a trusted key holder and who, if anyone, is allowed to see specific Digital Access information.</p>
-              <Link href="/privacy" className="mt-5 inline-flex text-sm font-semibold text-brass hover:underline">Read the privacy approach →</Link>
+          <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
+            <div className="eyebrow">Choose what you need</div>
+            <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">
+              Organize backup access—or go straight to locksmith service.
+            </h2>
+            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">
+                Compare membership
+              </Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">
+                Get my price →
+              </Link>
             </div>
           </div>
         </section>
-
-        <CTABand
-          title="Set up the backup plan before you need it"
-          body="Digital Access is included with Trusted Locksmith membership. One-off locksmith service remains available without membership."
-          ctaLabel="Compare membership"
-          ctaHref="/pricing"
-          secondaryLabel="Find a locksmith"
-          secondaryHref="/book"
-        />
       </main>
       <Footer />
     </div>
   );
 }
 
-function AccessRow({ label, value, meta }: { label: string; value: string; meta: string }) {
+function AccessRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-[1fr_auto] gap-4 rounded-2xl border border-line/80 bg-surface-raised/65 px-4 py-3">
-      <div>
-        <div className="text-sm font-medium text-parchment">{label}</div>
-        <div className="mt-1 text-[11px] text-parchment-dim">{meta}</div>
-      </div>
-      <div className="self-center font-mono text-xs text-brass">{value}</div>
+    <div className="grid gap-1 py-4 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-5">
+      <div className="font-medium text-navy-text">{label}</div>
+      <div className="text-sm text-[#536e8a]">{value}</div>
     </div>
   );
 }
