@@ -1,88 +1,92 @@
-# Trusted Locksmith
+# Trusted Locksmith Near Me
 
-Trusted Locksmith is a Boston-first locksmith request and access-management platform operated by PlanetHike OÜ.
+Boston-first locksmith marketplace and property-access platform operated by PlanetHike OÜ.
 
-The public product is deliberately narrow:
+## Canonical project identity
 
-- clearly scoped one-off locksmith requests
-- published standard prices before a request is submitted
-- provider identity and ETA only after a real provider accepts
-- Digital Access for codes, spare-key locations, trusted contacts and recovery information
-- optional membership and property-access workflows
-- independent local provider participation
+- Brand: Trusted Locksmith
+- Domain: https://trustedlocksmithnearme.com
+- Repository: unikmo/TrustedLocksmithNearMe
+- Operator: PlanetHike OÜ
+- Launch market: Boston and Greater Boston, Massachusetts
+- Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
 
-**Platform model:** PlanetHike OÜ operates Trusted Locksmith, the software and marketplace workflow. Field services are performed by participating independent local providers.
+## Customer promise
 
-## Canonical launch truth
+Customers see the published standard price and scope before sending a request. Provider identity and ETA appear only after a real participating provider accepts. Any work outside the published standard scope must be separately priced and approved before it starts.
 
-- **Brand:** Trusted Locksmith
-- **Public domain:** `https://trustedlocksmithnearme.com`
-- **Repository:** `unikmo/TrustedLocksmithNearMe`
-- **Launch focus:** Boston / Greater Boston first
-- **Operator:** PlanetHike OÜ
-- **Provider status:** submitting a customer request does not mean a provider has accepted it
-- **Provider claim verification:** the current `verified` provider-profile state confirms an approved account-to-business-profile claim. It must not be presented as blanket completion of every credential, insurance, licensing or KYC requirement that may apply to unrestricted paid launch.
+Published standard totals include provider travel/service call.
 
-Public SEO/entity URLs must use the branded production domain, never a Vercel preview hostname.
+## Current public service menu
+
+- Home lockout, weekdays 8am–6pm: $99
+- Home lockout, evenings/weekends: $129
+- Home lockout, overnight/major holidays: $139
+- Car lockout at the property: $109
+- Standard rekey: $75 for the first standard cylinder; additional standard cylinders $29 each
+- Standard lock change: $89 standard labor; hardware separate
+- Smart lock installation: $129 standard labor for one compatible customer-supplied smart lock
+
+## Search and AI discovery architecture
+
+The public site uses the branded production domain for canonical URLs, robots and sitemap output. Massachusetts local SEO remains generated from the canonical city/service registry, including 13 city pages and 23 city-service pages.
+
+The public discovery layer includes:
+
+- conventional crawlable HTML and internal linking
+- canonical URLs and XML sitemap
+- Organization/Brand entity identifiers
+- About/entity authority page
+- city, service, offer, breadcrumb and visible-FAQ structured data where applicable
+- explicit search-crawler access for OAI-SearchBot, PerplexityBot, Claude-SearchBot and Claude-User while keeping account/private request paths disallowed
+- an experimental `llms.txt` summary as a supplemental discovery aid; it is not treated as a Google ranking requirement
+
+## Core routes
+
+- `/` — Boston-first customer entry
+- `/boston-ma` — Boston local landing page
+- `/services` — public services and standard prices
+- `/book` — service selection and request flow
+- `/how-it-works` — marketplace/request process
+- `/about` — canonical entity/operator definition
+- `/trust-safety` — provider-claim and service-status boundaries
+- `/partner-tech` — Greater Boston locksmith-provider acquisition
+- `/digital-access` — optional access-prevention layer
+- `/pricing` — one-off service pricing plus optional memberships
+- `/providers/claim` — provider profile claim
+- `/providers/register` — provider registration
+- `/provider` — provider workspace/login entry
 
 ## Stack
 
-- Next.js 16 — App Router, Server Actions, TypeScript
-- Tailwind CSS v4
-- Supabase — auth and Postgres with row-level security
+- Next.js 16
+- React 19
+- Supabase
+- Vercel
 
-## Core public routes
+## Environment
 
-- `/` — Trusted Locksmith homepage
-- `/services` — locksmith service categories and standard pricing
-- `/book` — one-off service-request flow
-- `/pricing` — optional membership plans
-- `/how-it-works` — request flow and platform/provider role separation
-- `/digital-access` — Digital Access product
-- `/partner-tech` — provider network information
-- `/providers` — prelaunch provider-profile directory/status; currently noindex
-- `/trust-safety` — platform trust model and verification-scope explanation
-- `/boston-ma` and supported Massachusetts city/service routes — local locksmith information
+Public SEO/entity URLs are intentionally pinned to `https://trustedlocksmithnearme.com` in `src/lib/site.ts` so preview/deployment hostnames cannot become canonical URLs.
 
-Additional authenticated routes support customers, providers, property managers, brokerages and internal operations. Do not remove an authenticated workspace simply because a similarly named marketing page exists.
+Supabase runtime configuration still requires the relevant public/project environment variables for authenticated and database-backed workflows.
 
-## Environment variables
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=...
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-SENTINEL_ENCRYPTION_KEY=...
-```
-
-`SENTINEL_ENCRYPTION_KEY` is server-only. Do not expose it with a `NEXT_PUBLIC_` prefix.
-
-The public canonical domain is defined in `src/lib/site.ts`; preview/deployment hostnames must not become SEO canonicals.
-
-Do not commit production secrets.
-
-## Development
-
-```bash
-npm install
-npm run dev
-```
-
-## Production check
+## Build
 
 ```bash
 npm run build
 ```
 
-## Launch blockers still requiring implementation or finalization
+## Paid-launch blockers
 
-A successful deployment is **not** evidence that the marketplace is ready for unrestricted paid production use. Before paid public launch, complete and verify:
+A successful web build does **not** mean unrestricted paid launch is ready. Before paid production launch, the project still needs verified evidence for:
 
-1. Real customer payment authorization, capture, refunds and membership activation.
-2. Final provider credential, insurance, licensing/KYC rules required for the launch services and jurisdiction, with enforcement evidence beyond business-profile claim approval.
-3. Production provider supply and operational acceptance coverage for the launch geography.
-4. Production communications for offers, acceptance, customer updates and operational exceptions.
-5. Explicit request/payment lifecycle handling for cancellation, failed matching, no-show, completion, disputes and recovery.
-6. Final legal review for the actual operating entity, marketplace role, provider model, payment terms and launch geography.
-7. End-to-end release QA and live post-release verification.
+1. sufficient Boston provider supply, acceptance and fill coverage
+2. payment authorization/capture, refunds and any membership charging mechanics
+3. provider KYC/payout/transfer mechanics where required
+4. production communications plus no-match/no-show/failure lifecycle handling
+5. provider credential/insurance/licensing rules appropriate to the launch model
+6. Massachusetts legal review of the final marketplace, consumer and provider terms
+7. production monitoring, recovery and end-to-end operational tests
+8. verified analytics/search-console destinations if measurement is required for launch
 
-Historical database migration filenames are retained intentionally. Renaming an already-applied migration for branding cleanup creates unnecessary database-history risk.
+Historical migration filenames may retain the former internal codename and should not be renamed solely for branding cleanup because migration identity/history is operational state.
