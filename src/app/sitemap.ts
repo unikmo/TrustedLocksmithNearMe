@@ -5,6 +5,7 @@ import { SITE_URL } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
+    "/about",
     "/services",
     "/how-it-works",
     "/pricing",
@@ -22,7 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE_URL}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/services" || route === "/pricing" || route === "/digital-access" ? 0.9 : 0.7,
+    priority:
+      route === ""
+        ? 1
+        : route === "/services"
+          ? 0.9
+          : route === "/about" || route === "/how-it-works" || route === "/partner-tech"
+            ? 0.8
+            : 0.7,
   }));
 
   const citySlugs = new Set(MA_CITIES.map((city) => `/${city.slug}`));

@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
@@ -55,9 +56,21 @@ const FAQ = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/trust-safety#faq`,
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function TrustSafetyPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <main className="flex-1">
         <PageHero

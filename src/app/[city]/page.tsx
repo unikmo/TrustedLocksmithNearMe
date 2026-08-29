@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LocalCityPage } from "@/components/LocalLocksmithPage";
-import { MA_CITIES, getMaCity } from "@/lib/massachusetts-seo";
+import { MA_CITIES, MA_SERVICE_CONTENT, getMaCity } from "@/lib/massachusetts-seo";
 import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -44,6 +44,7 @@ export default async function MassachusettsCityPage({ params }: { params: Promis
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": `${url}#page`,
       name: `Locksmith in ${city.name}, Massachusetts`,
       url,
       description: `Trusted Locksmith local service information for ${city.name}, Massachusetts, including lockouts, rekeys, lock changes and smart-lock installation.`,
@@ -57,6 +58,17 @@ export default async function MassachusettsCityPage({ params }: { params: Promis
         { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
         { "@type": "ListItem", position: 2, name: `${city.name}, MA locksmith`, item: url },
       ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: `Locksmith services in ${city.name}, Massachusetts`,
+      itemListElement: city.services.map((slug, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: MA_SERVICE_CONTENT[slug].shortTitle,
+        url: `${url}/${slug}`,
+      })),
     },
   ];
 

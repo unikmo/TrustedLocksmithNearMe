@@ -30,10 +30,10 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Independent local locksmith providers. Upfront standard prices. Digital Access helps keep backup options ready before an access problem becomes urgent.
+              Boston-first locksmith marketplace with published standard prices and clear scope before a request. Field work is performed by participating independent local providers.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Trusted Locksmith is operated by PlanetHike OÜ. Field work is performed by independent local providers.
+              Trusted Locksmith is operated by PlanetHike OÜ. Provider identity and ETA appear only after a real provider accepts.
             </p>
           </div>
 
@@ -42,17 +42,18 @@ export function Footer() {
             links={[
               { label: "Find a locksmith", href: "/book" },
               { label: "Services & prices", href: "/services" },
+              { label: "How it works", href: "/how-it-works" },
               { label: "Digital Access", href: "/digital-access" },
-              { label: "Membership", href: "/pricing" },
               { label: "For providers", href: "/partner-tech" },
             ]}
           />
           <FooterColumn
             title="More"
             links={[
+              { label: "About Trusted Locksmith", href: "/about" },
+              { label: "Trust & safety", href: "/trust-safety" },
               { label: "Property managers", href: "/for-property-managers" },
               { label: "Real estate professionals", href: "/for-real-estate-agents" },
-              { label: "Trust & safety", href: "/trust-safety" },
               { label: "Contact", href: "/contact" },
               { label: "Terms", href: "/terms" },
             ]}

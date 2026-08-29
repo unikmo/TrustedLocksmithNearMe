@@ -35,14 +35,27 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
   url: SITE.url,
   brand: {
     "@type": "Brand",
+    "@id": `${SITE.url}/#brand`,
     name: SITE.brandName,
   },
-  description:
-    "PlanetHike OÜ operates Trusted Locksmith, a Boston-first platform that helps customers request participating independent local locksmith providers with clearly scoped services and upfront standard pricing.",
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: SITE.launchMarket,
+  },
+  knowsAbout: [
+    "residential lockouts",
+    "car lockouts",
+    "lock rekeying",
+    "residential lock changes",
+    "smart lock installation",
+    "locksmith marketplace services",
+  ],
+  description: SITE.positioning,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

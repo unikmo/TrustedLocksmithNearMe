@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { SITE_URL } from "@/lib/site";
 
 const metaDescription = "See upfront standard prices for Boston-area home lockouts, car lockouts, rekeys, lock changes and smart-lock installation before you request an independent local locksmith.";
 
@@ -26,9 +27,28 @@ export const metadata: Metadata = {
   },
 };
 
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Boston locksmith services and standard prices",
+  itemListElement: SERVICE_MENU.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Offer",
+      name: `${service.title} — ${service.timing}`,
+      description: service.scope,
+      price: (service.customerPriceCents / 100).toFixed(2),
+      priceCurrency: "USD",
+      url: `${SITE_URL}/book/details?service_id=${service.id}`,
+    },
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }} />
       <Nav />
       <main className="flex-1">
         <PageHero

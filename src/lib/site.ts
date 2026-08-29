@@ -3,6 +3,10 @@ export const SITE = {
   domain: "trustedlocksmithnearme.com",
   url: "https://trustedlocksmithnearme.com",
   operatorName: "PlanetHike OÜ",
+  launchMarket: "Boston and Greater Boston, Massachusetts",
+  businessModel: "Locksmith marketplace platform",
+  positioning:
+    "A Boston-first locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider.",
 } as const;
 
 /**
