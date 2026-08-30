@@ -7,11 +7,12 @@ import { CTABand } from "@/components/CTABand";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { SITE_URL } from "@/lib/site";
 
-const metaDescription = "Compare upfront Trusted Locksmith prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
+const metaDescription = "Compare upfront Trusted Locksmith prices for Boston-area home lockouts, car lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
 
 export const metadata: Metadata = {
-  title: "Pricing | Locksmith Services & Digital Access Membership",
+  title: "Boston Locksmith Pricing | Services & Optional Membership",
   description: metaDescription,
   alternates: { canonical: "/pricing" },
   openGraph: {
@@ -38,14 +39,46 @@ const FAQ = [
   { q: "Who performs the service?", a: "Participating independent local providers perform field service. Trusted Locksmith manages the customer request flow, published standard pricing and Digital Access experience." },
 ];
 
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${SITE_URL}/pricing#services`,
+  name: "Trusted Locksmith standard service prices",
+  itemListElement: SERVICE_MENU.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Offer",
+      name: `${service.title} — ${service.timing}`,
+      description: service.scope,
+      price: (service.customerPriceCents / 100).toFixed(2),
+      priceCurrency: "USD",
+      url: `${SITE_URL}/book/details?service_id=${service.id}`,
+    },
+  })),
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/pricing#faq`,
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default async function PricingPage() {
   const plans = await getPlans();
   return (
     <div className="flex min-h-screen flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Transparent locksmith pricing"
+          eyebrow="Transparent Boston locksmith pricing"
           title="Know the standard price before you choose a locksmith."
           body="Lockout, rekey and lock-change pricing is shown before you request a local provider. Provider travel/service call is included in the standard total."
           visual={PAGE_VISUALS.services}
@@ -59,7 +92,7 @@ export default async function PricingPage() {
                 <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use Trusted Locksmith once. Membership is optional.</h2>
                 <p className="mt-4 text-sm leading-6 text-parchment-dim">Each standard price includes provider travel/service call. Hardware and genuinely out-of-scope work are separate only when stated and require your approval before work begins.</p>
               </div>
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.14)]">Find a locksmith</Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.14)]">Get my price</Link>
             </div>
 
             <div className="mt-10 overflow-hidden rounded-3xl border border-sky/15 bg-surface shadow-[0_20px_55px_rgba(3,18,37,0.14)]">
@@ -95,7 +128,7 @@ export default async function PricingPage() {
             <div className="mx-auto max-w-2xl text-center">
               <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Optional membership</div>
               <h2 className="mt-3 font-display text-3xl font-medium text-navy-text sm:text-4xl">Be ready before access becomes urgent.</h2>
-              <p className="mt-4 text-sm leading-6 text-[#536e8a]">Digital Access keeps codes, spare-key details, trusted people, photos and recovery instructions in one place so you can check your own backup options first.</p>
+              <p className="mt-4 text-sm leading-6 text-[#536e8a]">Digital Access keeps codes, spare-key details and trusted people in one place so you can check your own backup options first.</p>
             </div>
 
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -123,9 +156,21 @@ export default async function PricingPage() {
           </div>
         </section>
 
-        <section className="py-20"><div className="mx-auto max-w-3xl px-6"><h2 className="text-center font-display text-3xl font-medium text-parchment">Pricing questions</h2><div className="mt-10 space-y-6">{FAQ.map((item) => <div key={item.q} className="border-b border-line/70 pb-6"><h3 className="font-medium text-parchment">{item.q}</h3><p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p></div>)}</div></div></section>
+        <section className="py-20">
+          <div className="mx-auto max-w-3xl px-6">
+            <h2 className="text-center font-display text-3xl font-medium text-parchment">Pricing questions</h2>
+            <div className="mt-10 space-y-6">
+              {FAQ.map((item) => (
+                <div key={item.q} className="border-b border-line/70 pb-6">
+                  <h3 className="font-medium text-parchment">{item.q}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <CTABand title="Need a locksmith now? Start with the service." body="No membership required. Choose the job, see the standard total and continue only if the price and scope work for you." ctaLabel="Find a locksmith" ctaHref="/book" secondaryLabel="Explore Digital Access" secondaryHref="/digital-access" />
+        <CTABand title="Need a locksmith now? Start with the service." body="No membership required. Choose the job, see the standard total and continue only if the price and scope work for you." ctaLabel="Get my price" ctaHref="/book" secondaryLabel="Explore Digital Access" secondaryHref="/digital-access" />
       </main>
       <Footer />
     </div>

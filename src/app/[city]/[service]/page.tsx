@@ -65,15 +65,40 @@ export default async function MassachusettsServicePage({ params }: { params: Pro
 
   const cityUrl = `${SITE_URL}/${city.slug}`;
   const url = `${cityUrl}/${service.slug}`;
+  const description = service.description(city.name);
+  const offers = service.serviceIds
+    .map((id) => getServiceMenuItem(id))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .map((item) => ({
+      "@type": "Offer",
+      name: `${item.title} — ${item.timing}`,
+      description: item.scope,
+      price: (item.customerPriceCents / 100).toFixed(2),
+      priceCurrency: "USD",
+      url,
+    }));
+
   const schemas = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": `${url}#page`,
       name: `${service.shortTitle} in ${city.name}, Massachusetts`,
       url,
-      description: service.description(city.name),
+      description,
       isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
-      about: { "@type": "Thing", name: `${service.shortTitle} in ${city.name}, Massachusetts` },
+      about: { "@id": `${url}#service` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: `${service.shortTitle} in ${city.name}, Massachusetts`,
+      serviceType: service.shortTitle,
+      areaServed: { "@type": "City", name: `${city.name}, Massachusetts` },
+      description,
+      url,
+      offers,
     },
     {
       "@context": "https://schema.org",

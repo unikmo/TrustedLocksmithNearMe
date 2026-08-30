@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { PageVisual } from "@/lib/visuals";
 
 export function PageHero({
@@ -28,16 +29,14 @@ export function PageHero({
           </div>
 
           {visual && (
-            <figure className="relative overflow-hidden rounded-[28px] border border-sky/18 bg-surface-raised shadow-[0_26px_64px_rgba(3,18,37,0.24)]">
-              <img
+            <figure className="relative h-[290px] overflow-hidden rounded-[28px] border border-sky/18 bg-surface-raised shadow-[0_26px_64px_rgba(3,18,37,0.24)] sm:h-[380px] lg:h-[430px]">
+              <Image
                 src={visual.src}
                 alt={visual.alt}
-                width={1800}
-                height={1125}
-                fetchPriority="high"
-                decoding="async"
-                style={{ objectPosition: visual.objectPosition ?? "center" }}
-                className="h-[290px] w-full object-cover sm:h-[380px] lg:h-[430px]"
+                fill
+                priority
+                sizes="(max-width: 1023px) 100vw, 58vw"
+                style={{ objectFit: "cover", objectPosition: visual.objectPosition ?? "center" }}
               />
               {visual.label && (
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/62 to-transparent px-5 pb-5 pt-16 text-xs font-medium leading-5 text-parchment sm:px-6 sm:pb-6 sm:text-sm">
