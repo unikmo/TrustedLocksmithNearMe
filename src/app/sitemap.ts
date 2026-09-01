@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { MA_CITIES, MA_LOCAL_ROUTES } from "@/lib/massachusetts-seo";
+import { NY_AREAS, NY_LOCAL_ROUTES } from "@/lib/new-york-seo";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -33,13 +34,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : 0.7,
   }));
 
-  const citySlugs = new Set(MA_CITIES.map((city) => `/${city.slug}`));
-  const localPages: MetadataRoute.Sitemap = MA_LOCAL_ROUTES.map((route) => ({
+  const maCitySlugs = new Set(MA_CITIES.map((city) => `/${city.slug}`));
+  const massachusettsPages: MetadataRoute.Sitemap = MA_LOCAL_ROUTES.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: citySlugs.has(route) ? 0.82 : 0.76,
+    priority: maCitySlugs.has(route) ? 0.82 : 0.76,
   }));
 
-  return [...corePages, ...localPages];
+  const nyPriority = new Map(
+    NY_AREAS.map((area) => [
+      `/${area.slug}`,
+      area.slug === "new-york-ny" ? 0.92 : area.kind === "borough" ? 0.88 : area.kind === "neighborhood" ? 0.82 : 0.84,
+    ]),
+  );
+  const newYorkPages: MetadataRoute.Sitemap = NY_LOCAL_ROUTES.map((route) => ({
+    url: `${SITE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: nyPriority.get(route) ?? 0.8,
+  }));
+
+  return [...corePages, ...massachusettsPages, ...newYorkPages];
 }

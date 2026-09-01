@@ -54,6 +54,7 @@ const organizationSchema = {
     "residential lock changes",
     "smart lock installation",
     "locksmith marketplace services",
+    "New York locksmith service geography",
   ],
   description: SITE.positioning,
 };

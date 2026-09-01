@@ -5,10 +5,10 @@ import { Nav } from "@/components/Nav";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const description =
-  "Trusted Locksmith is a Boston-first locksmith marketplace operated by PlanetHike OÜ. See how pricing, provider acceptance and independent field service work.";
+  "Trusted Locksmith is a Boston-first locksmith marketplace operated by PlanetHike OÜ, with localized New York request pages built around upfront pricing and real provider acceptance.";
 
 export const metadata: Metadata = {
-  title: "About Trusted Locksmith | Boston Locksmith Marketplace",
+  title: "About Trusted Locksmith | Locksmith Marketplace",
   description,
   alternates: { canonical: "/about" },
   openGraph: {
@@ -53,6 +53,10 @@ const PRINCIPLES = [
     body: "A request is not presented as accepted by a specific locksmith until a participating independent provider actually accepts it. Provider identity and ETA appear after that acceptance, and local availability can vary by place and time.",
   },
   {
+    title: "What geographic expansion means",
+    body: "Boston and Greater Boston remain the primary launch market. Trusted Locksmith also publishes localized New York request pages. A New York location page is not a promise that a provider is available at every address or hour; matching depends on participating provider service areas and actual acceptance.",
+  },
+  {
     title: "What Trusted Locksmith is not",
     body: "Trusted Locksmith is not the field locksmith and does not employ the independent providers performing the work. A verified business-profile claim means the account-to-business connection was reviewed; it is not a blanket statement that every possible licensing, insurance, credential or KYC requirement has been completed.",
   },
@@ -68,14 +72,14 @@ export default function AboutPage() {
           <div className="mx-auto max-w-[1080px] px-6 sm:px-8 lg:px-10">
             <div className="eyebrow">About Trusted Locksmith</div>
             <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[68px]">
-              A Boston-first locksmith marketplace built around price and process clarity.
+              A locksmith marketplace built around price and process clarity.
             </h1>
             <div className="mt-7 max-w-3xl space-y-4 text-lg leading-8 text-parchment-dim">
               <p>
-                Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. It helps customers in Boston and Greater Boston request participating independent local locksmith providers. PlanetHike OÜ does not perform the field locksmith work.
+                Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. Boston and Greater Boston remain the primary launch market, and localized request guidance is now being expanded across New York City and selected New York State markets. PlanetHike OÜ does not perform the field locksmith work.
               </p>
               <p>
-                The core rule is simple: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a real participating provider accepts.
+                The core rule stays the same everywhere: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a real participating provider accepts.
               </p>
             </div>
           </div>
@@ -104,8 +108,8 @@ export default function AboutPage() {
               <Link href="/services" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">
                 See services & prices
               </Link>
-              <Link href="/partner-tech" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">
-                For locksmith providers
+              <Link href="/new-york-ny" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">
+                Explore New York locations
               </Link>
             </div>
           </div>
