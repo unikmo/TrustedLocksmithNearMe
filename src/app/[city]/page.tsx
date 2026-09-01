@@ -4,6 +4,7 @@ import { LocalCityPage } from "@/components/LocalLocksmithPage";
 import { NewYorkLocalPage } from "@/components/NewYorkLocalPage";
 import { MA_CITIES, MA_SERVICE_CONTENT, getMaCity } from "@/lib/massachusetts-seo";
 import { NY_AREAS, getNyArea } from "@/lib/new-york-seo";
+import { NY_SERVICE_DEFINITIONS, getNyServicesForArea } from "@/lib/new-york-services";
 import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -106,6 +107,7 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
 
   const url = `${SITE_URL}/${nyArea.slug}`;
   const parent = nyArea.parent ? getNyArea(nyArea.parent) : null;
+  const localServices = getNyServicesForArea(nyArea.slug);
   const breadcrumbs = [
     { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
     ...(parent
@@ -147,18 +149,12 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: `Standard locksmith services for ${nyArea.shortLocation}`,
-      itemListElement: [
-        "Home lockout",
-        "Car lockout",
-        "Rekey locks",
-        "Lock change",
-        "Smart lock installation",
-      ].map((name, index) => ({
+      name: `Dedicated locksmith service pages for ${nyArea.shortLocation}`,
+      itemListElement: localServices.map((slug, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        name,
-        url: index === 0 ? `${SITE_URL}/book` : `${SITE_URL}/services`,
+        name: NY_SERVICE_DEFINITIONS[slug].shortTitle,
+        url: `${url}/${slug}`,
       })),
     },
   ];
