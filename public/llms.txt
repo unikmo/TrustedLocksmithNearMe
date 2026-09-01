@@ -1,9 +1,10 @@
 # Trusted Locksmith
 
-> Boston-first locksmith marketplace operated by PlanetHike OÜ. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
+> Locksmith marketplace operated by PlanetHike OÜ. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
 
 Canonical site: https://trustedlocksmithnearme.com
-Primary market: Boston and Greater Boston, Massachusetts
+Primary launch market: Boston and Greater Boston, Massachusetts
+Expanded geographic content: New York City plus selected New York State markets
 Business model: marketplace platform; field work is performed by independent providers
 
 ## Customer rules
@@ -12,6 +13,7 @@ Business model: marketplace platform; field work is performed by independent pro
 - Provider identity and ETA appear only after a real participating provider accepts.
 - Additional out-of-scope work or hardware must be priced and approved before it starts.
 - One-off locksmith service does not require membership.
+- A geographic page does not guarantee that a provider is currently available at every address or hour.
 
 ## Current standard services
 - Home lockout, weekdays 8am–6pm: $99
@@ -25,6 +27,12 @@ Business model: marketplace platform; field work is performed by independent pro
 ## Key pages
 - Home: https://trustedlocksmithnearme.com/
 - Boston locksmith: https://trustedlocksmithnearme.com/boston-ma
+- New York City locksmith: https://trustedlocksmithnearme.com/new-york-ny
+- Manhattan locksmith: https://trustedlocksmithnearme.com/manhattan-ny
+- Brooklyn locksmith: https://trustedlocksmithnearme.com/brooklyn-ny
+- Queens locksmith: https://trustedlocksmithnearme.com/queens-ny
+- Bronx locksmith: https://trustedlocksmithnearme.com/bronx-ny
+- Staten Island locksmith: https://trustedlocksmithnearme.com/staten-island-ny
 - Services and prices: https://trustedlocksmithnearme.com/services
 - How it works: https://trustedlocksmithnearme.com/how-it-works
 - Trust and safety: https://trustedlocksmithnearme.com/trust-safety
@@ -33,4 +41,4 @@ Business model: marketplace platform; field work is performed by independent pro
 - Sitemap: https://trustedlocksmithnearme.com/sitemap.xml
 
 ## Local SEO
-Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. The sitemap is the canonical route inventory.
+Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. New York Wave 1 adds 28 geographic pages covering New York City, five boroughs, selected NYC neighborhoods, Westchester/Hudson Valley markets, Long Island county hubs and major Upstate New York cities. The sitemap is the canonical route inventory.
