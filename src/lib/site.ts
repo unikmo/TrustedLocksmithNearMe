@@ -4,10 +4,16 @@ export const SITE = {
   url: "https://trustedlocksmithnearme.com",
   operatorName: "PlanetHike OÜ",
   launchMarket: "Boston and Greater Boston, Massachusetts",
-  expansionContentMarkets: ["New York City", "selected New York State markets"],
+  expansionContentMarkets: [
+    "New York City and selected New York State markets",
+    "New Jersey",
+    "Philadelphia",
+    "Connecticut",
+    "Delaware",
+  ],
   businessModel: "Locksmith marketplace platform",
   positioning:
-    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Field work is performed by independent providers. Boston and Greater Boston are the primary launch market; New York discovery pages support address-specific requests where participating provider coverage exists.",
+    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Field work is performed by independent providers. Boston and Greater Boston remain the primary launch market; localized Northeast discovery pages support address-specific requests in New York, New Jersey, Philadelphia, Connecticut and Delaware where participating provider coverage exists.",
 } as const;
 
 /** Public SEO/entity URLs always use the branded production domain. */
