@@ -5,11 +5,11 @@ import { NORTHEAST_AREAS, getNortheastArea, getNortheastChildren, type Northeast
 import { formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 
 const FEATURED_SERVICES = [
-  { id: "home_lockout_day", title: "Home lockout", note: "Residential entry · weekday standard", href: "/book/details?service_id=home_lockout_day" },
-  { id: "car_lockout_at_property", title: "Car lockout", note: "Standard vehicle entry at the service property", href: "/book/details?service_id=car_lockout_at_property" },
-  { id: "standard_rekey", title: "Rekey locks", note: "First standard cylinder", href: "/book/details?service_id=standard_rekey" },
-  { id: "standard_lock_change", title: "Lock change", note: "Labor for one standard residential lock", href: "/book/details?service_id=standard_lock_change" },
-  { id: "smart_lock_install", title: "Smart lock installation", note: "Compatible customer-supplied smart lock", href: "/book/details?service_id=smart_lock_install" },
+  { id: "home_lockout_day", title: "Home lockout", note: "Residential entry · weekday standard", href: "/book/details?service_id=home_lockout_day", priceSuffix: "weekday standard" },
+  { id: "car_lockout_at_property", title: "Car lockout", note: "Standard vehicle entry at the service property", href: "/book/details?service_id=car_lockout_at_property", priceSuffix: "standard total" },
+  { id: "standard_rekey", title: "Rekey locks", note: "First standard cylinder", href: "/book/details?service_id=standard_rekey", priceSuffix: "first standard cylinder" },
+  { id: "standard_lock_change", title: "Lock change", note: "Labor for one standard residential lock", href: "/book/details?service_id=standard_lock_change", priceSuffix: "labor · hardware separate" },
+  { id: "smart_lock_install", title: "Smart lock installation", note: "Compatible customer-supplied smart lock", href: "/book/details?service_id=smart_lock_install", priceSuffix: "labor · customer-supplied lock" },
 ] as const;
 
 const GROUP_LABELS = {
@@ -19,11 +19,30 @@ const GROUP_LABELS = {
   delaware: "Delaware locations",
 } as const;
 
+type MarketLink = { slug: string; name: string };
+
+const CROSS_MARKET_LINKS: Partial<Record<string, MarketLink[]>> = {
+  "jersey-city-nj": [{ slug: "new-york-ny", name: "New York City" }],
+  "hoboken-nj": [{ slug: "new-york-ny", name: "New York City" }],
+  "north-bergen-nj": [{ slug: "new-york-ny", name: "New York City" }],
+  "bayonne-nj": [{ slug: "new-york-ny", name: "New York City" }],
+  "stamford-ct": [{ slug: "new-york-ny", name: "New York City" }],
+  "greenwich-ct": [{ slug: "new-york-ny", name: "New York City" }],
+};
+
 function NearbyMarkets({ area }: { area: NortheastArea }) {
-  const children = getNortheastChildren(area.slug);
-  const nearby = area.nearby.map(getNortheastArea).filter((item): item is NortheastArea => Boolean(item));
-  const sameGroup = NORTHEAST_AREAS.filter((item) => item.group === area.group && item.slug !== area.slug).slice(0, 8);
-  const links = children.length > 0 ? children : nearby.length > 0 ? nearby : sameGroup;
+  const children: MarketLink[] = getNortheastChildren(area.slug).map((item) => ({ slug: item.slug, name: item.name }));
+  const nearby: MarketLink[] = area.nearby
+    .map(getNortheastArea)
+    .filter((item): item is NortheastArea => Boolean(item))
+    .map((item) => ({ slug: item.slug, name: item.name }));
+  const crossMarket = CROSS_MARKET_LINKS[area.slug] ?? [];
+  const sameGroup: MarketLink[] = NORTHEAST_AREAS
+    .filter((item) => item.group === area.group && item.slug !== area.slug)
+    .slice(0, 8)
+    .map((item) => ({ slug: item.slug, name: item.name }));
+  const baseLinks = children.length > 0 ? children : nearby.length > 0 ? nearby : sameGroup;
+  const links = [...baseLinks, ...crossMarket].filter((item, index, all) => all.findIndex((candidate) => candidate.slug === item.slug) === index);
   if (links.length === 0) return null;
 
   return (
@@ -117,7 +136,7 @@ export function NortheastLocalPage({ area }: { area: NortheastArea }) {
                 return (
                   <Link key={service.id} href={service.href} className="group grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
                     <div><div className="font-display text-2xl text-navy-text">{service.title}</div><div className="mt-1 text-sm text-[#536e8a]">{service.note}</div></div>
-                    <div className="flex items-center justify-between gap-5 sm:justify-end"><div className="text-right"><div className="font-display text-3xl text-[#8c6d31]">{formatServicePrice(item.customerPriceCents)}</div><div className="mt-1 text-[11px] text-[#536e8a]">standard total</div></div><span className="text-xl text-navy-text transition group-hover:translate-x-0.5">→</span></div>
+                    <div className="flex items-center justify-between gap-5 sm:justify-end"><div className="text-right"><div className="font-display text-3xl text-[#8c6d31]">{formatServicePrice(item.customerPriceCents)}</div><div className="mt-1 text-[11px] text-[#536e8a]">{service.priceSuffix}</div></div><span className="text-xl text-navy-text transition group-hover:translate-x-0.5">→</span></div>
                   </Link>
                 );
               })}
