@@ -42,10 +42,10 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Boston-first locksmith marketplace with published standard prices and clear scope before a request. Localized New York request pages are being added without pretending provider availability is guaranteed.
+              Locksmith marketplace with published standard prices and clear scope before a request. Local availability depends on participating provider service areas and actual acceptance.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Trusted Locksmith is operated by PlanetHike OÜ. Field work is performed by participating independent local providers, and provider identity and ETA appear only after a real provider accepts.
+              Trusted Locksmith is operated by PlanetHike OÜ. Boston and Greater Boston are the primary launch market; localized New York pages support address-specific discovery without implying blanket availability.
             </p>
           </div>
 
