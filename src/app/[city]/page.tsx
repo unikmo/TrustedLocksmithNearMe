@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LocalCityPage } from "@/components/LocalLocksmithPage";
 import { NewYorkLocalPage } from "@/components/NewYorkLocalPage";
+import { NortheastLocalPage } from "@/components/NortheastLocalPage";
 import { MA_CITIES, MA_SERVICE_CONTENT, getMaCity } from "@/lib/massachusetts-seo";
 import { NY_AREAS, getNyArea } from "@/lib/new-york-seo";
 import { NY_SERVICE_DEFINITIONS, getNyServicesForArea } from "@/lib/new-york-services";
+import { NORTHEAST_AREAS, getNortheastArea } from "@/lib/northeast-seo";
 import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -13,6 +15,7 @@ export function generateStaticParams() {
   return [
     ...MA_CITIES.map((city) => ({ city: city.slug })),
     ...NY_AREAS.map((area) => ({ city: area.slug })),
+    ...NORTHEAST_AREAS.map((area) => ({ city: area.slug })),
   ];
 }
 
@@ -39,12 +42,24 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   }
 
   const nyArea = getNyArea(citySlug);
-  if (!nyArea) return {};
+  if (nyArea) {
+    const title = nyTitle(nyArea);
+    const description = `Locksmith requests in ${nyArea.shortLocation}: see published standard prices and scope before requesting a participating independent provider. Local availability depends on actual provider acceptance.`;
+    const canonical = `${SITE_URL}/${nyArea.slug}`;
+    return {
+      title,
+      description,
+      alternates: { canonical },
+      openGraph: { title, description, url: canonical, type: "website", siteName: SITE.brandName },
+      twitter: { card: "summary_large_image", title, description },
+    };
+  }
 
-  const title = nyTitle(nyArea);
-  const description = `Locksmith requests in ${nyArea.shortLocation}: see published standard prices and scope before requesting a participating independent provider. Local availability depends on actual provider acceptance.`;
-  const canonical = `${SITE_URL}/${nyArea.slug}`;
-
+  const northeastArea = getNortheastArea(citySlug);
+  if (!northeastArea) return {};
+  const title = `Locksmith ${northeastArea.name} | Upfront Standard Prices`;
+  const description = `Locksmith requests in ${northeastArea.shortLocation}: local access context, published standard prices and address-specific matching before a participating provider accepts.`;
+  const canonical = `${SITE_URL}/${northeastArea.slug}`;
   return {
     title,
     description,
@@ -103,68 +118,82 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
   }
 
   const nyArea = getNyArea(citySlug);
-  if (!nyArea) notFound();
+  if (nyArea) {
+    const url = `${SITE_URL}/${nyArea.slug}`;
+    const parent = nyArea.parent ? getNyArea(nyArea.parent) : null;
+    const localServices = getNyServicesForArea(nyArea.slug);
+    const breadcrumbs = [
+      { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
+      ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE_URL}/${parent.slug}` }] : []),
+      { "@type": "ListItem", position: parent ? 3 : 2, name: `${nyArea.name}, NY locksmith`, item: url },
+    ];
+    const spatialType = nyArea.kind === "neighborhood" ? "Place" : nyArea.kind === "city" ? "City" : "AdministrativeArea";
+    const schemas = [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${url}#page`,
+        name: `Locksmith in ${nyArea.shortLocation}`,
+        url,
+        description: nyArea.localContext,
+        isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
+        about: { "@type": "Thing", name: `Locksmith services in ${nyArea.shortLocation}`, description: nyArea.searchIntent },
+        spatialCoverage: { "@type": spatialType, name: nyArea.shortLocation },
+      },
+      { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: breadcrumbs },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `Dedicated locksmith service pages for ${nyArea.shortLocation}`,
+        itemListElement: localServices.map((slug, index) => ({ "@type": "ListItem", position: index + 1, name: NY_SERVICE_DEFINITIONS[slug].shortTitle, url: `${url}/${slug}` })),
+      },
+    ];
+    return (
+      <>
+        {schemas.map((schema, index) => <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />)}
+        <NewYorkLocalPage area={nyArea} />
+      </>
+    );
+  }
 
-  const url = `${SITE_URL}/${nyArea.slug}`;
-  const parent = nyArea.parent ? getNyArea(nyArea.parent) : null;
-  const localServices = getNyServicesForArea(nyArea.slug);
-  const breadcrumbs = [
-    { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
-    ...(parent
-      ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE_URL}/${parent.slug}` }]
-      : []),
-    {
-      "@type": "ListItem",
-      position: parent ? 3 : 2,
-      name: `${nyArea.name}, NY locksmith`,
-      item: url,
-    },
+  const northeastArea = getNortheastArea(citySlug);
+  if (!northeastArea) notFound();
+  const url = `${SITE_URL}/${northeastArea.slug}`;
+  const parent = northeastArea.parent ? getNortheastArea(northeastArea.parent) : null;
+  const relatedLinks = [
+    `${SITE_URL}/services`,
+    `${SITE_URL}/for-property-managers`,
+    `${SITE_URL}/for-real-estate-agents`,
+    `${SITE_URL}/landlords`,
+    ...(northeastArea.propertyTags.includes("second-homes") ? [`${SITE_URL}/second-homes`] : []),
   ];
-  const spatialType = nyArea.kind === "neighborhood" ? "Place" : nyArea.kind === "city" ? "City" : "AdministrativeArea";
-
   const schemas = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "@id": `${url}#page`,
-      name: `Locksmith in ${nyArea.shortLocation}`,
+      name: `Locksmith in ${northeastArea.shortLocation}`,
       url,
-      description: nyArea.localContext,
+      description: northeastArea.localContext,
       isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
-      about: {
-        "@type": "Thing",
-        name: `Locksmith services in ${nyArea.shortLocation}`,
-        description: nyArea.searchIntent,
-      },
-      spatialCoverage: {
-        "@type": spatialType,
-        name: nyArea.shortLocation,
-      },
+      about: { "@type": "Thing", name: `Residential locksmith and property-access services in ${northeastArea.shortLocation}` },
+      spatialCoverage: { "@type": northeastArea.kind === "neighborhood" ? "Place" : "City", name: northeastArea.shortLocation },
+      relatedLink: relatedLinks,
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      itemListElement: breadcrumbs,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: `Dedicated locksmith service pages for ${nyArea.shortLocation}`,
-      itemListElement: localServices.map((slug, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: NY_SERVICE_DEFINITIONS[slug].shortTitle,
-        url: `${url}/${slug}`,
-      })),
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL },
+        ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE_URL}/${parent.slug}` }] : []),
+        { "@type": "ListItem", position: parent ? 3 : 2, name: `${northeastArea.name} locksmith`, item: url },
+      ],
     },
   ];
-
   return (
     <>
-      {schemas.map((schema, index) => (
-        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      ))}
-      <NewYorkLocalPage area={nyArea} />
+      {schemas.map((schema, index) => <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />)}
+      <NortheastLocalPage area={northeastArea} />
     </>
   );
 }
