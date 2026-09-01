@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { hasPendingExpansionCredentialGate } from "@/lib/provider-eligibility";
 
 async function getOwnedProvider() {
   const supabase = await createClient();
@@ -27,6 +28,9 @@ export async function setAvailability(formData: FormData) {
   if (isAvailable && (!(provider.services ?? []).length || !(provider.service_area ?? []).length)) {
     redirect("/provider/onboarding?error=Choose services and service areas before going available.");
   }
+  if (isAvailable && hasPendingExpansionCredentialGate(provider.service_area)) {
+    redirect("/provider/onboarding?error=Expansion-market availability is locked until jurisdiction-specific provider credential verification is implemented and passed.");
+  }
 
   const { error } = await supabase.from("provider_profiles").update({ is_available: isAvailable }).eq("id", provider.id);
   if (error) redirect(`/provider?error=${encodeURIComponent(error.message)}`);
@@ -37,11 +41,14 @@ export async function setAvailability(formData: FormData) {
 
 export async function respondToOffer(formData: FormData) {
   const { supabase, provider } = await getOwnedProvider();
-  if (!provider.is_available) redirect("/provider?error=Turn availability on before accepting paid job offers.");
-
   const offerId = String(formData.get("offer_id") ?? "");
   const decision = String(formData.get("decision") ?? "");
   const etaMinutes = Number(formData.get("eta_minutes") ?? 0);
+
+  if (decision === "accept" && hasPendingExpansionCredentialGate(provider.service_area)) {
+    redirect("/provider/onboarding?error=Paid offer acceptance is locked for selected expansion markets until jurisdiction-specific provider credential verification is implemented and passed.");
+  }
+  if (!provider.is_available && decision === "accept") redirect("/provider?error=Turn availability on before accepting paid job offers.");
 
   const { data: offer } = await supabase.from("provider_job_offers").select("id,status").eq("id", offerId).eq("provider_id", provider.id).maybeSingle();
   if (!offer || offer.status !== "offered") redirect("/provider?error=That offer is no longer open.");
