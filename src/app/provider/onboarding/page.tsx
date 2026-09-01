@@ -8,6 +8,7 @@ import { hasAdminClientConfig } from "@/lib/supabase/admin";
 import { hasStripeConnectConfig } from "@/lib/stripe-connect";
 import { MA_CITIES } from "@/lib/massachusetts-seo";
 import { NY_AREAS } from "@/lib/new-york-seo";
+import { NORTHEAST_AREAS } from "@/lib/northeast-seo";
 import { saveProviderSetup, startPayoutOnboarding, syncPayoutStatus } from "./actions";
 
 export const metadata: Metadata = { title: "Provider onboarding", robots: { index: false } };
@@ -30,6 +31,26 @@ const MARKET_GROUPS = [
     title: "New York",
     note: "Choose only the New York markets you genuinely cover. Neighborhood choices are optional when a broader borough/city area already describes your coverage.",
     areas: NY_AREAS.map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
+  },
+  {
+    title: "New Jersey",
+    note: "Choose only the New Jersey cities or townships your business actually serves. Provider credential requirements remain a separate activation gate.",
+    areas: NORTHEAST_AREAS.filter((area) => area.group === "new-jersey").map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
+  },
+  {
+    title: "Philadelphia",
+    note: "Use the citywide market or add the Philadelphia submarkets that accurately describe your real service radius.",
+    areas: NORTHEAST_AREAS.filter((area) => area.group === "philadelphia").map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
+  },
+  {
+    title: "Connecticut",
+    note: "Choose only Connecticut markets you genuinely cover. Registration and other provider-eligibility requirements remain separate from geographic selection.",
+    areas: NORTHEAST_AREAS.filter((area) => area.group === "connecticut").map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
+  },
+  {
+    title: "Delaware",
+    note: "Choose the Delaware markets you actually serve, including coastal areas only when your normal operating radius supports them.",
+    areas: NORTHEAST_AREAS.filter((area) => area.group === "delaware").map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
   },
 ] as const;
 
