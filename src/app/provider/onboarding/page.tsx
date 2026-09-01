@@ -9,6 +9,7 @@ import { hasStripeConnectConfig } from "@/lib/stripe-connect";
 import { MA_CITIES } from "@/lib/massachusetts-seo";
 import { NY_AREAS } from "@/lib/new-york-seo";
 import { NORTHEAST_AREAS } from "@/lib/northeast-seo";
+import { expansionCredentialGateAreas } from "@/lib/provider-eligibility";
 import { saveProviderSetup, startPayoutOnboarding, syncPayoutStatus } from "./actions";
 
 export const metadata: Metadata = { title: "Provider onboarding", robots: { index: false } };
@@ -67,7 +68,9 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
   const serviceSetup = Array.isArray(provider.services) && provider.services.length > 0 && selectedAreas.length > 0;
   const payoutStarted = Boolean(provider.stripe_account_id);
   const payoutReady = Boolean(provider.stripe_details_submitted && provider.stripe_payouts_enabled);
-  const activationReady = serviceSetup && payoutReady;
+  const credentialGateAreas = expansionCredentialGateAreas(selectedAreas);
+  const credentialReady = credentialGateAreas.length === 0;
+  const activationReady = serviceSetup && payoutReady && credentialReady;
   const stripeConfigured = hasAdminClientConfig() && hasStripeConnectConfig();
 
   return (
@@ -77,11 +80,14 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
       {notice && <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{notice}</div>}
       {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
 
-      <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatusCard n="01" title="Business claim" status="Complete" complete body="Your provider account is linked to this business profile." />
         <StatusCard n="02" title="Service setup" status={serviceSetup ? "Complete" : "Required"} complete={serviceSetup} body="Choose the services and geographic areas you genuinely cover." />
         <StatusCard n="03" title="Secure payouts" status={payoutReady ? "Payout-ready" : payoutStarted ? "In progress" : "Required"} complete={payoutReady} body="Stripe handles identity verification and bank payout details directly." />
+        <StatusCard n="04" title="Market eligibility" status={credentialReady ? "No expansion gate" : "Verification required"} complete={credentialReady} body={credentialReady ? "Your current selected areas do not trigger the expansion-market credential gate." : "Expansion-market availability stays off until jurisdiction-specific credential verification is implemented and passed."} />
       </div>
+
+      {!credentialReady && <div className="mt-6 rounded-2xl border border-ember/30 bg-ember/10 p-5"><div className="font-mono text-[10px] uppercase tracking-[.12em] text-ember">Expansion credential gate</div><p className="mt-2 text-sm leading-6 text-parchment-dim">Selected expansion areas: {credentialGateAreas.join(", ")}. Geographic coverage selection is not treated as proof of licensing, registration, insurance or other eligibility. Paid availability for these markets is fail-closed until the market-specific verification layer is connected.</p></div>}
 
       <section className="mt-10 rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="eyebrow">Services & coverage</div><h2 className="mt-3 font-display text-3xl text-parchment">Choose what you want to receive.</h2>
@@ -110,7 +116,7 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
         {!stripeConfigured && <p className="mt-5 text-xs leading-5 text-ember">Staging code is ready, but Stripe/server database credentials are not yet verified on this environment. No bank details can be collected until that configuration is connected.</p>}
       </section>
 
-      <section className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-8"><div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center"><div><div className="eyebrow">Activation</div><h2 className="mt-2 font-display text-2xl text-parchment">{activationReady ? "Ready to receive job offers." : "Finish the required steps first."}</h2><p className="mt-2 text-sm leading-6 text-parchment-dim">Availability remains off until service setup and secure payout onboarding are complete. You still decide when to turn availability on.</p></div><Link href="/provider" className={`rounded-full px-6 py-3 text-center text-sm font-semibold ${activationReady ? "bg-brass text-ink" : "border border-line text-parchment-dim"}`}>{activationReady ? "Go to provider dashboard →" : "View dashboard"}</Link></div></section>
+      <section className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-8"><div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center"><div><div className="eyebrow">Activation</div><h2 className="mt-2 font-display text-2xl text-parchment">{activationReady ? "Ready to receive job offers." : "Finish the required steps first."}</h2><p className="mt-2 text-sm leading-6 text-parchment-dim">Availability remains off until service setup, secure payout onboarding and any applicable expansion-market credential gate are complete. You still decide when to turn availability on.</p></div><Link href="/provider" className={`rounded-full px-6 py-3 text-center text-sm font-semibold ${activationReady ? "bg-brass text-ink" : "border border-line text-parchment-dim"}`}>{activationReady ? "Go to provider dashboard →" : "View dashboard"}</Link></div></section>
     </div></main><Footer /></div>
   );
 }
