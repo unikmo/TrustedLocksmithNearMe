@@ -34,6 +34,11 @@ const aboutSchema = {
     `${SITE_URL}/landlords`,
     `${SITE_URL}/for-real-estate-agents`,
     `${SITE_URL}/second-homes`,
+    `${SITE_URL}/new-york-ny`,
+    `${SITE_URL}/jersey-city-nj`,
+    `${SITE_URL}/philadelphia-pa`,
+    `${SITE_URL}/stamford-ct`,
+    `${SITE_URL}/wilmington-de`,
   ],
 };
 
@@ -49,6 +54,14 @@ const USE_CASES = [
   ["Landlords", "Tenant-turnover rekeys, access records and focused locksmith coordination for rental properties.", "/landlords"],
   ["Real estate", "Move-in rekeys, lock changes, smart-lock options and buyer-controlled closing access.", "/for-real-estate-agents"],
   ["Second homes", "Rekeys, lock changes, smart access and local help when the owner is not on site.", "/second-homes"],
+] as const;
+
+const EXPANSION_MARKETS = [
+  ["New York", "/new-york-ny"],
+  ["New Jersey", "/jersey-city-nj"],
+  ["Philadelphia", "/philadelphia-pa"],
+  ["Connecticut", "/stamford-ct"],
+  ["Delaware", "/wilmington-de"],
 ] as const;
 
 export default function AboutPage() {
@@ -106,10 +119,12 @@ export default function AboutPage() {
               <Link href="/boston-ma" className="mt-5 inline-flex text-sm font-semibold text-navy-text hover:underline">Explore Massachusetts →</Link>
             </div>
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Expansion discovery markets</div>
-              <h2 className="mt-3 font-display text-3xl">New York</h2>
-              <p className="mt-3 text-sm leading-6 text-[#536e8a]">Localized New York pages support address-specific discovery and requests. A page does not guarantee provider availability at every address or hour.</p>
-              <Link href="/new-york-ny" className="mt-5 inline-flex text-sm font-semibold text-navy-text hover:underline">Explore New York →</Link>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Expansion discovery corridor</div>
+              <h2 className="mt-3 font-display text-3xl">The Northeast corridor</h2>
+              <p className="mt-3 text-sm leading-6 text-[#536e8a]">Localized pages now cover New York, New Jersey, Philadelphia, Connecticut and Delaware. They support address-specific discovery; they do not imply blanket provider availability or credential status.</p>
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-navy-text">
+                {EXPANSION_MARKETS.map(([label, href]) => <Link key={href} href={href} className="hover:underline">{label} →</Link>)}
+              </div>
             </div>
           </div>
         </section>
