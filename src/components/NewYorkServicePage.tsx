@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { getNyArea, type NyArea } from "@/lib/new-york-seo";
 import {
+  NY_SERVICE_DEFINITIONS,
   getNyServicesForArea,
   areaHasNyService,
   type NyServiceDefinition,
@@ -12,8 +13,7 @@ import { formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 export function NewYorkServicePage({ area, service }: { area: NyArea; service: NyServiceDefinition }) {
   const relatedServices = getNyServicesForArea(area.slug)
     .filter((slug) => slug !== service.slug)
-    .map((slug) => ({ slug, service: serviceFor(slug) }))
-    .filter((item): item is { slug: string; service: NyServiceDefinition } => Boolean(item.service));
+    .map((slug) => ({ slug, service: NY_SERVICE_DEFINITIONS[slug] }));
 
   const nearbyWithService = area.nearby
     .filter((slug) => areaHasNyService(slug, service.slug))
@@ -183,9 +183,4 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
       <Footer />
     </div>
   );
-}
-
-function serviceFor(slug: string) {
-  const { NY_SERVICE_DEFINITIONS } = require("@/lib/new-york-services") as typeof import("@/lib/new-york-services");
-  return NY_SERVICE_DEFINITIONS[slug as keyof typeof NY_SERVICE_DEFINITIONS];
 }
