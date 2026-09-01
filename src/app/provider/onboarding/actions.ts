@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, hasAdminClientConfig } from "@/lib/supabase/admin";
 import { createConnectedAccount, createOnboardingLink, hasStripeConnectConfig, retrieveConnectedAccount } from "@/lib/stripe-connect";
+import { hasPendingExpansionCredentialGate } from "@/lib/provider-eligibility";
 import { SITE_URL } from "@/lib/site";
 
 async function ownedProvider() {
@@ -27,10 +28,16 @@ export async function saveProviderSetup(formData: FormData) {
   const serviceArea = selectedValues(formData, "service_area");
   if (services.length === 0 || serviceArea.length === 0) redirect("/provider/onboarding?error=Choose at least one service and one service area.");
 
-  const { error } = await supabase.from("provider_profiles").update({ services, service_area: serviceArea }).eq("id", provider.id);
+  const credentialGatePending = hasPendingExpansionCredentialGate(serviceArea);
+  const { error } = await supabase.from("provider_profiles").update({
+    services,
+    service_area: serviceArea,
+    ...(credentialGatePending ? { is_available: false } : {}),
+  }).eq("id", provider.id);
   if (error) redirect(`/provider/onboarding?error=${encodeURIComponent(error.message)}`);
   revalidatePath("/provider/onboarding");
-  redirect("/provider/onboarding?notice=Service preferences saved.");
+  revalidatePath("/provider");
+  redirect(`/provider/onboarding?notice=${encodeURIComponent(credentialGatePending ? "Service preferences saved. Expansion-market availability remains off until market-specific credential verification is active." : "Service preferences saved.")}`);
 }
 
 function currentOrigin(requestHeaders: { get(name: string): string | null }) {
