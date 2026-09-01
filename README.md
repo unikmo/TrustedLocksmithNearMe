@@ -7,9 +7,10 @@ Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
 - Brand: Trusted Locksmith
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
+- npm package: `trusted-locksmith-near-me`
 - Operator: PlanetHike OÜ
 - Primary launch market: Boston and Greater Boston, Massachusetts
-- Expansion content: New York City and selected New York State markets
+- Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
 - Homepage rule: market-neutral hero, followed immediately by location intent; no geographic carousel
 
@@ -28,6 +29,10 @@ Provider funnel state is tracked first-party in the marketplace data model: cont
 Outbound outreach is fail-closed. The scheduled route only sends when `PROVIDER_OUTREACH_ENABLED=true`, a protected `CRON_SECRET` is configured, server-side Supabase credentials are available, and a verified outreach-eligible email contact exists. Automated SMS/calling is not enabled.
 
 `supabase/pending/provider_self_serve_acquisition.sql` is deliberately **not** canonical migration history yet. The Trusted Locksmith Supabase project must be connected, the schema applied through the normal migration workflow, and security/runtime checks passed before that database layer is considered active.
+
+### Current dispatch boundary
+
+Provider claim, service-area setup, payout onboarding and provider-controlled availability are designed for self-service. **Customer-to-provider job offer dispatch is not yet fully automatic.** Current operations still use an admin-driven offer action after a customer request is created. Automated dispatch requires verified structured address/service-area matching, the correct Trusted Locksmith Supabase project, and end-to-end operational QA before it can replace the admin path.
 
 ## Current public service menu
 
@@ -128,6 +133,7 @@ A successful web build does **not** mean unrestricted paid launch is ready. Befo
 7. production monitoring, recovery and end-to-end operational tests
 8. correct Trusted Locksmith Supabase project connected and pending provider-acquisition schema applied/verified
 9. verified outbound business-email enrichment/sender configuration before campaign activation
-10. verified site-wide analytics destination if traffic/source reporting beyond first-party provider-funnel state is required
+10. automated address/service-area dispatch matching or an explicitly approved operational fallback
+11. verified site-wide analytics destination if traffic/source reporting beyond first-party provider-funnel state is required
 
-Historical migration filenames may retain the former internal codename and should not be renamed solely for branding cleanup because migration identity/history is operational state.
+Historical migration filenames and already-applied database identifiers may retain the former internal codename. They must be cleaned through verified forward migrations, not renamed blindly, because migration identity and deployed schema are operational state.

@@ -7,30 +7,20 @@ import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 import { PAGE_VISUALS } from "@/lib/visuals";
 import { SITE_URL } from "@/lib/site";
 
-const metaDescription = "See upfront standard prices for Boston-area home lockouts, car lockouts, rekeys, lock changes and smart-lock installation before you request an independent local locksmith.";
+const metaDescription = "See upfront standard prices for home lockouts, car lockouts, rekeys, lock changes and smart-lock installation before requesting a participating independent local locksmith provider.";
 
 export const metadata: Metadata = {
-  title: "Boston Locksmith Prices | Lockout, Rekey & Lock Change",
+  title: "Locksmith Services & Upfront Standard Prices | Trusted Locksmith",
   description: metaDescription,
   alternates: { canonical: "/services" },
-  openGraph: {
-    title: "Boston locksmith services & upfront standard prices",
-    description: metaDescription,
-    url: "/services",
-    images: [PAGE_VISUALS.services.src],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Boston locksmith services & upfront standard prices",
-    description: metaDescription,
-    images: [PAGE_VISUALS.services.src],
-  },
+  openGraph: { title: "Locksmith services & upfront standard prices", description: metaDescription, url: "/services", images: [PAGE_VISUALS.services.src] },
+  twitter: { card: "summary_large_image", title: "Locksmith services & upfront standard prices", description: metaDescription, images: [PAGE_VISUALS.services.src] },
 };
 
 const serviceListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Boston locksmith services and standard prices",
+  name: "Trusted Locksmith services and standard prices",
   itemListElement: SERVICE_MENU.map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -52,7 +42,7 @@ export default function ServicesPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Boston locksmith services & prices"
+          eyebrow="Locksmith services & standard prices"
           title="See the standard price before you request a locksmith."
           body="Published standard totals include provider travel/service call. If the actual job falls outside the stated scope, extra work must be priced and approved separately before it starts."
           visual={PAGE_VISUALS.services}
@@ -63,6 +53,7 @@ export default function ServicesPage() {
             <div className="max-w-2xl">
               <div className="eyebrow">Choose the service</div>
               <h2 className="mt-3 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">One menu. Clear standard totals.</h2>
+              <p className="mt-4 text-sm leading-6 text-parchment-dim">Use the location pages for local context. The underlying standard-service scope and pricing rule stay consistent.</p>
             </div>
 
             <div className="mt-9 divide-y divide-line/70 border-y border-line/70">
@@ -76,9 +67,7 @@ export default function ServicesPage() {
                   <div className="min-w-[170px] sm:text-right">
                     <div className="font-display text-4xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
                     <div className="mt-1 text-[11px] text-parchment-dim">standard total</div>
-                    <Link href={`/book/details?service_id=${service.id}`} className="mt-4 inline-flex min-h-10 items-center rounded-full border border-sky/25 px-5 py-2 text-sm font-semibold text-parchment transition hover:border-sky/50">
-                      Choose →
-                    </Link>
+                    <Link href={`/book/details?service_id=${service.id}`} className="mt-4 inline-flex min-h-10 items-center rounded-full border border-sky/25 px-5 py-2 text-sm font-semibold text-parchment transition hover:border-sky/50">Choose →</Link>
                   </div>
                 </article>
               ))}
@@ -111,7 +100,7 @@ export default function ServicesPage() {
           <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
             <div className="eyebrow">Ready?</div>
             <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">Choose the service. Then send the request.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-parchment-dim">No membership required for one-off locksmith service.</p>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-parchment-dim">No membership required for one-off locksmith service. Availability is address-specific.</p>
             <Link href="/book" className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">Get my price →</Link>
           </div>
         </section>

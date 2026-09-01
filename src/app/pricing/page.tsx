@@ -9,24 +9,14 @@ import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 import { PAGE_VISUALS } from "@/lib/visuals";
 import { SITE_URL } from "@/lib/site";
 
-const metaDescription = "Compare upfront Trusted Locksmith prices for Boston-area home lockouts, car lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
+const metaDescription = "Compare upfront Trusted Locksmith prices for home lockouts, car lockouts, rekeys, lock changes and smart-lock installation, plus optional Digital Access memberships.";
 
 export const metadata: Metadata = {
-  title: "Boston Locksmith Pricing | Services & Optional Membership",
+  title: "Locksmith Pricing | Services & Optional Membership | Trusted Locksmith",
   description: metaDescription,
   alternates: { canonical: "/pricing" },
-  openGraph: {
-    title: "Trusted Locksmith pricing | One-off service or optional membership",
-    description: metaDescription,
-    url: "/pricing",
-    images: [PAGE_VISUALS.services.src],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Trusted Locksmith pricing | One-off service or optional membership",
-    description: metaDescription,
-    images: [PAGE_VISUALS.services.src],
-  },
+  openGraph: { title: "Trusted Locksmith pricing | One-off service or optional membership", description: metaDescription, url: "/pricing", images: [PAGE_VISUALS.services.src] },
+  twitter: { card: "summary_large_image", title: "Trusted Locksmith pricing | One-off service or optional membership", description: metaDescription, images: [PAGE_VISUALS.services.src] },
 };
 
 const FAQ = [
@@ -62,11 +52,7 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "@id": `${SITE_URL}/pricing#faq`,
-  mainEntity: FAQ.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
+  mainEntity: FAQ.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
 };
 
 export default async function PricingPage() {
@@ -78,7 +64,7 @@ export default async function PricingPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Transparent Boston locksmith pricing"
+          eyebrow="Transparent locksmith pricing"
           title="Know the standard price before you choose a locksmith."
           body="Lockout, rekey and lock-change pricing is shown before you request a local provider. Provider travel/service call is included in the standard total."
           visual={PAGE_VISUALS.services}
@@ -102,15 +88,9 @@ export default async function PricingPage() {
               <div className="divide-y divide-line">
                 {SERVICE_MENU.map((item) => (
                   <div key={item.id} className="grid gap-3 px-5 py-5 md:grid-cols-[1.15fr_.8fr_.8fr_1.55fr] md:items-start md:gap-4 md:px-6">
-                    <div>
-                      <div className="font-medium text-parchment">{item.title}</div>
-                      <div className="mt-1 text-xs leading-5 text-verdigris">Travel/service call included</div>
-                    </div>
+                    <div><div className="font-medium text-parchment">{item.title}</div><div className="mt-1 text-xs leading-5 text-verdigris">Travel/service call included</div></div>
                     <div className="text-sm text-parchment-dim">{item.timing}</div>
-                    <div>
-                      <div className="font-mono text-2xl text-brass">{formatServicePrice(item.customerPriceCents)}</div>
-                      <div className="mt-1 text-[11px] leading-4 text-parchment-dim">standard all-in price</div>
-                    </div>
+                    <div><div className="font-mono text-2xl text-brass">{formatServicePrice(item.customerPriceCents)}</div><div className="mt-1 text-[11px] leading-4 text-parchment-dim">standard all-in price</div></div>
                     <div className="text-xs leading-5 text-parchment-dim">{item.scope}</div>
                   </div>
                 ))}
@@ -160,12 +140,7 @@ export default async function PricingPage() {
           <div className="mx-auto max-w-3xl px-6">
             <h2 className="text-center font-display text-3xl font-medium text-parchment">Pricing questions</h2>
             <div className="mt-10 space-y-6">
-              {FAQ.map((item) => (
-                <div key={item.q} className="border-b border-line/70 pb-6">
-                  <h3 className="font-medium text-parchment">{item.q}</h3>
-                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p>
-                </div>
-              ))}
+              {FAQ.map((item) => <div key={item.q} className="border-b border-line/70 pb-6"><h3 className="font-medium text-parchment">{item.q}</h3><p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p></div>)}
             </div>
           </div>
         </section>

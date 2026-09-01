@@ -6,6 +6,8 @@ import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/server";
 import { hasAdminClientConfig } from "@/lib/supabase/admin";
 import { hasStripeConnectConfig } from "@/lib/stripe-connect";
+import { MA_CITIES } from "@/lib/massachusetts-seo";
+import { NY_AREAS } from "@/lib/new-york-seo";
 import { saveProviderSetup, startPayoutOnboarding, syncPayoutStatus } from "./actions";
 
 export const metadata: Metadata = { title: "Provider onboarding", robots: { index: false } };
@@ -18,7 +20,18 @@ const SERVICES = [
   ["smart_lock", "Smart-lock installation"],
 ] as const;
 
-const AREAS = ["Boston", "Cambridge", "Somerville", "Newton", "Medford", "Watertown", "Waltham", "Quincy", "Chelsea", "Malden", "Revere", "Braintree", "Lynn"] as const;
+const MARKET_GROUPS = [
+  {
+    title: "Massachusetts",
+    note: "Existing Massachusetts values are preserved for compatibility with already-saved provider profiles.",
+    areas: MA_CITIES.map((area) => ({ value: area.name, label: `${area.name}, MA` })),
+  },
+  {
+    title: "New York",
+    note: "Choose only the New York markets you genuinely cover. Neighborhood choices are optional when a broader borough/city area already describes your coverage.",
+    areas: NY_AREAS.map((area) => ({ value: area.shortLocation, label: area.shortLocation })),
+  },
+] as const;
 
 export default async function ProviderOnboarding({ searchParams }: { searchParams: Promise<{ notice?: string; error?: string }> }) {
   const { notice, error } = await searchParams;
@@ -29,7 +42,8 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
   const { data: provider } = await supabase.from("provider_profiles").select("*").eq("claimed_user_id", user.id).eq("claim_status", "verified").maybeSingle();
   if (!provider) redirect("/providers/claim?error=Claim your business profile before onboarding.");
 
-  const serviceSetup = Array.isArray(provider.services) && provider.services.length > 0 && Array.isArray(provider.service_area) && provider.service_area.length > 0;
+  const selectedAreas = Array.isArray(provider.service_area) ? provider.service_area : [];
+  const serviceSetup = Array.isArray(provider.services) && provider.services.length > 0 && selectedAreas.length > 0;
   const payoutStarted = Boolean(provider.stripe_account_id);
   const payoutReady = Boolean(provider.stripe_details_submitted && provider.stripe_payouts_enabled);
   const activationReady = serviceSetup && payoutReady;
@@ -38,21 +52,29 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
   return (
     <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1 py-12"><div className="mx-auto max-w-5xl px-6">
       <div className="eyebrow">Provider onboarding</div>
-      <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"><div><h1 className="font-display text-4xl text-parchment sm:text-5xl">Activate {provider.business_name}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">Complete your service preferences and Stripe-hosted payout setup. Trusted Locksmith never asks you to type bank-account or routing details into this site.</p></div><Link href="/provider" className="text-sm font-semibold text-brass">Provider dashboard →</Link></div>
+      <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"><div><h1 className="font-display text-4xl text-parchment sm:text-5xl">Activate {provider.business_name}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">Choose the services and locations you actually cover, then complete Stripe-hosted payout setup. Trusted Locksmith never asks you to type bank-account or routing details into this site.</p></div><Link href="/provider" className="text-sm font-semibold text-brass">Provider dashboard →</Link></div>
       {notice && <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{notice}</div>}
       {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         <StatusCard n="01" title="Business claim" status="Complete" complete body="Your provider account is linked to this business profile." />
-        <StatusCard n="02" title="Service setup" status={serviceSetup ? "Complete" : "Required"} complete={serviceSetup} body="Choose the services and Greater Boston areas you want to cover." />
+        <StatusCard n="02" title="Service setup" status={serviceSetup ? "Complete" : "Required"} complete={serviceSetup} body="Choose the services and geographic areas you genuinely cover." />
         <StatusCard n="03" title="Secure payouts" status={payoutReady ? "Payout-ready" : payoutStarted ? "In progress" : "Required"} complete={payoutReady} body="Stripe handles identity verification and bank payout details directly." />
       </div>
 
       <section className="mt-10 rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="eyebrow">Services & coverage</div><h2 className="mt-3 font-display text-3xl text-parchment">Choose what you want to receive.</h2>
-        <form action={saveProviderSetup} className="mt-7 space-y-7">
+        <form action={saveProviderSetup} className="mt-7 space-y-8">
           <fieldset><legend className="font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim">Services</legend><div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{SERVICES.map(([value,label])=><Choice key={value} name="services" value={value} label={label} checked={(provider.services ?? []).includes(value)} />)}</div></fieldset>
-          <fieldset><legend className="font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim">Service areas</legend><div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{AREAS.map((area)=><Choice key={area} name="service_area" value={area} label={area} checked={(provider.service_area ?? []).includes(area)} />)}</div></fieldset>
+          {MARKET_GROUPS.map((group) => (
+            <fieldset key={group.title} className="border-t border-line/70 pt-7">
+              <legend className="font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim">{group.title} service areas</legend>
+              <p className="mt-2 text-xs leading-5 text-parchment-dim">{group.note}</p>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {group.areas.map((area) => <Choice key={`${group.title}-${area.value}`} name="service_area" value={area.value} label={area.label} checked={selectedAreas.includes(area.value)} />)}
+              </div>
+            </fieldset>
+          ))}
           <button className="rounded-full border border-sky/30 px-6 py-2.5 text-sm font-semibold text-parchment">Save service setup</button>
         </form>
       </section>

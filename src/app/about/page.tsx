@@ -5,18 +5,13 @@ import { Nav } from "@/components/Nav";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const description =
-  "Trusted Locksmith is a Boston-first locksmith marketplace operated by PlanetHike OÜ, with localized New York request pages built around upfront pricing and real provider acceptance.";
+  "Trusted Locksmith is a locksmith marketplace operated by PlanetHike OÜ. Customers see published standard prices and scope before requesting a participating independent local provider.";
 
 export const metadata: Metadata = {
   title: "About Trusted Locksmith | Locksmith Marketplace",
   description,
   alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About Trusted Locksmith",
-    description,
-    url: "/about",
-    type: "website",
-  },
+  openGraph: { title: "About Trusted Locksmith", description, url: "/about", type: "website" },
 };
 
 const aboutSchema = {
@@ -31,35 +26,16 @@ const aboutSchema = {
     "@id": `${SITE_URL}/#organization`,
     name: SITE.operatorName,
     url: SITE_URL,
-    brand: {
-      "@type": "Brand",
-      "@id": `${SITE_URL}/#brand`,
-      name: SITE.brandName,
-    },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: SITE.launchMarket,
-    },
+    brand: { "@type": "Brand", "@id": `${SITE_URL}/#brand`, name: SITE.brandName },
+    areaServed: { "@type": "AdministrativeArea", name: SITE.launchMarket },
   },
 };
 
 const PRINCIPLES = [
-  {
-    title: "What customers see first",
-    body: "The published standard price and included scope appear before the request is sent. Provider travel/service call is included in those published standard totals, and extra work or hardware requires a separate price and approval where applicable.",
-  },
-  {
-    title: "What provider acceptance means",
-    body: "A request is not presented as accepted by a specific locksmith until a participating independent provider actually accepts it. Provider identity and ETA appear after that acceptance, and local availability can vary by place and time.",
-  },
-  {
-    title: "What geographic expansion means",
-    body: "Boston and Greater Boston remain the primary launch market. Trusted Locksmith also publishes localized New York request pages. A New York location page is not a promise that a provider is available at every address or hour; matching depends on participating provider service areas and actual acceptance.",
-  },
-  {
-    title: "What Trusted Locksmith is not",
-    body: "Trusted Locksmith is not the field locksmith and does not employ the independent providers performing the work. A verified business-profile claim means the account-to-business connection was reviewed; it is not a blanket statement that every possible licensing, insurance, credential or KYC requirement has been completed.",
-  },
+  ["Price and scope first", "The published standard price and included scope appear before the request is sent. Provider travel/service call is included in published standard totals, and extra work or hardware requires a separate price and approval where applicable."],
+  ["Real provider acceptance", "A request is not presented as accepted by a specific locksmith until a participating independent provider actually accepts it. Provider identity and ETA appear only after that acceptance."],
+  ["Independent field providers", "Trusted Locksmith operates the marketplace and request flow. Participating independent local providers perform the field locksmith work."],
+  ["Verification means what it says", "A verified business-profile claim confirms an account-to-business connection. It is not a blanket statement that every possible licensing, insurance, credential or KYC requirement has been completed."],
 ] as const;
 
 export default function AboutPage() {
@@ -75,12 +51,8 @@ export default function AboutPage() {
               A locksmith marketplace built around price and process clarity.
             </h1>
             <div className="mt-7 max-w-3xl space-y-4 text-lg leading-8 text-parchment-dim">
-              <p>
-                Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. Boston and Greater Boston remain the primary launch market, and localized request guidance is now being expanded across New York City and selected New York State markets. PlanetHike OÜ does not perform the field locksmith work.
-              </p>
-              <p>
-                The core rule stays the same everywhere: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a real participating provider accepts.
-              </p>
+              <p>Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. PlanetHike OÜ does not perform the field locksmith work.</p>
+              <p>The core rule is simple: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a participating provider actually accepts.</p>
             </div>
           </div>
         </section>
@@ -88,12 +60,29 @@ export default function AboutPage() {
         <section className="border-b border-line/70 py-14 sm:py-16">
           <div className="mx-auto max-w-[1080px] px-6 sm:px-8 lg:px-10">
             <div className="divide-y divide-line/70 border-y border-line/70">
-              {PRINCIPLES.map((item) => (
-                <article key={item.title} className="grid gap-3 py-6 md:grid-cols-[.42fr_.58fr] md:gap-10">
-                  <h2 className="font-display text-2xl text-parchment">{item.title}</h2>
-                  <p className="text-sm leading-6 text-parchment-dim">{item.body}</p>
+              {PRINCIPLES.map(([title, body]) => (
+                <article key={title} className="grid gap-3 py-6 md:grid-cols-[.42fr_.58fr] md:gap-10">
+                  <h2 className="font-display text-2xl text-parchment">{title}</h2>
+                  <p className="text-sm leading-6 text-parchment-dim">{body}</p>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[#c7d9ec] bg-mist py-14 text-navy-text sm:py-16">
+          <div className="mx-auto grid max-w-[1080px] gap-8 px-6 sm:px-8 md:grid-cols-2 lg:px-10">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Primary launch market</div>
+              <h2 className="mt-3 font-display text-3xl">Boston & Greater Boston</h2>
+              <p className="mt-3 text-sm leading-6 text-[#536e8a]">This remains the primary launch market. Actual request fulfillment still depends on participating provider coverage and acceptance.</p>
+              <Link href="/boston-ma" className="mt-5 inline-flex text-sm font-semibold text-navy-text hover:underline">Explore Massachusetts →</Link>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Expansion discovery markets</div>
+              <h2 className="mt-3 font-display text-3xl">New York</h2>
+              <p className="mt-3 text-sm leading-6 text-[#536e8a]">Localized New York pages support address-specific discovery and requests. A page does not guarantee provider availability at every address or hour.</p>
+              <Link href="/new-york-ny" className="mt-5 inline-flex text-sm font-semibold text-navy-text hover:underline">Explore New York →</Link>
             </div>
           </div>
         </section>
@@ -101,17 +90,8 @@ export default function AboutPage() {
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
             <div className="eyebrow">Start with the useful facts</div>
-            <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">
-              Compare the service and price before you request anyone.
-            </h2>
-            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/services" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">
-                See services & prices
-              </Link>
-              <Link href="/new-york-ny" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">
-                Explore New York locations
-              </Link>
-            </div>
+            <h2 className="mt-4 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">Compare the service and price before you request anyone.</h2>
+            <Link href="/services" className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">See services & prices</Link>
           </div>
         </section>
       </main>

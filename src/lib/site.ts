@@ -7,11 +7,8 @@ export const SITE = {
   expansionContentMarkets: ["New York City", "selected New York State markets"],
   businessModel: "Locksmith marketplace platform",
   positioning:
-    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Boston and Greater Boston are the primary launch market; localized New York pages support address-specific request discovery where participating provider coverage exists.",
+    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Field work is performed by independent providers. Boston and Greater Boston are the primary launch market; New York discovery pages support address-specific requests where participating provider coverage exists.",
 } as const;
 
-/**
- * Public SEO/entity URLs must always resolve to the branded production domain.
- * Preview and deployment hostnames must never become canonical URLs.
- */
+/** Public SEO/entity URLs always use the branded production domain. */
 export const SITE_URL = SITE.url;
