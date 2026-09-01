@@ -58,7 +58,12 @@ const organizationSchema = {
     "landlord tenant-turnover rekeying",
     "move-in rekeying after real-estate closings",
     "second-home access planning",
+    "Northeast United States locksmith service geography",
     "New York locksmith service geography",
+    "New Jersey locksmith service geography",
+    "Philadelphia locksmith service geography",
+    "Connecticut locksmith service geography",
+    "Delaware locksmith service geography",
   ],
   description: SITE.positioning,
 };
