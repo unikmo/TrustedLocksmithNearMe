@@ -1,6 +1,6 @@
 # Trusted Locksmith Near Me
 
-Boston-first locksmith marketplace and property-access platform operated by PlanetHike OÜ.
+Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
 
 ## Canonical project identity
 
@@ -8,8 +8,10 @@ Boston-first locksmith marketplace and property-access platform operated by Plan
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
 - Operator: PlanetHike OÜ
-- Launch market: Boston and Greater Boston, Massachusetts
+- Primary launch market: Boston and Greater Boston, Massachusetts
+- Expansion content: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
+- Homepage rule: market-neutral hero, followed immediately by location intent; no geographic carousel
 
 ## Customer promise
 
@@ -39,10 +41,24 @@ Outbound outreach is fail-closed. The scheduled route only sends when `PROVIDER_
 
 ## Search and AI discovery architecture
 
-The public site uses the branded production domain for canonical URLs, robots and sitemap output. Massachusetts local SEO remains generated from the canonical city/service registry, including 13 city pages and 23 city-service pages.
+The public site uses the branded production domain for canonical URLs, robots and sitemap output.
+
+Massachusetts local architecture:
+- 13 geographic pages
+- 23 city/service pages
+
+New York local architecture:
+- 28 highly localized geographic pages
+- 92 evidence-gated service/location pages
+  - 28 emergency-locksmith pages
+  - 22 car-lockout pages
+  - 20 rekey pages
+  - 14 lock-change pages
+  - 8 smart-lock-installation pages
+
+New York house-lockout pages are not multiplied because current keyword evidence is weak and overlaps strongly with emergency-locksmith intent. Automotive pages remain vehicle-entry only and do not imply key cutting or programming.
 
 The public discovery layer includes:
-
 - conventional crawlable HTML and internal linking
 - canonical URLs and XML sitemap
 - Organization/Brand entity identifiers
@@ -53,14 +69,15 @@ The public discovery layer includes:
 
 ## Core routes
 
-- `/` — Boston-first customer entry
+- `/` — market-neutral customer entry with immediate Massachusetts/New York location choice
 - `/boston-ma` — Boston local landing page
+- `/new-york-ny` — New York City local hub
 - `/services` — public services and standard prices
 - `/book` — service selection and request flow
 - `/how-it-works` — marketplace/request process
 - `/about` — canonical entity/operator definition
 - `/trust-safety` — provider-claim and service-status boundaries
-- `/partner-tech` — Greater Boston locksmith-provider acquisition
+- `/partner-tech` — provider acquisition
 - `/providers/claim` — provider profile claim
 - `/providers/register` — provider account registration
 - `/provider/onboarding` — service coverage + secure payout onboarding
@@ -83,7 +100,6 @@ The public discovery layer includes:
 Public SEO/entity URLs are intentionally pinned to `https://trustedlocksmithnearme.com` in `src/lib/site.ts` so preview/deployment hostnames cannot become canonical URLs.
 
 Provider acquisition/onboarding server configuration can include:
-
 - `SUPABASE_SERVICE_ROLE_KEY` — server only
 - `STRIPE_SECRET_KEY` — server only; staging should use the Stripe sandbox/test key
 - `STRIPE_WEBHOOK_SECRET` — server only
@@ -103,12 +119,12 @@ npm run build
 
 A successful web build does **not** mean unrestricted paid launch is ready. Before paid production launch, the project still needs verified evidence for:
 
-1. sufficient Boston provider supply, acceptance and fill coverage
+1. sufficient provider supply, acceptance and fill coverage in each active market
 2. production payment authorization/capture/refunds plus validated marketplace money flow
 3. verified Stripe Connect configuration, provider KYC/payout/transfer mechanics and webhook handling
 4. production communications plus no-match/no-show/failure lifecycle handling
-5. provider credential/insurance/licensing rules appropriate to the launch model
-6. Massachusetts legal review of the final marketplace, consumer, provider and outbound-acquisition terms
+5. provider credential/insurance/licensing rules appropriate to each launch market
+6. applicable legal review of the final marketplace, consumer, provider and outbound-acquisition terms
 7. production monitoring, recovery and end-to-end operational tests
 8. correct Trusted Locksmith Supabase project connected and pending provider-acquisition schema applied/verified
 9. verified outbound business-email enrichment/sender configuration before campaign activation
