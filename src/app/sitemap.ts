@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { MA_CITIES, MA_LOCAL_ROUTES } from "@/lib/massachusetts-seo";
 import { NY_AREAS, NY_LOCAL_ROUTES } from "@/lib/new-york-seo";
+import { NY_SERVICE_ROUTES } from "@/lib/new-york-services";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -55,5 +56,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: nyPriority.get(route) ?? 0.8,
   }));
 
-  return [...corePages, ...massachusettsPages, ...newYorkPages];
+  const newYorkServicePages: MetadataRoute.Sitemap = NY_SERVICE_ROUTES.map((route) => ({
+    url: `${SITE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: route.includes("/emergency-locksmith") ? 0.8 : route.includes("/car-lockout") ? 0.78 : 0.74,
+  }));
+
+  return [...corePages, ...massachusettsPages, ...newYorkPages, ...newYorkServicePages];
 }
