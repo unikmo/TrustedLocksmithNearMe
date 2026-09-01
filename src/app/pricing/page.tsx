@@ -12,7 +12,7 @@ import { SITE_URL } from "@/lib/site";
 const metaDescription = "Compare upfront Trusted Locksmith prices for home lockouts, car lockouts, rekeys, lock changes and smart-lock installation, plus optional Digital Access memberships.";
 
 export const metadata: Metadata = {
-  title: "Locksmith Pricing | Services & Optional Membership | Trusted Locksmith",
+  title: "Locksmith Pricing | Services & Optional Membership",
   description: metaDescription,
   alternates: { canonical: "/pricing" },
   openGraph: { title: "Trusted Locksmith pricing | One-off service or optional membership", description: metaDescription, url: "/pricing", images: [PAGE_VISUALS.services.src] },

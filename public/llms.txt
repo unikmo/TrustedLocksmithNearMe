@@ -25,8 +25,19 @@ Homepage model: market-neutral hero followed immediately by location choice
 - Standard lock change: $89 standard labor; hardware separate
 - Smart lock installation: $129 standard labor for one compatible customer-supplied smart lock
 
+## Property and business use cases
+Trusted Locksmith connects one-off local locksmith intent with repeat property-access workflows where the service is genuinely relevant.
+
+- Property managers: resident lockouts, turnover rekeys, lock changes and property/unit service history.
+- Landlords: tenant-turnover rekeys, rental-property access records and repeat locksmith coordination.
+- Real estate professionals: move-in rekeying, lock changes or compatible smart-lock installation after closing; separate brokerage Digital Access gifting is also available.
+- Second-home owners: rekeying, lock changes, smart access and local locksmith coordination when the owner is not on site.
+- These business/property pages do not imply that PlanetHike OÜ performs locksmith field work. Participating independent providers perform field service.
+
 ## Key pages
 - Home: https://trustedlocksmithnearme.com/
+- Services and prices: https://trustedlocksmithnearme.com/services
+- Pricing and optional membership: https://trustedlocksmithnearme.com/pricing
 - Boston locksmith: https://trustedlocksmithnearme.com/boston-ma
 - New York City locksmith: https://trustedlocksmithnearme.com/new-york-ny
 - Manhattan locksmith: https://trustedlocksmithnearme.com/manhattan-ny
@@ -34,14 +45,20 @@ Homepage model: market-neutral hero followed immediately by location choice
 - Queens locksmith: https://trustedlocksmithnearme.com/queens-ny
 - Bronx locksmith: https://trustedlocksmithnearme.com/bronx-ny
 - Staten Island locksmith: https://trustedlocksmithnearme.com/staten-island-ny
-- Services and prices: https://trustedlocksmithnearme.com/services
+- Property managers: https://trustedlocksmithnearme.com/for-property-managers
+- Property-manager workspace: https://trustedlocksmithnearme.com/property-manager
+- Landlords: https://trustedlocksmithnearme.com/landlords
+- Real estate professionals: https://trustedlocksmithnearme.com/for-real-estate-agents
+- Brokerage workspace: https://trustedlocksmithnearme.com/brokerage
+- Second homes: https://trustedlocksmithnearme.com/second-homes
+- Digital Access: https://trustedlocksmithnearme.com/digital-access
 - How it works: https://trustedlocksmithnearme.com/how-it-works
 - Trust and safety: https://trustedlocksmithnearme.com/trust-safety
 - For locksmith providers: https://trustedlocksmithnearme.com/partner-tech
 - About Trusted Locksmith: https://trustedlocksmithnearme.com/about
 - Sitemap: https://trustedlocksmithnearme.com/sitemap.xml
 
-## Local SEO
+## Local SEO and internal relationships
 Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. New York geography includes 28 localized pages covering New York City, five boroughs, selected NYC neighborhoods, Westchester/Hudson Valley markets, Long Island county hubs and major Upstate New York cities.
 
 New York service expansion adds 92 evidence-gated service/location pages:
@@ -50,5 +67,7 @@ New York service expansion adds 92 evidence-gated service/location pages:
 - rekey locks: 20 locations
 - lock change: 14 locations
 - smart lock installation: 8 locations
+
+Local rekey, lock-change and smart-lock pages link to relevant property-manager, landlord, real-estate and second-home workflows. Their WebPage structured data also includes relatedLink relationships to those strategic pages. Geography pages link down to relevant services and across to nearby/related locations.
 
 House-lockout pages are not multiplied across New York because the current search evidence is weak and overlaps heavily with emergency-locksmith intent. Automotive pages remain vehicle-entry only and do not claim key cutting or programming. The sitemap is the canonical route inventory.

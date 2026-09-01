@@ -11,6 +11,7 @@ import {
   type NyServiceSlug,
 } from "@/lib/new-york-services";
 import { formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
+import { getStrategicServiceLinks } from "@/lib/strategic-service-links";
 import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -29,18 +30,12 @@ function titleForMa(cityName: string, serviceSlug: keyof typeof MA_SERVICE_CONTE
   const price = item ? formatServicePrice(item.customerPriceCents) : undefined;
 
   switch (serviceSlug) {
-    case "emergency-locksmith":
-      return `Emergency Locksmith ${cityName}, MA | Upfront Prices`;
-    case "car-lockout":
-      return `Car Lockout Locksmith ${cityName}, MA${price ? ` | ${price}` : ""}`;
-    case "house-lockout":
-      return `House Lockout Locksmith ${cityName}, MA${price ? ` | From ${price}` : ""}`;
-    case "rekey-locks":
-      return `Rekey Locks ${cityName}, MA${price ? ` | From ${price}` : ""}`;
-    case "lock-change":
-      return `Lock Change ${cityName}, MA${price ? ` | ${price} Labor` : ""}`;
-    case "smart-lock-installation":
-      return `Smart Lock Installation ${cityName}, MA${price ? ` | ${price} Labor` : ""}`;
+    case "emergency-locksmith": return `Emergency Locksmith ${cityName}, MA | Upfront Prices`;
+    case "car-lockout": return `Car Lockout Locksmith ${cityName}, MA${price ? ` | ${price}` : ""}`;
+    case "house-lockout": return `House Lockout Locksmith ${cityName}, MA${price ? ` | From ${price}` : ""}`;
+    case "rekey-locks": return `Rekey Locks ${cityName}, MA${price ? ` | From ${price}` : ""}`;
+    case "lock-change": return `Lock Change ${cityName}, MA${price ? ` | ${price} Labor` : ""}`;
+    case "smart-lock-installation": return `Smart Lock Installation ${cityName}, MA${price ? ` | ${price} Labor` : ""}`;
   }
 }
 
@@ -50,17 +45,16 @@ function titleForNy(location: string, serviceSlug: NyServiceSlug) {
   const price = item ? formatServicePrice(item.customerPriceCents) : undefined;
 
   switch (serviceSlug) {
-    case "emergency-locksmith":
-      return `Emergency Locksmith ${location} | Upfront Prices`;
-    case "car-lockout":
-      return `Car Lockout Locksmith ${location}${price ? ` | ${price}` : ""}`;
-    case "rekey-locks":
-      return `Rekey Locks ${location}${price ? ` | From ${price}` : ""}`;
-    case "lock-change":
-      return `Lock Change ${location}${price ? ` | ${price} Labor` : ""}`;
-    case "smart-lock-installation":
-      return `Smart Lock Installation ${location}${price ? ` | ${price} Labor` : ""}`;
+    case "emergency-locksmith": return `Emergency Locksmith ${location} | Upfront Prices`;
+    case "car-lockout": return `Car Lockout Locksmith ${location}${price ? ` | ${price}` : ""}`;
+    case "rekey-locks": return `Rekey Locks ${location}${price ? ` | From ${price}` : ""}`;
+    case "lock-change": return `Lock Change ${location}${price ? ` | ${price} Labor` : ""}`;
+    case "smart-lock-installation": return `Smart Lock Installation ${location}${price ? ` | ${price} Labor` : ""}`;
   }
+}
+
+function strategicRelatedLinks(serviceSlug: string) {
+  return getStrategicServiceLinks(serviceSlug).map((link) => `${SITE_URL}${link.href}`);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string; service: string }> }): Promise<Metadata> {
@@ -108,6 +102,7 @@ export default async function LocalServiceRoute({ params }: { params: Promise<{ 
     const cityUrl = `${SITE_URL}/${maCity.slug}`;
     const url = `${cityUrl}/${maService.slug}`;
     const description = maService.description(maCity.name);
+    const relatedLink = strategicRelatedLinks(maService.slug);
     const offers = maService.serviceIds
       .map((id) => getServiceMenuItem(id))
       .filter((item): item is NonNullable<typeof item> => Boolean(item))
@@ -130,6 +125,7 @@ export default async function LocalServiceRoute({ params }: { params: Promise<{ 
         description,
         isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
         about: { "@id": `${url}#service` },
+        ...(relatedLink.length ? { relatedLink } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -178,6 +174,7 @@ export default async function LocalServiceRoute({ params }: { params: Promise<{ 
     const areaUrl = `${SITE_URL}/${nyArea.slug}`;
     const url = `${areaUrl}/${nyService.slug}`;
     const description = nyService.summary(nyArea);
+    const relatedLink = strategicRelatedLinks(nyService.slug);
     const offers = nyService.serviceIds
       .map((id) => getServiceMenuItem(id))
       .filter((item): item is NonNullable<typeof item> => Boolean(item))
@@ -201,6 +198,7 @@ export default async function LocalServiceRoute({ params }: { params: Promise<{ 
         description,
         isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
         about: { "@id": `${url}#service` },
+        ...(relatedLink.length ? { relatedLink } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -208,7 +206,6 @@ export default async function LocalServiceRoute({ params }: { params: Promise<{ 
         "@id": `${url}#service`,
         name: `${nyService.shortTitle} in ${nyArea.shortLocation}`,
         serviceType: nyService.shortTitle,
-        provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: { "@type": "Place", name: `${nyArea.shortLocation}, New York` },
         description,
         url,

@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Trusted Locksmith for Landlords",
-  description: "Coordinate rental-property lockouts, rekeys, trusted access and locksmith service history through one focused platform.",
+  title: "Rental Rekey & Locksmith Workflow for Landlords",
+  description: "Coordinate rental-property lockouts, turnover rekeys, trusted access and locksmith service history through one focused platform.",
   alternates: { canonical: "/landlords" },
   openGraph: { images: [PAGE_VISUALS.landlords.src] },
   twitter: { card: "summary_large_image", images: [PAGE_VISUALS.landlords.src] },
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE_URL}/landlords#page`,
+  url: `${SITE_URL}/landlords`,
+  name: "Trusted Locksmith for landlords",
+  audience: { "@type": "Audience", audienceType: "Landlords and small rental-property operators" },
+  about: [
+    { "@type": "Thing", name: "tenant turnover rekeying" },
+    { "@type": "Thing", name: "rental property lockouts" },
+    { "@type": "Thing", name: "rental property access records" },
+  ],
+  relatedLink: [`${SITE_URL}/services`, `${SITE_URL}/for-property-managers`, `${SITE_URL}/for-real-estate-agents`],
 };
 
 const BENEFITS = [
@@ -23,6 +40,7 @@ const BENEFITS = [
 export default function LandlordsPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
       <Nav />
       <main className="flex-1">
         <PageHero
@@ -43,6 +61,23 @@ export default function LandlordsPage() {
             </div>
           </div>
         </section>
+
+        <section className="border-b border-line/70 py-16 sm:py-20">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="eyebrow">Turnover starts with key control</div>
+            <div className="mt-7 grid gap-6 md:grid-cols-2">
+              <Link href="/services" className="group border-t border-line pt-5">
+                <h2 className="font-display text-2xl text-parchment group-hover:text-brass">See rekey and lock-change pricing →</h2>
+                <p className="mt-3 text-sm leading-6 text-parchment-dim">Use a rekey when compatible existing hardware can stay in place; use a lock change when the hardware itself needs replacement.</p>
+              </Link>
+              <Link href="/for-property-managers" className="group border-t border-line pt-5">
+                <h2 className="font-display text-2xl text-parchment group-hover:text-brass">Managing a wider portfolio? →</h2>
+                <p className="mt-3 text-sm leading-6 text-parchment-dim">The property-manager workflow extends the same turnover and service-history logic across multiple buildings and units.</p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20">
           <div className="mx-auto max-w-4xl px-6">
             <div className="rounded-3xl border border-brass/25 bg-brass/[0.06] p-8">
@@ -55,8 +90,8 @@ export default function LandlordsPage() {
         <CTABand
           title="Start with one rental property"
           body="Use the same locksmith workflow now, then expand across properties when the operating pattern is proven."
-          ctaLabel="Find a locksmith"
-          ctaHref="/book"
+          ctaLabel="See locksmith services"
+          ctaHref="/services"
           secondaryLabel="Property manager solution"
           secondaryHref="/for-property-managers"
         />

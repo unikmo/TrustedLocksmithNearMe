@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 const metaDescription = "See upfront standard prices for home lockouts, car lockouts, rekeys, lock changes and smart-lock installation before requesting a participating independent local locksmith provider.";
 
 export const metadata: Metadata = {
-  title: "Locksmith Services & Upfront Standard Prices | Trusted Locksmith",
+  title: "Locksmith Services & Upfront Standard Prices",
   description: metaDescription,
   alternates: { canonical: "/services" },
   openGraph: { title: "Locksmith services & upfront standard prices", description: metaDescription, url: "/services", images: [PAGE_VISUALS.services.src] },
@@ -58,7 +58,7 @@ export default function ServicesPage() {
 
             <div className="mt-9 divide-y divide-line/70 border-y border-line/70">
               {SERVICE_MENU.map((service) => (
-                <article key={service.id} className="grid gap-5 py-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-10">
+                <article id={service.id} key={service.id} className="scroll-mt-24 grid gap-5 py-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-10">
                   <div>
                     <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{service.timing}</div>
                     <h3 className="mt-2 font-display text-2xl text-parchment">{service.title}</h3>
@@ -70,6 +70,30 @@ export default function ServicesPage() {
                     <Link href={`/book/details?service_id=${service.id}`} className="mt-4 inline-flex min-h-10 items-center rounded-full border border-sky/25 px-5 py-2 text-sm font-semibold text-parchment transition hover:border-sky/50">Choose →</Link>
                   </div>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/60 py-14 sm:py-16">
+          <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">
+            <div className="max-w-3xl">
+              <div className="eyebrow">Property workflows</div>
+              <h2 className="mt-3 font-display text-4xl tracking-[-.03em] text-parchment sm:text-5xl">Some locksmith jobs repeat for a reason.</h2>
+              <p className="mt-4 text-sm leading-6 text-parchment-dim">Rekeys, lock changes and smart-lock installation can be part of a property turnover, a home closing or a second-home access plan—not only one-off consumer requests.</p>
+            </div>
+            <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Property managers", "Turnover rekeys, resident lockouts and service history across properties.", "/for-property-managers"],
+                ["Landlords", "Rental-property rekeys, access records and repeat tenant turnover.", "/landlords"],
+                ["Real estate", "Move-in rekey, lock change and buyer access after closing.", "/for-real-estate-agents"],
+                ["Second homes", "Rekey, smart access and local locksmith coordination when you are away.", "/second-homes"],
+              ].map(([title, body, href]) => (
+                <Link key={href} href={href} className="group border-t border-line pt-5">
+                  <h3 className="font-display text-2xl text-parchment transition group-hover:text-brass">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{body}</p>
+                  <span className="mt-4 inline-flex text-sm font-semibold text-brass">Explore →</span>
+                </Link>
               ))}
             </div>
           </div>

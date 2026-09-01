@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { StrategicServicePaths } from "@/components/StrategicServicePaths";
 import {
   MA_CITIES,
   MA_SERVICE_CONTENT,
@@ -134,7 +135,6 @@ export function LocalCityPage({ city }: { city: MaCity }) {
             <div className="mt-9 divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
               {SERVICE_CARDS.map((card) => {
                 const item = getServiceMenuItem(card.priceId);
-                const dedicated = city.services.includes(card.slug);
                 return (
                   <Link key={card.slug} href={cityServiceHref(city, card.slug)} className="group grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
                     <div>
@@ -282,6 +282,8 @@ export function LocalServicePage({ city, service }: { city: MaCity; service: MaS
             </div>
           </div>
         </section>
+
+        <StrategicServicePaths serviceSlug={service.slug} locationName={city.name} />
 
         <section className="py-14 sm:py-16">
           <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">

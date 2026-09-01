@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { StrategicServicePaths } from "@/components/StrategicServicePaths";
 import { getNyArea, type NyArea } from "@/lib/new-york-seo";
 import {
   NY_SERVICE_DEFINITIONS,
@@ -37,16 +38,10 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-parchment-dim">{service.summary(area)}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink transition hover:brightness-110">
-                Get my price
-              </Link>
-              <Link href={`/${area.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/25 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/50">
-                {area.name} locksmith guide
-              </Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink transition hover:brightness-110">Get my price</Link>
+              <Link href={`/${area.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/25 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/50">{area.name} locksmith guide</Link>
             </div>
-            <p className="mt-5 max-w-2xl text-xs leading-5 text-parchment-dim">
-              Availability is address-specific and depends on participating provider service areas and actual acceptance. This page does not guarantee a provider at every address or hour.
-            </p>
+            <p className="mt-5 max-w-2xl text-xs leading-5 text-parchment-dim">Availability is address-specific and depends on participating provider service areas and actual acceptance. This page does not guarantee a provider at every address or hour.</p>
           </div>
         </section>
 
@@ -115,21 +110,19 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
               <h2 className="mt-3 font-display text-3xl text-parchment">What the published service means.</h2>
               <div className="mt-6 divide-y divide-line/70 border-y border-line/70">
                 {service.scopeBullets.map((bullet) => (
-                  <div key={bullet} className="flex gap-3 py-4 text-sm leading-6 text-parchment-dim">
-                    <span className="text-brass">✓</span><span>{bullet}</span>
-                  </div>
+                  <div key={bullet} className="flex gap-3 py-4 text-sm leading-6 text-parchment-dim"><span className="text-brass">✓</span><span>{bullet}</span></div>
                 ))}
               </div>
             </div>
             <div>
               <div className="eyebrow">Important boundary</div>
               <h2 className="mt-3 font-display text-3xl text-parchment">Extra work remains your decision.</h2>
-              <p className="mt-5 text-sm leading-6 text-parchment-dim">
-                If the actual job falls outside the published standard scope, the provider must explain the extra work and price before it begins. Trusted Locksmith does not turn a local SEO page into a blanket promise of dispatch, availability or unlimited scope.
-              </p>
+              <p className="mt-5 text-sm leading-6 text-parchment-dim">If the actual job falls outside the published standard scope, the provider must explain the extra work and price before it begins. Trusted Locksmith does not turn a local SEO page into a blanket promise of dispatch, availability or unlimited scope.</p>
             </div>
           </div>
         </section>
+
+        <StrategicServicePaths serviceSlug={service.slug} locationName={area.name} />
 
         {(relatedServices.length > 0 || nearbyWithService.length > 0) && (
           <section className="border-b border-line/60 py-14 sm:py-16">
@@ -139,9 +132,7 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
                   <div className="eyebrow">Other services in {area.name}</div>
                   <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-y border-line/70 py-5">
                     {relatedServices.map(({ slug, service: related }) => (
-                      <Link key={slug} href={`/${area.slug}/${slug}`} className="text-sm font-semibold text-brass hover:underline">
-                        {related.shortTitle} →
-                      </Link>
+                      <Link key={slug} href={`/${area.slug}/${slug}`} className="text-sm font-semibold text-brass hover:underline">{related.shortTitle} →</Link>
                     ))}
                   </div>
                 </div>
@@ -151,9 +142,7 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
                   <div className="eyebrow">Nearby {service.shortTitle.toLowerCase()} pages</div>
                   <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-y border-line/70 py-5">
                     {nearbyWithService.map((nearby) => (
-                      <Link key={nearby.slug} href={`/${nearby.slug}/${service.slug}`} className="text-sm font-semibold text-parchment hover:underline">
-                        {nearby.name} →
-                      </Link>
+                      <Link key={nearby.slug} href={`/${nearby.slug}/${service.slug}`} className="text-sm font-semibold text-parchment hover:underline">{nearby.name} →</Link>
                     ))}
                   </div>
                 </div>
@@ -168,15 +157,10 @@ export function NewYorkServicePage({ area, service }: { area: NyArea; service: N
             <h2 className="mt-4 text-center font-display text-4xl tracking-[-.03em] text-parchment">Clear answers before you request.</h2>
             <div className="mt-9 space-y-6">
               {service.faq(area).map((item) => (
-                <div key={item.q} className="border-b border-line/70 pb-6">
-                  <h3 className="font-semibold text-parchment">{item.q}</h3>
-                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p>
-                </div>
+                <div key={item.q} className="border-b border-line/70 pb-6"><h3 className="font-semibold text-parchment">{item.q}</h3><p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p></div>
               ))}
             </div>
-            <div className="mt-9 text-center">
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">Get my price →</Link>
-            </div>
+            <div className="mt-9 text-center"><Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink">Get my price →</Link></div>
           </div>
         </section>
       </main>

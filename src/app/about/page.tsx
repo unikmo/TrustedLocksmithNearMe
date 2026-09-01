@@ -8,7 +8,7 @@ const description =
   "Trusted Locksmith is a locksmith marketplace operated by PlanetHike OÜ. Customers see published standard prices and scope before requesting a participating independent local provider.";
 
 export const metadata: Metadata = {
-  title: "About Trusted Locksmith | Locksmith Marketplace",
+  title: "About | Locksmith Marketplace",
   description,
   alternates: { canonical: "/about" },
   openGraph: { title: "About Trusted Locksmith", description, url: "/about", type: "website" },
@@ -29,6 +29,12 @@ const aboutSchema = {
     brand: { "@type": "Brand", "@id": `${SITE_URL}/#brand`, name: SITE.brandName },
     areaServed: { "@type": "AdministrativeArea", name: SITE.launchMarket },
   },
+  relatedLink: [
+    `${SITE_URL}/for-property-managers`,
+    `${SITE_URL}/landlords`,
+    `${SITE_URL}/for-real-estate-agents`,
+    `${SITE_URL}/second-homes`,
+  ],
 };
 
 const PRINCIPLES = [
@@ -36,6 +42,13 @@ const PRINCIPLES = [
   ["Real provider acceptance", "A request is not presented as accepted by a specific locksmith until a participating independent provider actually accepts it. Provider identity and ETA appear only after that acceptance."],
   ["Independent field providers", "Trusted Locksmith operates the marketplace and request flow. Participating independent local providers perform the field locksmith work."],
   ["Verification means what it says", "A verified business-profile claim confirms an account-to-business connection. It is not a blanket statement that every possible licensing, insurance, credential or KYC requirement has been completed."],
+] as const;
+
+const USE_CASES = [
+  ["Property managers", "Resident lockouts, turnover rekeys, lock changes and property-level service history.", "/for-property-managers"],
+  ["Landlords", "Tenant-turnover rekeys, access records and focused locksmith coordination for rental properties.", "/landlords"],
+  ["Real estate", "Move-in rekeys, lock changes, smart-lock options and buyer-controlled closing access.", "/for-real-estate-agents"],
+  ["Second homes", "Rekeys, lock changes, smart access and local help when the owner is not on site.", "/second-homes"],
 ] as const;
 
 export default function AboutPage() {
@@ -47,9 +60,7 @@ export default function AboutPage() {
         <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto max-w-[1080px] px-6 sm:px-8 lg:px-10">
             <div className="eyebrow">About Trusted Locksmith</div>
-            <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[68px]">
-              A locksmith marketplace built around price and process clarity.
-            </h1>
+            <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[68px]">A locksmith marketplace built around price and process clarity.</h1>
             <div className="mt-7 max-w-3xl space-y-4 text-lg leading-8 text-parchment-dim">
               <p>Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. PlanetHike OÜ does not perform the field locksmith work.</p>
               <p>The core rule is simple: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a participating provider actually accepts.</p>
@@ -65,6 +76,22 @@ export default function AboutPage() {
                   <h2 className="font-display text-2xl text-parchment">{title}</h2>
                   <p className="text-sm leading-6 text-parchment-dim">{body}</p>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 py-14 sm:py-16">
+          <div className="mx-auto max-w-[1080px] px-6 sm:px-8 lg:px-10">
+            <div className="eyebrow">Property workflows</div>
+            <h2 className="mt-3 max-w-3xl font-display text-4xl tracking-[-.03em] text-parchment">The same locksmith services can support different property relationships.</h2>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {USE_CASES.map(([title, body, href]) => (
+                <Link key={href} href={href} className="group border-t border-line pt-5">
+                  <h3 className="font-display text-2xl text-parchment transition group-hover:text-brass">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{body}</p>
+                  <span className="mt-4 inline-flex text-sm font-semibold text-brass">Explore →</span>
+                </Link>
               ))}
             </div>
           </div>
