@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { getServiceMenuItem, defaultServiceForJobType } from "@/lib/service-menu";
+import { hasPendingExpansionCredentialGate } from "@/lib/provider-eligibility";
 
 async function getAdminClient() {
   const supabase = await createClient();
@@ -46,9 +47,10 @@ export async function offerJob(formData: FormData) {
 
   if (!["guest_booking", "member_dispatch"].includes(requestType) || !requestId || !providerId || payoutCents <= 0) redirect("/admin?error=Invalid job offer.");
 
-  const { data: provider } = await supabase.from("provider_profiles").select("id,business_name,claim_status,is_available,stripe_payouts_enabled").eq("id", providerId).maybeSingle();
+  const { data: provider } = await supabase.from("provider_profiles").select("id,business_name,claim_status,is_available,stripe_payouts_enabled,service_area").eq("id", providerId).maybeSingle();
   if (!provider || provider.claim_status !== "verified") redirect("/admin?error=Provider must have a verified business claim.");
   if (!provider.stripe_payouts_enabled) redirect("/admin?error=Provider must complete secure payout onboarding before paid offers are sent.");
+  if (hasPendingExpansionCredentialGate(provider.service_area)) redirect("/admin?error=Provider has selected expansion markets whose jurisdiction-specific credential gate is not yet verified. Paid offers remain locked.");
   if (!provider.is_available) redirect("/admin?error=Provider is currently offline.");
 
   let summary: Record<string, unknown> = {};
