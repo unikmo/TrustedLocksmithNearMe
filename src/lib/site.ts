@@ -7,7 +7,7 @@ export const SITE = {
   expansionContentMarkets: ["New York City", "selected New York State markets"],
   businessModel: "Locksmith marketplace platform",
   positioning:
-    "A Boston-first locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Trusted Locksmith also publishes localized New York request guidance; provider availability there depends on participating provider service areas and actual acceptance.",
+    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Boston and Greater Boston are the primary launch market; localized New York pages support address-specific request discovery where participating provider coverage exists.",
 } as const;
 
 /**
