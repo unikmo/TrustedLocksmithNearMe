@@ -11,6 +11,23 @@ import { SITE, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
 
+const NORTHEAST_NON_CITY_SLUGS = new Set([
+  "toms-river-nj",
+  "edison-nj",
+  "teaneck-nj",
+  "north-bergen-nj",
+  "hamilton-nj",
+  "cherry-hill-nj",
+  "north-brunswick-nj",
+  "morristown-nj",
+  "union-nj",
+  "fairfield-ct",
+  "west-hartford-ct",
+  "greenwich-ct",
+  "hamden-ct",
+  "middletown-de",
+]);
+
 export function generateStaticParams() {
   return [
     ...MA_CITIES.map((city) => ({ city: city.slug })),
@@ -23,6 +40,11 @@ function nyTitle(area: NonNullable<ReturnType<typeof getNyArea>>) {
   if (area.slug === "new-york-ny") return "Locksmith NYC | Upfront Standard Prices";
   if (area.kind === "neighborhood") return `Locksmith ${area.name} NYC | Upfront Standard Prices`;
   return `Locksmith ${area.name} NY | Upfront Standard Prices`;
+}
+
+function northeastSpatialType(area: NonNullable<ReturnType<typeof getNortheastArea>>) {
+  if (area.kind === "neighborhood" || area.kind === "township" || NORTHEAST_NON_CITY_SLUGS.has(area.slug)) return "Place";
+  return "City";
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
@@ -177,7 +199,7 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
       description: northeastArea.localContext,
       isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL },
       about: { "@type": "Thing", name: `Residential locksmith and property-access services in ${northeastArea.shortLocation}` },
-      spatialCoverage: { "@type": northeastArea.kind === "neighborhood" ? "Place" : "City", name: northeastArea.shortLocation },
+      spatialCoverage: { "@type": northeastSpatialType(northeastArea), name: northeastArea.shortLocation },
       relatedLink: relatedLinks,
     },
     {
