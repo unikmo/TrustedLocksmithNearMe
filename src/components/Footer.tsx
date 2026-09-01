@@ -29,6 +29,17 @@ const NEW_YORK_MARKETS = [
   ["Albany", "/albany-ny"],
 ] as const;
 
+const NORTHEAST_MARKETS = [
+  ["Jersey City", "/jersey-city-nj"],
+  ["Newark, NJ", "/newark-nj"],
+  ["Philadelphia", "/philadelphia-pa"],
+  ["Stamford", "/stamford-ct"],
+  ["New Haven", "/new-haven-ct"],
+  ["Hartford", "/hartford-ct"],
+  ["Wilmington", "/wilmington-de"],
+  ["Rehoboth Beach", "/rehoboth-beach-de"],
+] as const;
+
 export function Footer() {
   return (
     <footer className="border-t border-line/70 bg-void">
@@ -45,7 +56,7 @@ export function Footer() {
               Locksmith marketplace with published standard prices and clear scope before a request. Local availability depends on participating provider service areas and actual acceptance.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Trusted Locksmith is operated by PlanetHike OÜ. Boston and Greater Boston are the primary launch market; localized New York pages support address-specific discovery without implying blanket availability.
+              Trusted Locksmith is operated by PlanetHike OÜ. Boston and Greater Boston remain the primary launch market; localized Northeast pages support address-specific discovery without implying blanket provider availability.
             </p>
           </div>
 
@@ -74,6 +85,7 @@ export function Footer() {
 
         <MarketRow title="Massachusetts service areas" markets={MASSACHUSETTS_MARKETS} />
         <MarketRow title="New York locations" markets={NEW_YORK_MARKETS} />
+        <MarketRow title="Northeast expansion locations" markets={NORTHEAST_MARKETS} />
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; {new Date().getFullYear()} PlanetHike OÜ</span>
