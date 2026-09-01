@@ -17,6 +17,18 @@ const MASSACHUSETTS_MARKETS = [
   ["Chelsea", "/chelsea-ma"],
 ] as const;
 
+const NEW_YORK_MARKETS = [
+  ["New York City", "/new-york-ny"],
+  ["Manhattan", "/manhattan-ny"],
+  ["Brooklyn", "/brooklyn-ny"],
+  ["Queens", "/queens-ny"],
+  ["Bronx", "/bronx-ny"],
+  ["Staten Island", "/staten-island-ny"],
+  ["Buffalo", "/buffalo-ny"],
+  ["Rochester", "/rochester-ny"],
+  ["Albany", "/albany-ny"],
+] as const;
+
 export function Footer() {
   return (
     <footer className="border-t border-line/70 bg-void">
@@ -30,10 +42,10 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Boston-first locksmith marketplace with published standard prices and clear scope before a request. Field work is performed by participating independent local providers.
+              Boston-first locksmith marketplace with published standard prices and clear scope before a request. Localized New York request pages are being added without pretending provider availability is guaranteed.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Trusted Locksmith is operated by PlanetHike OÜ. Provider identity and ETA appear only after a real provider accepts.
+              Trusted Locksmith is operated by PlanetHike OÜ. Field work is performed by participating independent local providers, and provider identity and ETA appear only after a real provider accepts.
             </p>
           </div>
 
@@ -60,14 +72,8 @@ export function Footer() {
           />
         </div>
 
-        <div className="mt-8 border-t border-line/70 pt-6">
-          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Massachusetts service areas</div>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            {MASSACHUSETTS_MARKETS.map(([label, href]) => (
-              <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
-            ))}
-          </div>
-        </div>
+        <MarketRow title="Massachusetts service areas" markets={MASSACHUSETTS_MARKETS} />
+        <MarketRow title="New York locations" markets={NEW_YORK_MARKETS} />
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; {new Date().getFullYear()} PlanetHike OÜ</span>
@@ -79,6 +85,19 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function MarketRow({ title, markets }: { title: string; markets: readonly (readonly [string, string])[] }) {
+  return (
+    <div className="mt-8 border-t border-line/70 pt-6">
+      <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{title}</div>
+      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        {markets.map(([label, href]) => (
+          <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
+        ))}
+      </div>
+    </div>
   );
 }
 
