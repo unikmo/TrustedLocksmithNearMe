@@ -6,27 +6,27 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Boston Locksmith | Upfront Standard Prices | Trusted Locksmith",
+    default: "Trusted Locksmith | Upfront Standard Prices",
     template: `%s | ${SITE.brandName}`,
   },
   description:
-    "Request participating independent locksmith providers in Boston and Greater Boston. See the published standard price and scope before you send the request.",
+    "Choose a locksmith service, see the published standard price and scope, then request a participating independent local provider where coverage is available.",
   applicationName: SITE.brandName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.brandName,
-    title: "Boston Locksmith | Upfront standard prices",
+    title: "Trusted Locksmith | Upfront standard prices",
     description:
-      "Choose the locksmith service you need, see the published standard total first, then request a participating independent local provider.",
+      "See the published standard price and scope before requesting a participating independent local locksmith provider.",
     url: SITE.url,
     images: [PAGE_VISUALS.services.src],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Boston Locksmith | Upfront standard prices",
+    title: "Trusted Locksmith | Upfront standard prices",
     description:
-      "See the published standard price and scope before requesting a participating independent Boston-area locksmith provider.",
+      "Choose the service, see the standard price first, then request a participating independent local provider where coverage is available.",
     images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true },
