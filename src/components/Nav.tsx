@@ -3,9 +3,9 @@ import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
   { label: "Boston", href: "/boston-ma" },
+  { label: "New York", href: "/new-york-ny" },
   { label: "Services & prices", href: "/services" },
   { label: "For locksmiths", href: "/partner-tech" },
-  { label: "How it works", href: "/#how-it-works" },
 ];
 
 export function Nav() {
@@ -58,6 +58,9 @@ export function Nav() {
                     {item.label}
                   </Link>
                 ))}
+                <Link href="/how-it-works" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">
+                  How it works
+                </Link>
                 <Link href="/login" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">
                   Log in
                 </Link>
