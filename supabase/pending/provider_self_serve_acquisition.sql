@@ -3,9 +3,10 @@
 -- DO NOT treat this file as applied migration history.
 -- The Trusted Locksmith Supabase project is not currently exposed to the connected
 -- Supabase tool, so this schema cannot yet be applied and verified safely.
--- When the correct project is connected: apply through the normal Supabase migration
--- workflow, run security/performance advisors, exercise invite/claim/payout paths,
--- then move the verified change into canonical migration history.
+-- Apply supabase/pending/legacy_brand_database_cleanup.sql first, then apply this file
+-- through the normal Supabase migration workflow, run security/performance advisors,
+-- exercise invite/claim/payout paths, and only then move verified changes into
+-- canonical migration history.
 
 create extension if not exists pgcrypto;
 
@@ -32,7 +33,7 @@ create table if not exists public.provider_outreach_invites (
   provider_id uuid not null references public.provider_profiles(id) on delete cascade,
   contact_id uuid not null references public.provider_contacts(id) on delete cascade,
   token_hash text not null unique,
-  campaign text not null default 'greater_boston_launch',
+  campaign text not null default 'provider_network_launch',
   status text not null default 'queued'
     check (status in ('queued','sent','clicked','claimed','failed','expired','opted_out')),
   message_provider_id text,
@@ -88,15 +89,15 @@ as $$
 declare
   jwt_role text := coalesce(auth.jwt() ->> 'role', '');
 begin
-  if not public.is_keepwell_admin() and jwt_role <> 'service_role' then
+  if not public.is_marketplace_admin() and jwt_role <> 'service_role' then
     new.id := old.id;
     new.slug := old.slug;
     new.business_name := old.business_name;
     new.claim_status := old.claim_status;
     new.claimed_user_id := old.claimed_user_id;
     new.verified_at := old.verified_at;
-    new.keepwell_rating := old.keepwell_rating;
-    new.keepwell_review_count := old.keepwell_review_count;
+    new.marketplace_rating := old.marketplace_rating;
+    new.marketplace_review_count := old.marketplace_review_count;
     new.stripe_account_id := old.stripe_account_id;
     new.stripe_details_submitted := old.stripe_details_submitted;
     new.stripe_charges_enabled := old.stripe_charges_enabled;
@@ -117,25 +118,25 @@ alter table public.provider_acquisition_events enable row level security;
 -- anonymous policy and no provider-facing broad read policy.
 drop policy if exists "admins can read provider contacts" on public.provider_contacts;
 create policy "admins can read provider contacts" on public.provider_contacts
-for select to authenticated using (public.is_keepwell_admin());
+for select to authenticated using (public.is_marketplace_admin());
 
 drop policy if exists "admins can manage provider contacts" on public.provider_contacts;
 create policy "admins can manage provider contacts" on public.provider_contacts
-for all to authenticated using (public.is_keepwell_admin()) with check (public.is_keepwell_admin());
+for all to authenticated using (public.is_marketplace_admin()) with check (public.is_marketplace_admin());
 
 drop policy if exists "admins can read provider outreach invites" on public.provider_outreach_invites;
 create policy "admins can read provider outreach invites" on public.provider_outreach_invites
-for select to authenticated using (public.is_keepwell_admin());
+for select to authenticated using (public.is_marketplace_admin());
 
 drop policy if exists "admins can manage provider outreach invites" on public.provider_outreach_invites;
 create policy "admins can manage provider outreach invites" on public.provider_outreach_invites
-for all to authenticated using (public.is_keepwell_admin()) with check (public.is_keepwell_admin());
+for all to authenticated using (public.is_marketplace_admin()) with check (public.is_marketplace_admin());
 
 drop policy if exists "admins can read provider acquisition events" on public.provider_acquisition_events;
 create policy "admins can read provider acquisition events" on public.provider_acquisition_events
-for select to authenticated using (public.is_keepwell_admin());
+for select to authenticated using (public.is_marketplace_admin());
 
--- Keep the existing public-source phones/websites in the contact model for funnel
+-- Keep existing public-source phones/websites in the contact model for funnel
 -- visibility, but NEVER mark them outreach-eligible automatically. Verified email
 -- enrichment must explicitly set verification_status='verified' and can_outreach=true.
 insert into public.provider_contacts
