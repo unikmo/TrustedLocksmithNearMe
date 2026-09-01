@@ -6,6 +6,7 @@ Canonical site: https://trustedlocksmithnearme.com
 Primary launch market: Boston and Greater Boston, Massachusetts
 Expanded geographic content: New York City plus selected New York State markets
 Business model: marketplace platform; field work is performed by independent providers
+Homepage model: market-neutral hero followed immediately by location choice
 
 ## Customer rules
 - Standard price and scope are shown before the request.
@@ -13,7 +14,7 @@ Business model: marketplace platform; field work is performed by independent pro
 - Provider identity and ETA appear only after a real participating provider accepts.
 - Additional out-of-scope work or hardware must be priced and approved before it starts.
 - One-off locksmith service does not require membership.
-- A geographic page does not guarantee that a provider is currently available at every address or hour.
+- A geographic or service page does not guarantee that a provider is currently available at every address or hour.
 
 ## Current standard services
 - Home lockout, weekdays 8am–6pm: $99
@@ -41,4 +42,13 @@ Business model: marketplace platform; field work is performed by independent pro
 - Sitemap: https://trustedlocksmithnearme.com/sitemap.xml
 
 ## Local SEO
-Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. New York Wave 1 adds 28 geographic pages covering New York City, five boroughs, selected NYC neighborhoods, Westchester/Hudson Valley markets, Long Island county hubs and major Upstate New York cities. The sitemap is the canonical route inventory.
+Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. New York geography includes 28 localized pages covering New York City, five boroughs, selected NYC neighborhoods, Westchester/Hudson Valley markets, Long Island county hubs and major Upstate New York cities.
+
+New York service expansion adds 92 evidence-gated service/location pages:
+- emergency locksmith: 28 locations
+- car lockout: 22 locations
+- rekey locks: 20 locations
+- lock change: 14 locations
+- smart lock installation: 8 locations
+
+House-lockout pages are not multiplied across New York because the current search evidence is weak and overlaps heavily with emergency-locksmith intent. Automotive pages remain vehicle-entry only and do not claim key cutting or programming. The sitemap is the canonical route inventory.
