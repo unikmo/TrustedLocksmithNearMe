@@ -37,7 +37,13 @@ type CommonsResponse = {
 };
 
 const BAD_IMAGE_TITLE = /(flag|seal|logo|coat of arms|crest|emblem|locator|location map|map of|diagram|icon|svg|route shield|highway shield)/i;
-const GOOD_IMAGE_TITLE = /(street|streetscape|downtown|neighborhood|district|skyline|main street|architecture|houses|homes|rowhouse|brownstone|waterfront)/i;
+const GOOD_IMAGE_TITLE = /(street|streetscape|downtown|neighborhood|district|skyline|main street|architecture|houses|homes|rowhouse|brownstone|waterfront|avenue|square|village)/i;
+
+// Major conversion pages have their own dedicated hero photographs. Local pages
+// may never reuse one of those sources, and local pages may not reuse each other.
+// Vercel prerenders these routes in one worker, so the reserved set becomes the
+// build-time uniqueness gate for the generated static location pages.
+const RESERVED_HERO_SOURCES = new Set(Object.values(PAGE_VISUALS).map((visual) => visual.src));
 
 function firstValue<T>(record?: Record<string, T>) {
   return record ? Object.values(record)[0] : undefined;
@@ -67,25 +73,24 @@ function hasHeroShape(info: CommonsInfo) {
   return info.width / info.height >= 1.12;
 }
 
-function fallback(placeName: string): LocalHeroImage {
-  const all = Object.values(PAGE_VISUALS);
-  const unique = Array.from(new Map(all.map((visual) => [visual.src, visual])).values());
-  const visual = unique[stableIndex(placeName, unique.length)] ?? PAGE_VISUALS.services;
-  return {
-    src: visual.src,
-    alt: `${visual.alt} — context for locksmith requests near ${placeName}`,
-    credit: "",
-    local: false,
-  };
+function isAvailable(image: LocalHeroImage | null): image is LocalHeroImage {
+  return Boolean(image && !RESERVED_HERO_SOURCES.has(image.src));
+}
+
+function reserve(image: LocalHeroImage) {
+  RESERVED_HERO_SOURCES.add(image.src);
+  return image;
 }
 
 function localImageFromInfo(
   info: CommonsInfo,
   placeName: string,
   sourceTitle: string,
+  requireHeroShape = true,
 ): LocalHeroImage | null {
   const src = info.thumburl || info.url;
-  if (!src || BAD_IMAGE_TITLE.test(sourceTitle) || !hasHeroShape(info)) return null;
+  if (!src || BAD_IMAGE_TITLE.test(sourceTitle)) return null;
+  if (requireHeroShape && !hasHeroShape(info)) return null;
   const metadata = info.extmetadata;
   const artist = cleanText(metadata?.Artist?.value || metadata?.Credit?.value);
   const license = cleanText(metadata?.LicenseShortName?.value);
@@ -153,14 +158,19 @@ function scoreCandidate(title: string, info: CommonsInfo) {
   return score;
 }
 
-async function searchCommonsForPlace(title: string, placeName: string): Promise<LocalHeroImage | null> {
+async function searchCommons(
+  query: string,
+  placeName: string,
+  key: string,
+  requireHeroShape = true,
+): Promise<LocalHeroImage | null> {
   const searchParams = new URLSearchParams({
     action: "query",
     format: "json",
     generator: "search",
-    gsrsearch: `\"${title}\" (street OR streetscape OR downtown OR neighborhood OR skyline OR architecture OR houses)`,
+    gsrsearch: query,
     gsrnamespace: "6",
-    gsrlimit: "20",
+    gsrlimit: "40",
     prop: "imageinfo",
     iiprop: "url|extmetadata|size",
     iiurlwidth: "1800",
@@ -174,15 +184,40 @@ async function searchCommonsForPlace(title: string, placeName: string): Promise<
     const sourceTitle = page.title ?? "";
     const info = page.imageinfo?.[0];
     if (!info) continue;
-    const image = localImageFromInfo(info, placeName, sourceTitle);
-    if (!image) continue;
+    const image = localImageFromInfo(info, placeName, sourceTitle, requireHeroShape);
+    if (!image || RESERVED_HERO_SOURCES.has(image.src)) continue;
     candidates.push({ image, title: sourceTitle, info, score: scoreCandidate(sourceTitle, info) });
   }
 
   if (candidates.length === 0) return null;
   candidates.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
-  const top = candidates.slice(0, Math.min(6, candidates.length));
-  return top[stableIndex(placeName, top.length)]?.image ?? candidates[0].image;
+
+  // Rotate the good candidates per place so neighboring pages do not all land on
+  // the same first Commons result. The reserved-source check is still authoritative.
+  const start = stableIndex(key, candidates.length);
+  for (let offset = 0; offset < candidates.length; offset += 1) {
+    const candidate = candidates[(start + offset) % candidates.length];
+    if (!RESERVED_HERO_SOURCES.has(candidate.image.src)) return candidate.image;
+  }
+  return null;
+}
+
+async function searchCommonsForPlace(title: string, placeName: string): Promise<LocalHeroImage | null> {
+  const key = `${title}|${placeName}`;
+  const queries = [
+    `\"${title}\" (street OR streetscape OR downtown OR neighborhood OR skyline OR architecture OR houses OR avenue OR square)`,
+    `\"${title}\"`,
+    `\"${placeName}\" (street OR neighborhood OR architecture OR houses)`,
+  ];
+
+  for (const query of queries) {
+    const image = await searchCommons(query, placeName, key, true);
+    if (image) return image;
+  }
+
+  // Last local-photo attempt: allow a less-horizontal image rather than reuse an
+  // unrelated hero photograph from another page.
+  return searchCommons(`\"${title}\"`, placeName, `${key}|relaxed`, false);
 }
 
 export async function getLocalHeroImage({
@@ -194,17 +229,29 @@ export async function getLocalHeroImage({
 }): Promise<LocalHeroImage> {
   try {
     const primary = await getWikipediaPageImage(title, placeName);
-    if (primary) return primary;
+    if (isAvailable(primary)) return reserve(primary);
   } catch {
-    // Prefer a broader local Commons search before any non-local fallback.
+    // Prefer broader local Commons searches before any fallback.
   }
 
   try {
     const searched = await searchCommonsForPlace(title, placeName);
-    if (searched) return searched;
+    if (isAvailable(searched)) return reserve(searched);
   } catch {
-    // Fall back to a varied purpose-led image only when local imagery cannot be resolved.
+    // Continue to a unique non-photo fallback only if local imagery cannot resolve.
   }
 
-  return fallback(placeName);
+  // Never reuse another route's photograph. This rare fallback is intentionally
+  // unique to the place and contains no visible text; it is preferable to showing
+  // a false or duplicated local photograph.
+  const hue = stableIndex(placeName, 360);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(${hue} 28% 28%)"/><stop offset="1" stop-color="hsl(${(hue + 34) % 360} 24% 12%)"/></linearGradient></defs><rect width="1800" height="1100" fill="url(#g)"/><path d="M0 820L260 690l190 70 250-210 250 165 220-120 250 155 380-230v580H0z" fill="rgba(255,255,255,.08)"/><path d="M0 910l330-120 250 80 260-135 260 125 260-85 440 170v155H0z" fill="rgba(255,255,255,.07)"/></svg>`;
+  const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  const fallback: LocalHeroImage = {
+    src,
+    alt: `Abstract local context for ${placeName}`,
+    credit: "",
+    local: false,
+  };
+  return reserve(fallback);
 }
