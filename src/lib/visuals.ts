@@ -1,6 +1,7 @@
 export type PageVisual = {
   src: string;
   alt: string;
+  label?: string;
   objectPosition?: string;
 };
 
@@ -9,7 +10,7 @@ export type PageVisual = {
  * Keep the source set intentionally small and stable so hero photography
  * remains reliable across page builds and responsive image optimization.
  */
-export const PAGE_VISUALS = {
+export const PAGE_VISUALS: Record<string, PageVisual> = {
   services: {
     src: "https://images.unsplash.com/photo-1643877481928-2b5c63ab6f83?auto=format&fit=crop&fm=jpg&q=80&w=1800",
     alt: "Residential front entrance with secure door hardware",
@@ -65,4 +66,4 @@ export const PAGE_VISUALS = {
     alt: "Welcoming residential front entrance",
     objectPosition: "center",
   },
-} satisfies Record<string, PageVisual>;
+};
