@@ -7,7 +7,7 @@ export type PageVisual = {
 
 /**
  * Purpose-led photography for major conversion pages.
- * Release rule: every page purpose below owns a different hero source.
+ * Major pages must not reuse the same hero source: each route gets its own image.
  */
 export const PAGE_VISUALS: Record<string, PageVisual> = {
   services: {
