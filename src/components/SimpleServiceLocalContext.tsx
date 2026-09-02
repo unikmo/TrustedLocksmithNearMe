@@ -12,7 +12,7 @@ export function SimpleServiceLocalContext({
   serviceLabel: string;
 }) {
   const intro = getSimpleLocalIntro(name, areas);
-  const smile = getLocalSmile(slug);
+  const smile = getLocalSmile({ slug, name, areas });
 
   return (
     <section className="border-b border-line/60 py-12 sm:py-14">
@@ -21,7 +21,7 @@ export function SimpleServiceLocalContext({
           <div className="eyebrow">{name} neighborhoods</div>
           <h2 className="mt-3 font-display text-3xl tracking-[-.025em] text-parchment sm:text-4xl">{serviceLabel} around {name}</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-parchment-dim">{intro}</p>
-          {smile ? <p className="mt-4 max-w-2xl text-sm italic leading-6 text-brass">{smile}</p> : null}
+          <p className="mt-4 max-w-2xl text-sm italic leading-6 text-brass">{smile}</p>
         </div>
 
         {areas.length > 0 ? (
