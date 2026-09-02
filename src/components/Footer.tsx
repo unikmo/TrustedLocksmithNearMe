@@ -48,6 +48,7 @@ export function Footer() {
               { label: "About", href: "/about" },
               { label: "For locksmiths", href: "/partner-tech" },
               { label: "Property managers", href: "/for-property-managers" },
+              { label: "Real estate agents", href: "/for-real-estate-agents" },
               { label: "Contact", href: "/contact" },
             ]}
           />
