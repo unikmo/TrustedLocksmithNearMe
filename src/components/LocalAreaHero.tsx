@@ -70,7 +70,7 @@ export function LocalAreaHero({
               style={{ objectFit: "cover" }}
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/45 to-transparent px-6 pb-6 pt-24">
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Local snapshot · {name}</div>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">{heroImage.local ? "Local snapshot" : "Local context"} · {name}</div>
               {localLabels.length > 0 && <div className="mt-2 text-sm text-parchment-dim">{localLabels.join(" · ")}</div>}
             </div>
           </div>
