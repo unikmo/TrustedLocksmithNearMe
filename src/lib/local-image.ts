@@ -39,10 +39,10 @@ type CommonsResponse = {
 const BAD_IMAGE_TITLE = /(flag|seal|logo|coat of arms|crest|emblem|locator|location map|map of|diagram|icon|svg|route shield|highway shield)/i;
 const GOOD_IMAGE_TITLE = /(street|streetscape|downtown|neighborhood|district|skyline|main street|architecture|houses|homes|rowhouse|brownstone|waterfront|avenue|square|village)/i;
 
-// Major conversion pages have their own dedicated hero photographs. Local pages
-// may never reuse one of those sources, and local pages may not reuse each other.
-// Vercel prerenders these routes in one worker, so the reserved set becomes the
-// build-time uniqueness gate for the generated static location pages.
+// Release rule: no hero photograph is shared between page purposes or location pages.
+// Major conversion pages have dedicated sources in PAGE_VISUALS. Location pages reserve
+// each selected source at prerender time; the verified Vercel build generates them in
+// one worker, making this set the release uniqueness gate for static local pages.
 const RESERVED_HERO_SOURCES = new Set(Object.values(PAGE_VISUALS).map((visual) => visual.src));
 
 function firstValue<T>(record?: Record<string, T>) {
@@ -192,8 +192,6 @@ async function searchCommons(
   if (candidates.length === 0) return null;
   candidates.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
 
-  // Rotate the good candidates per place so neighboring pages do not all land on
-  // the same first Commons result. The reserved-source check is still authoritative.
   const start = stableIndex(key, candidates.length);
   for (let offset = 0; offset < candidates.length; offset += 1) {
     const candidate = candidates[(start + offset) % candidates.length];
@@ -215,8 +213,6 @@ async function searchCommonsForPlace(title: string, placeName: string): Promise<
     if (image) return image;
   }
 
-  // Last local-photo attempt: allow a less-horizontal image rather than reuse an
-  // unrelated hero photograph from another page.
   return searchCommons(`\"${title}\"`, placeName, `${key}|relaxed`, false);
 }
 
