@@ -41,7 +41,7 @@ export default function BookPage() {
             </p>
           </div>
 
-          <figure className="relative h-[190px] overflow-hidden rounded-[22px] border border-sky/18 bg-surface-raised shadow-[0_18px_42px_rgba(3,18,37,0.2)] sm:h-[230px] lg:h-[260px]">
+          <div className="relative h-[190px] overflow-hidden rounded-[22px] border border-sky/18 bg-surface-raised shadow-[0_18px_42px_rgba(3,18,37,0.2)] sm:h-[230px] lg:h-[260px]">
             <Image
               src={PAGE_VISUALS.booking.src}
               alt={PAGE_VISUALS.booking.alt}
@@ -50,10 +50,7 @@ export default function BookPage() {
               sizes="(max-width: 1023px) 100vw, 42vw"
               style={{ objectFit: "cover", objectPosition: PAGE_VISUALS.booking.objectPosition ?? "center" }}
             />
-            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/62 to-transparent px-4 pb-4 pt-12 text-[11px] font-medium leading-5 text-parchment sm:px-5">
-              {PAGE_VISUALS.booking.label}
-            </figcaption>
-          </figure>
+          </div>
         </div>
 
         <ServiceChoiceGroup title="Locked out now" note="Choose the timing that matches your request." services={urgentServices} />
