@@ -45,6 +45,19 @@ const GOOD_IMAGE_TITLE = /(street|streetscape|downtown|neighborhood|district|sky
 // one worker, making this set the release uniqueness gate for static local pages.
 const RESERVED_HERO_SOURCES = new Set(Object.values(PAGE_VISUALS).map((visual) => visual.src));
 
+// High-profile places can use a reviewed local photograph instead of depending on
+// search ranking at build time. These sources still pass through the same uniqueness gate.
+const LOCAL_IMAGE_OVERRIDES: Record<string, LocalHeroImage> = {
+  Manhattan: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/6/60/Manhattan_Skyline.jpg",
+    alt: "Manhattan skyline across the water at dusk",
+    credit: "Sujit kumar",
+    creditUrl: "https://commons.wikimedia.org/wiki/File:Manhattan_Skyline.jpg",
+    license: "CC BY-SA 4.0",
+    local: true,
+  },
+};
+
 function firstValue<T>(record?: Record<string, T>) {
   return record ? Object.values(record)[0] : undefined;
 }
@@ -105,7 +118,13 @@ function localImageFromInfo(
 }
 
 async function getJson<T>(url: string): Promise<T> {
-  const response = await fetch(url, { cache: "force-cache" });
+  const response = await fetch(url, {
+    cache: "force-cache",
+    headers: {
+      Accept: "application/json",
+      "Api-User-Agent": "TrustedLocksmith/1.0 (https://trustedlocksmithnearme.com/contact)",
+    },
+  });
   if (!response.ok) throw new Error(`Image source request failed with ${response.status}`);
   return response.json() as Promise<T>;
 }
@@ -223,6 +242,9 @@ export async function getLocalHeroImage({
   title: string;
   placeName: string;
 }): Promise<LocalHeroImage> {
+  const reviewed = LOCAL_IMAGE_OVERRIDES[title];
+  if (isAvailable(reviewed ?? null)) return reserve(reviewed);
+
   try {
     const primary = await getWikipediaPageImage(title, placeName);
     if (isAvailable(primary)) return reserve(primary);
