@@ -1,50 +1,26 @@
 import Link from "next/link";
 import { Keyhole } from "./Keyhole";
 
-const MASSACHUSETTS_MARKETS = [
+const POPULAR_LOCATIONS = [
   ["Boston", "/boston-ma"],
   ["Cambridge", "/cambridge-ma"],
   ["Newton", "/newton-ma"],
-  ["Somerville", "/somerville-ma"],
-  ["Medford", "/medford-ma"],
-  ["Watertown", "/watertown-ma"],
-  ["Waltham", "/waltham-ma"],
-  ["Quincy", "/quincy-ma"],
-  ["Lynn", "/lynn-ma"],
-  ["Malden", "/malden-ma"],
-  ["Revere", "/revere-ma"],
-  ["Braintree", "/braintree-ma"],
-  ["Chelsea", "/chelsea-ma"],
-] as const;
-
-const NEW_YORK_MARKETS = [
   ["New York City", "/new-york-ny"],
   ["Manhattan", "/manhattan-ny"],
   ["Brooklyn", "/brooklyn-ny"],
   ["Queens", "/queens-ny"],
-  ["Bronx", "/bronx-ny"],
-  ["Staten Island", "/staten-island-ny"],
-  ["Buffalo", "/buffalo-ny"],
-  ["Rochester", "/rochester-ny"],
-  ["Albany", "/albany-ny"],
-] as const;
-
-const NORTHEAST_MARKETS = [
   ["Jersey City", "/jersey-city-nj"],
   ["Newark, NJ", "/newark-nj"],
   ["Philadelphia", "/philadelphia-pa"],
   ["Stamford", "/stamford-ct"],
-  ["New Haven", "/new-haven-ct"],
-  ["Hartford", "/hartford-ct"],
   ["Wilmington", "/wilmington-de"],
-  ["Rehoboth Beach", "/rehoboth-beach-de"],
 ] as const;
 
 export function Footer() {
   return (
     <footer className="border-t border-line/70 bg-void">
-      <div className="mx-auto max-w-[1400px] px-6 py-10 sm:px-8 lg:px-10">
-        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div className="mx-auto max-w-[1180px] px-6 py-9 sm:px-8 lg:px-10">
+        <div className="grid gap-8 md:grid-cols-[1.45fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3 font-display text-xl font-medium text-parchment">
               <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/20 bg-surface-raised/70">
@@ -53,63 +29,50 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Locksmith marketplace with published standard prices and clear scope before a request. Local availability depends on participating provider service areas and actual acceptance.
-            </p>
-            <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Trusted Locksmith is operated by PlanetHike OÜ. Boston and Greater Boston remain the primary launch market; localized Northeast pages support address-specific discovery without implying blanket provider availability.
+              Published standard locksmith prices before you request help, with local matching based on the service address.
             </p>
           </div>
 
           <FooterColumn
-            title="Use Trusted Locksmith"
+            title="Get help"
             links={[
-              { label: "Find a locksmith", href: "/book" },
+              { label: "Get my price", href: "/book" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
-              { label: "Digital Access", href: "/digital-access" },
-              { label: "For providers", href: "/partner-tech" },
+              { label: "Trust & safety", href: "/trust-safety" },
             ]}
           />
           <FooterColumn
             title="More"
             links={[
-              { label: "About Trusted Locksmith", href: "/about" },
-              { label: "Trust & safety", href: "/trust-safety" },
+              { label: "About", href: "/about" },
+              { label: "For locksmiths", href: "/partner-tech" },
               { label: "Property managers", href: "/for-property-managers" },
-              { label: "Real estate professionals", href: "/for-real-estate-agents" },
               { label: "Contact", href: "/contact" },
-              { label: "Terms", href: "/terms" },
             ]}
           />
         </div>
 
-        <MarketRow title="Massachusetts service areas" markets={MASSACHUSETTS_MARKETS} />
-        <MarketRow title="New York locations" markets={NEW_YORK_MARKETS} />
-        <MarketRow title="Northeast expansion locations" markets={NORTHEAST_MARKETS} />
+        <div className="mt-8 border-t border-line/70 pt-6">
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Popular locations</div>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {POPULAR_LOCATIONS.map(([label, href]) => (
+              <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ</span>
+          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ · Trusted Locksmith</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
+            <Link href="/terms" className="hover:text-parchment">Terms</Link>
             <Link href="/member-agreement" className="hover:text-parchment">Member agreement</Link>
-            <span>Trusted Locksmith membership is not insurance.</span>
+            <Link href="/contact" className="hover:text-parchment">Contact</Link>
           </div>
         </div>
       </div>
     </footer>
-  );
-}
-
-function MarketRow({ title, markets }: { title: string; markets: readonly (readonly [string, string])[] }) {
-  return (
-    <div className="mt-8 border-t border-line/70 pt-6">
-      <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{title}</div>
-      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        {markets.map(([label, href]) => (
-          <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -119,9 +82,7 @@ function FooterColumn({ title, links }: { title: string; links: { label: string;
       <div className="font-mono text-[11px] uppercase tracking-[.14em] text-parchment-dim">{title}</div>
       <ul className="mt-4 space-y-3 text-[15px]">
         {links.map((link) => (
-          <li key={link.href}>
-            <Link href={link.href} className="text-parchment-dim transition hover:text-parchment">{link.label}</Link>
-          </li>
+          <li key={link.href}><Link href={link.href} className="text-parchment-dim transition hover:text-parchment">{link.label}</Link></li>
         ))}
       </ul>
     </div>
