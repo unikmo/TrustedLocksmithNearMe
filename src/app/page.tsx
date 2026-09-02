@@ -17,12 +17,12 @@ const STEPS = [
 ] as const;
 
 const MARKETS = [
-  { title: "Massachusetts", body: "Boston and nearby communities, with local pages built around real neighborhoods and property types.", primaryLabel: "Boston", primaryHref: "/boston-ma", links: [["Cambridge", "/cambridge-ma"], ["Newton", "/newton-ma"], ["Somerville", "/somerville-ma"]] },
-  { title: "New York", body: "NYC boroughs, selected neighborhoods and New York State markets with address-specific local context.", primaryLabel: "New York City", primaryHref: "/new-york-ny", links: [["Manhattan", "/manhattan-ny"], ["Brooklyn", "/brooklyn-ny"], ["Queens", "/queens-ny"]] },
-  { title: "New Jersey", body: "Local pages across North, Central and South Jersey, from dense city blocks to suburban addresses.", primaryLabel: "Jersey City", primaryHref: "/jersey-city-nj", links: [["Newark", "/newark-nj"], ["Hoboken", "/hoboken-nj"], ["Cherry Hill", "/cherry-hill-nj"]] },
-  { title: "Philadelphia", body: "Philadelphia plus neighborhood-level pages where housing and access patterns differ block by block.", primaryLabel: "Philadelphia", primaryHref: "/philadelphia-pa", links: [["West Philadelphia", "/west-philadelphia-pa"], ["South Philadelphia", "/south-philadelphia-pa"], ["Center City", "/center-city-philadelphia-pa"]] },
-  { title: "Connecticut", body: "Stamford, New Haven, Hartford and other Connecticut markets with local access context.", primaryLabel: "Stamford", primaryHref: "/stamford-ct", links: [["New Haven", "/new-haven-ct"], ["Hartford", "/hartford-ct"], ["Bridgeport", "/bridgeport-ct"]] },
-  { title: "Delaware", body: "Wilmington, Newark, Dover and coastal Delaware, with location-specific service pages.", primaryLabel: "Wilmington", primaryHref: "/wilmington-de", links: [["Newark", "/newark-de"], ["Dover", "/dover-de"], ["Rehoboth Beach", "/rehoboth-beach-de"]] },
+  { title: "Massachusetts", primaryLabel: "Boston", primaryHref: "/boston-ma", links: [["Cambridge", "/cambridge-ma"], ["Newton", "/newton-ma"], ["Somerville", "/somerville-ma"]], bg: "#fff8e8", border: "#e4c978", accent: "#86661f" },
+  { title: "New York", primaryLabel: "New York City", primaryHref: "/new-york-ny", links: [["Manhattan", "/manhattan-ny"], ["Brooklyn", "/brooklyn-ny"], ["Queens", "/queens-ny"]], bg: "#eef6ff", border: "#b7d2ea", accent: "#376f9a" },
+  { title: "New Jersey", primaryLabel: "Jersey City", primaryHref: "/jersey-city-nj", links: [["Newark", "/newark-nj"], ["Hoboken", "/hoboken-nj"], ["Cherry Hill", "/cherry-hill-nj"]], bg: "#eff8f0", border: "#bfd9c4", accent: "#4e7f58" },
+  { title: "Philadelphia", primaryLabel: "Philadelphia", primaryHref: "/philadelphia-pa", links: [["West Philadelphia", "/west-philadelphia-pa"], ["South Philadelphia", "/south-philadelphia-pa"], ["Center City", "/center-city-philadelphia-pa"]], bg: "#fff1ed", border: "#edc3b7", accent: "#9a5b4b" },
+  { title: "Connecticut", primaryLabel: "Stamford", primaryHref: "/stamford-ct", links: [["New Haven", "/new-haven-ct"], ["Hartford", "/hartford-ct"], ["Bridgeport", "/bridgeport-ct"]], bg: "#f4f1ff", border: "#cec4e9", accent: "#67569a" },
+  { title: "Delaware", primaryLabel: "Wilmington", primaryHref: "/wilmington-de", links: [["Newark", "/newark-de"], ["Dover", "/dover-de"], ["Rehoboth Beach", "/rehoboth-beach-de"]], bg: "#edf9f7", border: "#b9dcd5", accent: "#39786e" },
 ] as const;
 
 export default function Home() {
@@ -70,22 +70,23 @@ export default function Home() {
             <div className="max-w-2xl">
               <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Where do you need help?</div>
               <h2 className="mt-3 font-display text-4xl tracking-[-.03em] sm:text-5xl">Choose your area.</h2>
-              <p className="mt-4 text-sm leading-6 text-[#536e8a]">Pick a city or neighborhood to see local context, then choose the service you need.</p>
             </div>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {MARKETS.map((market) => (
-                <article key={market.title} className="rounded-[24px] border border-[#c7d9ec] bg-white/85 p-6 sm:p-7">
-                  <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">{market.title}</div>
-                  <p className="mt-3 text-sm leading-6 text-[#536e8a]">{market.body}</p>
-                  <Link href={market.primaryHref} className="mt-5 inline-flex text-lg font-semibold text-navy-text hover:underline">{market.primaryLabel} →</Link>
-                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-[#d7e2ed] pt-4 text-sm">
+                <article
+                  key={market.title}
+                  className="rounded-[24px] border p-6 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(16,44,73,0.08)] sm:p-7"
+                  style={{ backgroundColor: market.bg, borderColor: market.border }}
+                >
+                  <div className="font-mono text-[10px] uppercase tracking-[.14em]" style={{ color: market.accent }}>{market.title}</div>
+                  <Link href={market.primaryHref} className="mt-5 inline-flex text-xl font-semibold text-navy-text hover:underline">{market.primaryLabel} →</Link>
+                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t pt-4 text-sm" style={{ borderColor: market.border }}>
                     {market.links.map(([label, href]) => <Link key={href} href={href} className="font-medium text-[#536e8a] hover:text-navy-text hover:underline">{label}</Link>)}
                   </div>
                 </article>
               ))}
             </div>
-            <p className="mt-5 text-xs leading-5 text-[#536e8a]">Provider availability is confirmed only after a provider accepts the request for the exact service address.</p>
           </div>
         </section>
 
