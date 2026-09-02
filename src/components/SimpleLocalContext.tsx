@@ -1,19 +1,16 @@
 import type { ReactNode } from "react";
-import { getLocalSmile, getSimpleLocalIntro } from "@/lib/local-page-personality";
+import { getSimpleLocalIntro } from "@/lib/local-page-personality";
 
 export function SimpleLocalContext({
-  slug,
   name,
   areas,
   links,
 }: {
-  slug: string;
   name: string;
   areas: string[];
   links?: ReactNode;
 }) {
   const intro = getSimpleLocalIntro(name, areas);
-  const smile = getLocalSmile(slug);
 
   return (
     <section className="border-b border-line/60 py-12 sm:py-14">
@@ -22,7 +19,6 @@ export function SimpleLocalContext({
           <div className="eyebrow">{name} neighborhoods</div>
           <h2 className="mt-3 font-display text-3xl tracking-[-.025em] text-parchment sm:text-4xl">Locksmith help around {name}</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-parchment-dim">{intro}</p>
-          {smile ? <p className="mt-4 max-w-2xl text-sm italic leading-6 text-brass">{smile}</p> : null}
         </div>
 
         <div className="mt-8 grid gap-6 border-y border-line/70 py-7 sm:grid-cols-3">

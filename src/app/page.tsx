@@ -55,13 +55,9 @@ export default function Home() {
               </div>
             </div>
 
-            <figure className="relative h-[390px] overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.26)] sm:h-[500px]">
+            <div className="relative h-[390px] overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.26)] sm:h-[500px]">
               <Image src={PAGE_VISUALS.services.src} alt={PAGE_VISUALS.services.alt} fill priority sizes="(max-width: 1023px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: PAGE_VISUALS.services.objectPosition ?? "center" }} />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/55 to-transparent px-6 pb-6 pt-20">
-                <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Know the job · know the price</div>
-                <p className="mt-2 max-w-md text-sm leading-6 text-parchment-dim">Clear standard pricing first. The service address comes next.</p>
-              </figcaption>
-            </figure>
+            </div>
           </div>
         </section>
 

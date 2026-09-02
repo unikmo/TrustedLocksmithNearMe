@@ -38,7 +38,7 @@ export function NortheastLocalPage({ area, heroImage }: { area: NortheastArea; h
     <div className="flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1">
-        <LocalAreaHero slug={area.slug} name={area.name} eyebrow={area.shortLocation} heroImage={heroImage} />
+        <LocalAreaHero slug={area.slug} name={area.name} eyebrow={area.shortLocation} areas={area.areas} heroImage={heroImage} />
 
         <section className="border-b border-[#c7d9ec] bg-mist py-11 text-navy-text sm:py-13">
           <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">
@@ -72,7 +72,7 @@ export function NortheastLocalPage({ area, heroImage }: { area: NortheastArea; h
           </div>
         </section>
 
-        <SimpleLocalContext slug={area.slug} name={area.name} areas={area.areas} links={<Nearby area={area} />} />
+        <SimpleLocalContext name={area.name} areas={area.areas} links={<Nearby area={area} />} />
       </main>
       <Footer />
     </div>

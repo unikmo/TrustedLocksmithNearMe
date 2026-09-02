@@ -29,7 +29,7 @@ export function PageHero({
           </div>
 
           {visual && (
-            <figure className="relative h-[290px] overflow-hidden rounded-[28px] border border-sky/18 bg-surface-raised shadow-[0_26px_64px_rgba(3,18,37,0.24)] sm:h-[380px] lg:h-[430px]">
+            <div className="relative h-[290px] overflow-hidden rounded-[28px] border border-sky/18 bg-surface-raised shadow-[0_26px_64px_rgba(3,18,37,0.24)] sm:h-[380px] lg:h-[430px]">
               <Image
                 src={visual.src}
                 alt={visual.alt}
@@ -38,12 +38,7 @@ export function PageHero({
                 sizes="(max-width: 1023px) 100vw, 58vw"
                 style={{ objectFit: "cover", objectPosition: visual.objectPosition ?? "center" }}
               />
-              {visual.label && (
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/95 via-void/62 to-transparent px-5 pb-5 pt-16 text-xs font-medium leading-5 text-parchment sm:px-6 sm:pb-6 sm:text-sm">
-                  {visual.label}
-                </figcaption>
-              )}
-            </figure>
+            </div>
           )}
         </div>
       </div>

@@ -1,20 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LocalHeroImage } from "@/lib/local-image";
-import { getLocalPagePersonality } from "@/lib/local-page-personality";
+import { getLocalPagePersonality, getLocalSmile } from "@/lib/local-page-personality";
 
 export function LocalAreaHero({
   slug,
   name,
   eyebrow,
+  areas,
   heroImage,
 }: {
   slug: string;
   name: string;
   eyebrow: string;
+  areas: string[];
   heroImage: LocalHeroImage;
 }) {
   const copy = getLocalPagePersonality({ slug, name });
+  const smile = getLocalSmile({ slug, name, areas });
 
   return (
     <section className="border-b border-line/60">
@@ -26,6 +29,7 @@ export function LocalAreaHero({
             <span className="block italic text-brass">{copy.accent}</span>
           </h1>
           <p className="mt-4 max-w-md text-[15px] leading-6 text-parchment-dim">{copy.deck}</p>
+          <p className="mt-3 max-w-md text-[13px] italic leading-5 text-brass">{smile}</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-5">
             <Link href="/book" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink transition hover:brightness-110">Get my price</Link>
@@ -44,15 +48,13 @@ export function LocalAreaHero({
               style={{ objectFit: "cover" }}
             />
           </div>
-          <figcaption className="mt-2 text-right text-[9px] leading-4 text-parchment-dim/55">
-            {heroImage.creditUrl ? (
+          {heroImage.creditUrl ? (
+            <figcaption className="mt-2 text-right text-[9px] leading-4 text-parchment-dim/55">
               <a href={heroImage.creditUrl} target="_blank" rel="noreferrer" className="hover:text-parchment">
                 Photo: {heroImage.credit}{heroImage.license ? ` · ${heroImage.license}` : ""} ↗
               </a>
-            ) : (
-              heroImage.credit
-            )}
-          </figcaption>
+            </figcaption>
+          ) : null}
         </figure>
       </div>
     </section>

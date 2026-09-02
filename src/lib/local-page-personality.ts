@@ -75,8 +75,32 @@ export function getLocalPagePersonality({ slug, name }: LocalPagePersonalityInpu
   };
 }
 
-export function getLocalSmile(slug: string) {
-  return LOCAL_SMILES[slug] ?? null;
+export function getLocalSmile({ slug, name, areas }: { slug: string; name: string; areas: string[] }) {
+  const custom = LOCAL_SMILES[slug];
+  if (custom) return custom;
+
+  const first = areas[0];
+  const second = areas[1];
+  const variants = first && second
+    ? [
+        `${first} to ${second}: plenty to explore. The wrong side of a locked door is not one of them.`,
+        `${first} or ${second}, being outside should still be your choice.`,
+        `From ${first} to ${second}, keep the local surprises. Skip the locksmith-price surprise.`,
+        `${first} has its quirks. Surprise locksmith pricing should not be one of them.`,
+      ]
+    : first
+      ? [
+          `${first} has enough character. Your locksmith price does not need extra drama.`,
+          `A detour through ${first} can be fun. A lockout detour, less so.`,
+          `Being outside in ${first} should still be your choice.`,
+        ]
+      : [
+          `${name} has enough local character. Your locksmith price does not need extra drama.`,
+          `${name} has plenty to explore. The wrong side of a locked door is not one of the attractions.`,
+          `Being outside in ${name} should still be your choice.`,
+        ];
+
+  return variants[stableVariant(slug, variants.length)];
 }
 
 export function getSimpleLocalIntro(name: string, areas: string[]) {

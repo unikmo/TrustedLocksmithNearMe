@@ -49,7 +49,7 @@ export function LocalCityPage({ city, heroImage }: { city: MaCity; heroImage: Lo
     <div className="flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1">
-        <LocalAreaHero slug={city.slug} name={city.name} eyebrow={`${city.name}, Massachusetts`} heroImage={heroImage} />
+        <LocalAreaHero slug={city.slug} name={city.name} eyebrow={`${city.name}, Massachusetts`} areas={city.areas} heroImage={heroImage} />
 
         <section className="border-b border-[#c7d9ec] bg-mist py-11 text-navy-text sm:py-13">
           <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">
@@ -84,7 +84,7 @@ export function LocalCityPage({ city, heroImage }: { city: MaCity; heroImage: Lo
           </div>
         </section>
 
-        <SimpleLocalContext slug={city.slug} name={city.name} areas={city.areas} links={nearbyLinks} />
+        <SimpleLocalContext name={city.name} areas={city.areas} links={nearbyLinks} />
       </main>
       <Footer />
     </div>
