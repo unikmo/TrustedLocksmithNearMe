@@ -36,7 +36,7 @@ const PILLARS = [
 const FAQ = [
   {
     q: "Does Trusted Locksmith employ the locksmith?",
-    a: "No. Trusted Locksmith is a platform operated by PlanetHike OÜ. Participating locksmith providers are independent businesses or professionals, not PlanetHike OÜ employees.",
+    a: "No. Trusted Locksmith is a platform operated by TSquare Ventures LLC. Participating locksmith providers are independent businesses or professionals, not TSquare Ventures LLC employees.",
   },
   {
     q: "What does a verified business claim mean?",
