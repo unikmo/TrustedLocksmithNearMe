@@ -37,7 +37,10 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
+  legalName: SITE.operatorName,
+  description: `${SITE.operatorLegalDescription}. ${SITE.positioning}`,
   url: SITE.url,
+  email: SITE.operatorEmail,
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.operatorAddress.streetAddress,
@@ -73,7 +76,6 @@ const organizationSchema = {
     "Connecticut locksmith service geography",
     "Delaware locksmith service geography",
   ],
-  description: SITE.positioning,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
