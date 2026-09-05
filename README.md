@@ -1,15 +1,18 @@
 # Trusted Locksmith Near Me
 
-Locksmith marketplace and property-access platform operated by TSquare Ventures LLC.
+Locksmith marketplace and property-access platform operated by TSquare Ventures LLC, a Wyoming limited liability company.
 
 ## Canonical project identity
 
-- Brand: Trusted Locksmith
+- Brand / product: Trusted Locksmith
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
 - npm package: `trusted-locksmith-near-me`
 - Operator: TSquare Ventures LLC
-- Operator address: 30 N Gould St Ste R, Sheridan, WY 82801, USA
+- Entity type: Limited Liability Company (LLC)
+- State of formation: Wyoming, United States
+- Principal / mailing address: 30 N Gould St, Ste R, Sheridan, WY 82801, United States
+- Operator email: hello@unikmo.com
 - Primary launch market: Boston and Greater Boston, Massachusetts
 - Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
