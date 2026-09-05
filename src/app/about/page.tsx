@@ -5,7 +5,7 @@ import { Nav } from "@/components/Nav";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const description =
-  "Trusted Locksmith is a locksmith marketplace operated by PlanetHike OÜ. Customers see published standard prices and scope before requesting a participating independent local provider.";
+  "Trusted Locksmith is a locksmith marketplace operated by TSquare Ventures LLC. Customers see published standard prices and scope before requesting a participating independent local provider.";
 
 export const metadata: Metadata = {
   title: "About | Locksmith Marketplace",
@@ -26,6 +26,13 @@ const aboutSchema = {
     "@id": `${SITE_URL}/#organization`,
     name: SITE.operatorName,
     url: SITE_URL,
+    email: SITE.contactEmail,
+    identifier: {
+      "@type": "PropertyValue",
+      name: "Wyoming Secretary of State filing ID",
+      value: SITE.operatorFilingId,
+    },
+    address: { "@type": "PostalAddress", ...SITE.operatorAddress },
     brand: { "@type": "Brand", "@id": `${SITE_URL}/#brand`, name: SITE.brandName },
     areaServed: { "@type": "AdministrativeArea", name: SITE.launchMarket },
   },
@@ -75,7 +82,7 @@ export default function AboutPage() {
             <div className="eyebrow">About Trusted Locksmith</div>
             <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[68px]">A locksmith marketplace built around price and process clarity.</h1>
             <div className="mt-7 max-w-3xl space-y-4 text-lg leading-8 text-parchment-dim">
-              <p>Trusted Locksmith is an online marketplace operated by PlanetHike OÜ. PlanetHike OÜ does not perform the field locksmith work.</p>
+              <p>Trusted Locksmith is an online marketplace operated by TSquare Ventures LLC, a Wyoming limited liability company. TSquare Ventures LLC does not perform the field locksmith work.</p>
               <p>The core rule is simple: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a participating provider actually accepts.</p>
             </div>
           </div>
