@@ -64,11 +64,12 @@ export function Footer() {
         </div>
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ · Trusted Locksmith</span>
+          <span>&copy; {new Date().getFullYear()} TSquare Ventures LLC · Trusted Locksmith</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/terms" className="hover:text-parchment">Terms</Link>
             <Link href="/member-agreement" className="hover:text-parchment">Member agreement</Link>
+            <Link href="/cookies" className="hover:text-parchment">Cookies</Link>
             <Link href="/contact" className="hover:text-parchment">Contact</Link>
           </div>
         </div>
