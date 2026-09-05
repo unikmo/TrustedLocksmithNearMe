@@ -38,6 +38,14 @@ const organizationSchema = {
   "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
   url: SITE.url,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.operatorAddress.streetAddress,
+    addressLocality: SITE.operatorAddress.addressLocality,
+    addressRegion: SITE.operatorAddress.addressRegion,
+    postalCode: SITE.operatorAddress.postalCode,
+    addressCountry: SITE.operatorAddress.addressCountry,
+  },
   brand: {
     "@type": "Brand",
     "@id": `${SITE.url}/#brand`,
