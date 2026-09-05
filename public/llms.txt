@@ -1,10 +1,14 @@
 # Trusted Locksmith
 
-> Locksmith marketplace operated by TSquare Ventures LLC. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
+> Locksmith marketplace operated by TSquare Ventures LLC, a Wyoming limited liability company. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
 
 Canonical site: https://trustedlocksmithnearme.com
+Brand / product: Trusted Locksmith
 Operator: TSquare Ventures LLC
-Operator address: 30 N Gould St Ste R, Sheridan, WY 82801, USA
+Entity type: Limited Liability Company (LLC)
+State of formation: Wyoming, United States
+Principal / mailing address: 30 N Gould St, Ste R, Sheridan, WY 82801, United States
+Operator email: hello@unikmo.com
 Primary launch market: Boston and Greater Boston, Massachusetts
 Expanded geographic content: New York, New Jersey, Philadelphia, Connecticut and Delaware
 Business model: marketplace platform; field work is performed by independent providers
