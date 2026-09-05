@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function MemberAgreementPage() {
   return (
-    <LegalDoc title="Member Agreement" lastUpdated="August 16, 2026">
+    <LegalDoc title="Member Agreement" lastUpdated="September 5, 2026">
       <LegalSection title="1. Membership is optional and is not insurance">
-        <p>Trusted Locksmith membership is an optional service-platform membership operated by PlanetHike OÜ. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
+        <p>Trusted Locksmith membership is an optional service-platform membership operated by TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
       </LegalSection>
 
       <LegalSection title="2. Account creation is not payment activation">
@@ -60,7 +60,7 @@ export default function MemberAgreementPage() {
       </LegalSection>
 
       <LegalSection title="13. Contact">
-        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Trusted Locksmith contact page</a>.</p>
+        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Trusted Locksmith contact page</a> or sent to TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.</p>
       </LegalSection>
     </LegalDoc>
   );
