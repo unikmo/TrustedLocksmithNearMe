@@ -1,6 +1,6 @@
 # Trusted Locksmith Near Me
 
-Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
+Locksmith marketplace and property-access platform operated by TSquare Ventures LLC.
 
 ## Canonical project identity
 
@@ -8,7 +8,8 @@ Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
 - npm package: `trusted-locksmith-near-me`
-- Operator: PlanetHike OÜ
+- Operator: TSquare Ventures LLC
+- Operator address: 30 N Gould St Ste R, Sheridan, WY 82801, USA
 - Primary launch market: Boston and Greater Boston, Massachusetts
 - Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
