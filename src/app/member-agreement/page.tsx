@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Member Agreement",
@@ -12,7 +13,7 @@ export default function MemberAgreementPage() {
   return (
     <LegalDoc title="Member Agreement" lastUpdated="September 5, 2026">
       <LegalSection title="1. Membership is optional and is not insurance">
-        <p>Trusted Locksmith membership is an optional service-platform membership operated by TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
+        <p>Trusted Locksmith membership is an optional service-platform membership operated by {SITE.operatorLegalDescription}, with principal / mailing address at {SITE.operatorAddressText}. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
       </LegalSection>
 
       <LegalSection title="2. Account creation is not payment activation">
@@ -60,7 +61,7 @@ export default function MemberAgreementPage() {
       </LegalSection>
 
       <LegalSection title="13. Contact">
-        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Trusted Locksmith contact page</a> or sent to TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.</p>
+        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Trusted Locksmith contact page</a> or by email at <a href={`mailto:${SITE.operatorEmail}`} className="text-brass hover:underline">{SITE.operatorEmail}</a>. Mail may be sent to {SITE.operatorName}, {SITE.operatorAddressText}.</p>
       </LegalSection>
     </LegalDoc>
   );
