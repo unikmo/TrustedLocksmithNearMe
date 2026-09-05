@@ -63,8 +63,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ · Trusted Locksmith</span>
+        <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div>&copy; {new Date().getFullYear()} TSquare Ventures LLC · Trusted Locksmith</div>
+            <div className="mt-1 text-xs">30 N Gould St Ste R · Sheridan, WY 82801 · USA</div>
+          </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/terms" className="hover:text-parchment">Terms</Link>
