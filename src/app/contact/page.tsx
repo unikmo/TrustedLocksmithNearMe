@@ -55,6 +55,15 @@ export default async function ContactPage({
                 <Info title="Customer support" body="Account, membership and platform questions." />
                 <Info title="Property partnerships" body="Property managers, landlords and real-estate professionals." />
                 <Info title="Provider network" body="Independent locksmith providers applying to receive local requests." />
+                <div className="border-l border-line pl-4">
+                  <div className="font-medium text-parchment">Company & legal contact</div>
+                  <div className="mt-1 text-sm leading-6 text-parchment-dim">
+                    TrustedLocksmithNearMe.com is a product of TSquare Ventures LLC, a Wyoming limited liability company.<br />
+                    30 N Gould St, Ste R, Sheridan, WY 82801, United States<br />
+                    Wyoming Secretary of State filing ID: 2026-002072750<br />
+                    <a href="mailto:hello@trustedlocksmithnearme.com" className="text-brass hover:underline">hello@TrustedLocksmithNearMe.com</a>
+                  </div>
+                </div>
               </div>
             </div>
 
