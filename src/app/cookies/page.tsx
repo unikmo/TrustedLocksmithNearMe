@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <LegalDoc title="Cookie Preferences" lastUpdated="August 16, 2026">
+    <LegalDoc title="Cookie Preferences" lastUpdated="September 5, 2026">
       <LegalSection title="How we use cookies">
         <p>
-          Trusted Locksmith, operated by PlanetHike OÜ, uses a small number of essential cookies to keep the site and app working — mainly
+          Trusted Locksmith, operated by TSquare Ventures LLC, uses a small number of essential cookies to keep the site and app working — mainly
           to keep you signed in between visits. We may use limited analytics cookies to
           understand overall product usage; these never include your Digital Access contents or
           private service details.
