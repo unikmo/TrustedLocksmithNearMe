@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 import { PAGE_VISUALS } from "@/lib/visuals";
-import { SITE_URL } from "@/lib/site";
+import { SITE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
@@ -36,7 +36,7 @@ const PILLARS = [
 const FAQ = [
   {
     q: "Does Trusted Locksmith employ the locksmith?",
-    a: "No. Trusted Locksmith is a platform operated by TSquare Ventures LLC. Participating locksmith providers are independent businesses or professionals, not TSquare Ventures LLC employees.",
+    a: `No. Trusted Locksmith is a platform operated by ${SITE.operatorLegalDescription}. Participating locksmith providers are independent businesses or professionals, not ${SITE.operatorName} employees.`,
   },
   {
     q: "What does a verified business claim mean?",
@@ -107,7 +107,7 @@ export default function TrustSafetyPage() {
         </section>
         <CTABand
           title="Have a trust or safety concern?"
-          body="Contact Trusted Locksmith about a provider, request, account, privacy or safety concern."
+          body={`Contact Trusted Locksmith about a provider, request, account, privacy or safety concern at ${SITE.operatorEmail}.`}
           ctaLabel="Contact Trusted Locksmith"
           ctaHref="/contact?topic=Trust%20%26%20safety"
         />
