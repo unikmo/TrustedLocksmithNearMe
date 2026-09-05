@@ -5,7 +5,7 @@ import { Nav } from "@/components/Nav";
 import { SITE, SITE_URL } from "@/lib/site";
 
 const description =
-  "Trusted Locksmith is a locksmith marketplace operated by TSquare Ventures LLC. Customers see published standard prices and scope before requesting a participating independent local provider.";
+  "Trusted Locksmith is a locksmith marketplace operated by TSquare Ventures LLC, a Wyoming limited liability company. Customers see published standard prices and scope before requesting a participating independent local provider.";
 
 export const metadata: Metadata = {
   title: "About | Locksmith Marketplace",
@@ -25,7 +25,9 @@ const aboutSchema = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE.operatorName,
+    legalName: SITE.operatorName,
     url: SITE_URL,
+    email: SITE.operatorEmail,
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.operatorAddress.streetAddress,
@@ -83,8 +85,13 @@ export default function AboutPage() {
             <div className="eyebrow">About Trusted Locksmith</div>
             <h1 className="mt-5 max-w-4xl font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[68px]">A locksmith marketplace built around price and process clarity.</h1>
             <div className="mt-7 max-w-3xl space-y-4 text-lg leading-8 text-parchment-dim">
-              <p>Trusted Locksmith is an online marketplace operated by TSquare Ventures LLC. TSquare Ventures LLC does not perform the field locksmith work.</p>
-              <p className="text-base">Operator address: 30 N Gould St Ste R, Sheridan, WY 82801, USA.</p>
+              <p>Trusted Locksmith is an online marketplace operated by {SITE.operatorLegalDescription}. {SITE.operatorName} does not perform the field locksmith work.</p>
+              <div className="text-base leading-7">
+                <div><strong className="text-parchment">Entity type:</strong> {SITE.operatorEntityType}</div>
+                <div><strong className="text-parchment">State of formation:</strong> {SITE.operatorFormation}</div>
+                <div><strong className="text-parchment">Principal / mailing address:</strong> {SITE.operatorAddressText}</div>
+                <div><strong className="text-parchment">Email:</strong> <a href={`mailto:${SITE.operatorEmail}`} className="text-brass hover:underline">{SITE.operatorEmail}</a></div>
+              </div>
               <p>The core rule is simple: see the published standard price and included scope before sending the request. A specific provider identity and ETA appear only after a participating provider actually accepts.</p>
             </div>
           </div>
