@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { SITE } from "@/lib/site";
 import { submitContact } from "./actions";
 
 export const metadata: Metadata = {
@@ -55,6 +56,12 @@ export default async function ContactPage({
                 <Info title="Customer support" body="Account, membership and platform questions." />
                 <Info title="Property partnerships" body="Property managers, landlords and real-estate professionals." />
                 <Info title="Provider network" body="Independent locksmith providers applying to receive local requests." />
+                <div className="border-l border-line pl-4">
+                  <div className="font-medium text-parchment">Company</div>
+                  <div className="mt-1 text-sm leading-6 text-parchment-dim">{SITE.operatorLegalDescription}</div>
+                  <div className="text-sm leading-6 text-parchment-dim">{SITE.operatorAddressText}</div>
+                  <a href={`mailto:${SITE.operatorEmail}`} className="text-sm leading-6 text-brass hover:underline">{SITE.operatorEmail}</a>
+                </div>
               </div>
             </div>
 
