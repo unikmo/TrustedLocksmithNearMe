@@ -3,23 +3,29 @@ import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How PlanetHike OÜ and Trusted Locksmith handle account, Digital Access, property-access, marketplace, and provider information.",
+  description: "How TSquare Ventures LLC and Trusted Locksmith handle account, Digital Access, property-access, marketplace, and provider information.",
   alternates: { canonical: "/privacy" },
   robots: { index: false },
 };
 
 export default function PrivacyPage() {
   return (
-    <LegalDoc title="Privacy Policy" lastUpdated="August 16, 2026">
-      <LegalSection title="1. Operator and information we collect"><p>Trusted Locksmith is operated by PlanetHike OÜ. We may collect account information, Digital Access records, trusted-contact information, reference photos, service-request details, property-manager and brokerage information, provider onboarding and job-response information, transaction records, and technical/security data needed to operate the Service.</p></LegalSection>
-      <LegalSection title="2. Digital Access sensitive information"><p>Where secret storage is enabled, sensitive text such as a lockbox or keypad code is encrypted by the Trusted Locksmith application server before the resulting ciphertext is persisted to the database. The server-side encryption key is not stored in the application database. Private reference photos are stored separately in a non-public storage bucket and are presented through short-lived signed access. We do not describe this design as zero-knowledge or end-to-end encryption.</p></LegalSection>
-      <LegalSection title="3. Trusted contacts"><p>A trusted contact may be recorded as a spare-key holder, emergency contact, or person who can authorize access. Recording a trusted contact does not by itself grant that person access to the member&apos;s Digital Access secrets.</p></LegalSection>
-      <LegalSection title="4. How information is used"><p>Information is used to operate accounts, provide self-resolution access tools, route locksmith requests, administer audits, property-manager and brokerage workflows, provider claims and memberships, support transactions, investigate incidents and disputes, secure the platform, and meet legal obligations.</p></LegalSection>
-      <LegalSection title="5. Information shared with providers"><p>Before acceptance, provider-visible information should be limited to what is reasonably necessary to evaluate a job. After acceptance, Trusted Locksmith may provide details reasonably necessary to perform that service. Providers do not receive standing access to Digital Access secrets or unrelated customer records. Audit providers submit their report through Trusted Locksmith rather than receiving authority to sell follow-up work in the home.</p></LegalSection>
-      <LegalSection title="6. Vendors"><p>PlanetHike OÜ may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
-      <LegalSection title="7. Security"><p>Trusted Locksmith uses technical and organizational controls intended to reduce unauthorized access, alteration, or loss. Product security claims should reflect controls actually deployed in production. No system can guarantee absolute security.</p></LegalSection>
-      <LegalSection title="8. Retention and rights"><p>Information is retained as reasonably necessary for operations, transactions, safety, disputes, and legal obligations. Depending on applicable law, users may have rights to request access, correction, deletion, or a copy of certain personal information.</p></LegalSection>
-      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the Trusted Locksmith contact page.</p></LegalSection>
+    <LegalDoc title="Privacy Policy" lastUpdated="September 5, 2026">
+      <LegalSection title="1. Operator and contact details">
+        <p>TrustedLocksmithNearMe.com is a product of TSquare Ventures LLC, a Wyoming limited liability company.</p>
+        <p className="mt-3">TSquare Ventures LLC<br />30 N Gould St, Ste R<br />Sheridan, WY 82801<br />United States</p>
+        <p className="mt-3">Wyoming Secretary of State filing ID: 2026-002072750</p>
+        <p className="mt-3">Email: <a href="mailto:hello@trustedlocksmithnearme.com" className="text-brass hover:underline">hello@TrustedLocksmithNearMe.com</a></p>
+      </LegalSection>
+      <LegalSection title="2. Information we collect"><p>Trusted Locksmith may collect account information, Digital Access records, trusted-contact information, reference photos, service-request details, property-manager and brokerage information, provider onboarding and job-response information, transaction records, and technical/security data needed to operate the Service.</p></LegalSection>
+      <LegalSection title="3. Digital Access sensitive information"><p>Where secret storage is enabled, sensitive text such as a lockbox or keypad code is encrypted by the Trusted Locksmith application server before the resulting ciphertext is persisted to the database. The server-side encryption key is not stored in the application database. Private reference photos are stored separately in a non-public storage bucket and are presented through short-lived signed access. We do not describe this design as zero-knowledge or end-to-end encryption.</p></LegalSection>
+      <LegalSection title="4. Trusted contacts"><p>A trusted contact may be recorded as a spare-key holder, emergency contact, or person who can authorize access. Recording a trusted contact does not by itself grant that person access to the member&apos;s Digital Access secrets.</p></LegalSection>
+      <LegalSection title="5. How information is used"><p>Information is used to operate accounts, provide self-resolution access tools, route locksmith requests, administer audits, property-manager and brokerage workflows, provider claims and memberships, support transactions, investigate incidents and disputes, secure the platform, and meet legal obligations.</p></LegalSection>
+      <LegalSection title="6. Information shared with providers"><p>Before acceptance, provider-visible information should be limited to what is reasonably necessary to evaluate a job. After acceptance, Trusted Locksmith may provide details reasonably necessary to perform that service. Providers do not receive standing access to Digital Access secrets or unrelated customer records. Audit providers submit their report through Trusted Locksmith rather than receiving authority to sell follow-up work in the home.</p></LegalSection>
+      <LegalSection title="7. Vendors"><p>TSquare Ventures LLC may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
+      <LegalSection title="8. Security"><p>Trusted Locksmith uses technical and organizational controls intended to reduce unauthorized access, alteration, or loss. Product security claims should reflect controls actually deployed in production. No system can guarantee absolute security.</p></LegalSection>
+      <LegalSection title="9. Retention and rights"><p>Information is retained as reasonably necessary for operations, transactions, safety, disputes, and legal obligations. Depending on applicable law, users may have rights to request access, correction, deletion, or a copy of certain personal information.</p></LegalSection>
+      <LegalSection title="10. Contact"><p>Privacy questions and requests can be submitted through the Trusted Locksmith contact page or by email at <a href="mailto:hello@trustedlocksmithnearme.com" className="text-brass hover:underline">hello@TrustedLocksmithNearMe.com</a>.</p></LegalSection>
     </LegalDoc>
   );
 }
