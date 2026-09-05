@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE } from "@/lib/site";
 import { Keyhole } from "./Keyhole";
 
 const POPULAR_LOCATIONS = [
@@ -65,8 +66,10 @@ export function Footer() {
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div>&copy; {new Date().getFullYear()} TSquare Ventures LLC · Trusted Locksmith</div>
-            <div className="mt-1 text-xs">30 N Gould St Ste R · Sheridan, WY 82801 · USA</div>
+            <div>&copy; {new Date().getFullYear()} {SITE.operatorName} · Trusted Locksmith</div>
+            <div className="mt-1 text-xs">A Wyoming limited liability company</div>
+            <div className="mt-1 text-xs">{SITE.operatorAddressText}</div>
+            <a href={`mailto:${SITE.operatorEmail}`} className="mt-1 inline-block text-xs hover:text-parchment">{SITE.operatorEmail}</a>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
