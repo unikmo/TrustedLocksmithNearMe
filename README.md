@@ -12,7 +12,7 @@ Locksmith marketplace and property-access platform operated by TSquare Ventures 
 - Entity type: Limited Liability Company (LLC)
 - State of formation: Wyoming, United States
 - Principal / mailing address: 30 N Gould St, Ste R, Sheridan, WY 82801, United States
-- Operator email: hello@unikmo.com
+- Operator email: hello@TrustedLocksmithNearMe.com
 - Primary launch market: Boston and Greater Boston, Massachusetts
 - Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
