@@ -6,7 +6,7 @@ export const SITE = {
   operatorEntityType: "Limited Liability Company (LLC)",
   operatorFormation: "Wyoming, United States",
   operatorLegalDescription: "TSquare Ventures LLC, a Wyoming limited liability company",
-  operatorEmail: "hello@unikmo.com",
+  operatorEmail: "hello@TrustedLocksmithNearMe.com",
   operatorAddress: {
     streetAddress: "30 N Gould St, Ste R",
     addressLocality: "Sheridan",
