@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -11,15 +12,15 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <LegalDoc title="Privacy Policy" lastUpdated="September 5, 2026">
-      <LegalSection title="1. Operator and information we collect"><p>Trusted Locksmith is operated by TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA. We may collect account information, Digital Access records, trusted-contact information, reference photos, service-request details, property-manager and brokerage information, provider onboarding and job-response information, transaction records, and technical/security data needed to operate the Service.</p></LegalSection>
+      <LegalSection title="1. Operator and information we collect"><p>Trusted Locksmith is operated by {SITE.operatorLegalDescription}, with principal / mailing address at {SITE.operatorAddressText}. We may collect account information, Digital Access records, trusted-contact information, reference photos, service-request details, property-manager and brokerage information, provider onboarding and job-response information, transaction records, and technical/security data needed to operate the Service.</p></LegalSection>
       <LegalSection title="2. Digital Access sensitive information"><p>Where secret storage is enabled, sensitive text such as a lockbox or keypad code is encrypted by the Trusted Locksmith application server before the resulting ciphertext is persisted to the database. The server-side encryption key is not stored in the application database. Private reference photos are stored separately in a non-public storage bucket and are presented through short-lived signed access. We do not describe this design as zero-knowledge or end-to-end encryption.</p></LegalSection>
       <LegalSection title="3. Trusted contacts"><p>A trusted contact may be recorded as a spare-key holder, emergency contact, or person who can authorize access. Recording a trusted contact does not by itself grant that person access to the member&apos;s Digital Access secrets.</p></LegalSection>
       <LegalSection title="4. How information is used"><p>Information is used to operate accounts, provide self-resolution access tools, route locksmith requests, administer audits, property-manager and brokerage workflows, provider claims and memberships, support transactions, investigate incidents and disputes, secure the platform, and meet legal obligations.</p></LegalSection>
       <LegalSection title="5. Information shared with providers"><p>Before acceptance, provider-visible information should be limited to what is reasonably necessary to evaluate a job. After acceptance, Trusted Locksmith may provide details reasonably necessary to perform that service. Providers do not receive standing access to Digital Access secrets or unrelated customer records. Audit providers submit their report through Trusted Locksmith rather than receiving authority to sell follow-up work in the home.</p></LegalSection>
-      <LegalSection title="6. Vendors"><p>TSquare Ventures LLC may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
+      <LegalSection title="6. Vendors"><p>{SITE.operatorName} may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
       <LegalSection title="7. Security"><p>Trusted Locksmith uses technical and organizational controls intended to reduce unauthorized access, alteration, or loss. Product security claims should reflect controls actually deployed in production. No system can guarantee absolute security.</p></LegalSection>
       <LegalSection title="8. Retention and rights"><p>Information is retained as reasonably necessary for operations, transactions, safety, disputes, and legal obligations. Depending on applicable law, users may have rights to request access, correction, deletion, or a copy of certain personal information.</p></LegalSection>
-      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the Trusted Locksmith contact page or sent to TSquare Ventures LLC, 30 N Gould St Ste R, Sheridan, WY 82801, USA.</p></LegalSection>
+      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the Trusted Locksmith contact page or by email at <a href={`mailto:${SITE.operatorEmail}`} className="text-brass hover:underline">{SITE.operatorEmail}</a>. Mail may be sent to {SITE.operatorName}, {SITE.operatorAddressText}.</p></LegalSection>
     </LegalDoc>
   );
 }
