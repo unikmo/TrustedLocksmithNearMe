@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 import { SITE_URL } from "@/lib/site";
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1779113271816-98e5811b6405?auto=format&fit=crop&fm=jpg&q=80&w=1800";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1629999400001-5e666f0754d9?auto=format&fit=crop&fm=jpg&q=80&w=1800";
 const FEATURED_SERVICE_IDS = ["home_lockout_day", "car_lockout_at_property", "standard_rekey", "standard_lock_change", "smart_lock_install"];
 
 const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", name: "Trusted Locksmith", url: SITE_URL };
@@ -57,7 +57,7 @@ export default function Home() {
             <div className="relative h-[390px] overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.26)] sm:h-[500px]">
               <img
                 src={HERO_IMAGE}
-                alt="Boston skyline across the Charles River"
+                alt="Residential rowhouse front door and stoop with visible lock hardware"
                 width={1800}
                 height={1200}
                 fetchPriority="high"
