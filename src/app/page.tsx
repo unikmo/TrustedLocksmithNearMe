@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -56,7 +55,15 @@ export default function Home() {
             </div>
 
             <div className="relative h-[390px] overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.26)] sm:h-[500px]">
-              <Image src={HERO_IMAGE} alt="Boston skyline across the Charles River" fill priority sizes="(max-width: 1023px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+              <img
+                src={HERO_IMAGE}
+                alt="Boston skyline across the Charles River"
+                width={1800}
+                height={1200}
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover object-center"
+              />
             </div>
           </div>
         </section>
