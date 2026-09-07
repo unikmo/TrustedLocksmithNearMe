@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
-import { PAGE_VISUALS } from "@/lib/visuals";
 import { SITE_URL } from "@/lib/site";
 
+const HERO_IMAGE = "https://unsplash.com/photos/1orVBmcgwOw/download?force=true&w=1800";
 const FEATURED_SERVICE_IDS = ["home_lockout_day", "car_lockout_at_property", "standard_rekey", "standard_lock_change", "smart_lock_install"];
 
 const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", name: "Trusted Locksmith", url: SITE_URL };
@@ -56,7 +56,7 @@ export default function Home() {
             </div>
 
             <div className="relative h-[390px] overflow-hidden rounded-[30px] border border-sky/18 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.26)] sm:h-[500px]">
-              <Image src={PAGE_VISUALS.services.src} alt={PAGE_VISUALS.services.alt} fill priority sizes="(max-width: 1023px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: PAGE_VISUALS.services.objectPosition ?? "center" }} />
+              <Image src={HERO_IMAGE} alt="Boston skyline across the Charles River" fill priority sizes="(max-width: 1023px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
           </div>
         </section>
