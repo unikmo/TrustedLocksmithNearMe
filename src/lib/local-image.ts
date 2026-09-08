@@ -1,4 +1,5 @@
 import { PAGE_VISUALS } from "@/lib/visuals";
+import { STATIC_LOCAL_HEROES } from "@/lib/local-heroes";
 
 export type LocalHeroImage = {
   src: string;
@@ -236,14 +237,27 @@ async function searchCommonsForPlace(title: string, placeName: string): Promise<
 }
 
 export async function getLocalHeroImage({
+  slug,
   title,
   placeName,
 }: {
+  slug?: string;
   title: string;
   placeName: string;
 }): Promise<LocalHeroImage> {
   const reviewed = LOCAL_IMAGE_OVERRIDES[title];
   if (isAvailable(reviewed ?? null)) return reserve(reviewed);
+
+  // Pre-resolved photograph for this route. Baked at authoring time so hero
+  // imagery does not depend on live Wikimedia API calls during the build.
+  const staticHero = slug ? STATIC_LOCAL_HEROES[slug] : undefined;
+  if (staticHero) {
+    return reserve({
+      ...staticHero,
+      alt: `Local street or neighborhood view of ${placeName}`,
+      local: true,
+    });
+  }
 
   try {
     const primary = await getWikipediaPageImage(title, placeName);

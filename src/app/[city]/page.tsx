@@ -70,7 +70,7 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
 
   if (maCity) {
     const url = `${SITE_URL}/${maCity.slug}`;
-    const heroImage = await getLocalHeroImage({ title: getWikipediaTitle({ slug: maCity.slug, name: maCity.name, kind: "massachusetts" }), placeName: `${maCity.name}, Massachusetts` });
+    const heroImage = await getLocalHeroImage({ slug: maCity.slug, title: getWikipediaTitle({ slug: maCity.slug, name: maCity.name, kind: "massachusetts" }), placeName: `${maCity.name}, Massachusetts` });
     const schemas = [
       { "@context": "https://schema.org", "@type": "WebPage", "@id": `${url}#page`, name: `Locksmith in ${maCity.name}, Massachusetts`, url, description: `Local locksmith information for ${maCity.name}, including ${maCity.areas.slice(0, 4).join(", ")}.`, isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL }, about: { "@type": "Thing", name: `Locksmith services in ${maCity.name}, Massachusetts` } },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL }, { "@type": "ListItem", position: 2, name: `${maCity.name}, MA locksmith`, item: url }] },
@@ -84,7 +84,7 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
     const url = `${SITE_URL}/${nyArea.slug}`;
     const parent = nyArea.parent ? getNyArea(nyArea.parent) : null;
     const localServices = getNyServicesForArea(nyArea.slug);
-    const heroImage = await getLocalHeroImage({ title: getWikipediaTitle({ slug: nyArea.slug, name: nyArea.name, kind: "new-york" }), placeName: nyArea.shortLocation });
+    const heroImage = await getLocalHeroImage({ slug: nyArea.slug, title: getWikipediaTitle({ slug: nyArea.slug, name: nyArea.name, kind: "new-york" }), placeName: nyArea.shortLocation });
     const spatialType = nyArea.kind === "neighborhood" ? "Place" : nyArea.kind === "city" ? "City" : "AdministrativeArea";
     const breadcrumbs = [{ "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL }, ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE_URL}/${parent.slug}` }] : []), { "@type": "ListItem", position: parent ? 3 : 2, name: `${nyArea.name}, NY locksmith`, item: url }];
     const schemas = [
@@ -99,7 +99,7 @@ export default async function LocalAreaPage({ params }: { params: Promise<{ city
   if (!area) notFound();
   const url = `${SITE_URL}/${area.slug}`;
   const parent = area.parent ? getNortheastArea(area.parent) : null;
-  const heroImage = await getLocalHeroImage({ title: getWikipediaTitle({ slug: area.slug, name: area.name, kind: "northeast", state: area.state }), placeName: area.shortLocation });
+  const heroImage = await getLocalHeroImage({ slug: area.slug, title: getWikipediaTitle({ slug: area.slug, name: area.name, kind: "northeast", state: area.state }), placeName: area.shortLocation });
   const schemas = [
     { "@context": "https://schema.org", "@type": "WebPage", "@id": `${url}#page`, name: `Locksmith in ${area.shortLocation}`, url, description: area.localContext, isPartOf: { "@type": "WebSite", name: SITE.brandName, url: SITE_URL }, about: { "@type": "Thing", name: `Residential locksmith and property-access services in ${area.shortLocation}` }, spatialCoverage: { "@type": northeastSpatialType(area), name: area.shortLocation } },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: SITE.brandName, item: SITE_URL }, ...(parent ? [{ "@type": "ListItem", position: 2, name: parent.name, item: `${SITE_URL}/${parent.slug}` }] : []), { "@type": "ListItem", position: parent ? 3 : 2, name: `${area.name} locksmith`, item: url }] },
