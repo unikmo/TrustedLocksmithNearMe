@@ -1,8 +1,12 @@
 # Trusted Locksmith
 
-> Locksmith marketplace operated by PlanetHike OÜ. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
+> Locksmith marketplace operated by TSquare Ventures LLC. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
 
 Canonical site: https://trustedlocksmithnearme.com
+Legal operator: TSquare Ventures LLC, a Wyoming limited liability company
+Wyoming Secretary of State filing ID: 2026-002072750
+Address: 30 N Gould St, Ste R, Sheridan, WY 82801, United States
+Email: hello@TrustedLocksmithNearMe.com
 Primary launch market: Boston and Greater Boston, Massachusetts
 Expanded geographic content: New York, New Jersey, Philadelphia, Connecticut and Delaware
 Business model: marketplace platform; field work is performed by independent providers
@@ -32,7 +36,7 @@ Trusted Locksmith connects one-off local locksmith intent with repeat property-a
 - Landlords: tenant-turnover rekeys, rental-property access records and repeat locksmith coordination.
 - Real estate professionals: move-in rekeying, lock changes or compatible smart-lock installation after closing; separate brokerage Digital Access gifting is also available.
 - Second-home owners: rekeying, lock changes, smart access and local locksmith coordination when the owner is not on site.
-- These business/property pages do not imply that PlanetHike OÜ performs locksmith field work. Participating independent providers perform field service.
+- These business/property pages do not imply that TSquare Ventures LLC performs locksmith field work. Participating independent providers perform field service.
 
 ## Key pages
 - Home: https://trustedlocksmithnearme.com/
@@ -58,6 +62,11 @@ Trusted Locksmith connects one-off local locksmith intent with repeat property-a
 - Trust and safety: https://trustedlocksmithnearme.com/trust-safety
 - For locksmith providers: https://trustedlocksmithnearme.com/partner-tech
 - About Trusted Locksmith: https://trustedlocksmithnearme.com/about
+- Privacy: https://trustedlocksmithnearme.com/privacy
+- Terms: https://trustedlocksmithnearme.com/terms
+- Member agreement: https://trustedlocksmithnearme.com/member-agreement
+- Cookie preferences: https://trustedlocksmithnearme.com/cookies
+- Contact: https://trustedlocksmithnearme.com/contact
 - Sitemap: https://trustedlocksmithnearme.com/sitemap.xml
 
 ## Local SEO and internal relationships

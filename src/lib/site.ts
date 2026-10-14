@@ -2,7 +2,17 @@ export const SITE = {
   brandName: "Trusted Locksmith",
   domain: "trustedlocksmithnearme.com",
   url: "https://trustedlocksmithnearme.com",
-  operatorName: "PlanetHike OÜ",
+  operatorName: "TSquare Ventures LLC",
+  operatorType: "Wyoming limited liability company",
+  operatorAddress: {
+    streetAddress: "30 N Gould St, Ste R",
+    addressLocality: "Sheridan",
+    addressRegion: "WY",
+    postalCode: "82801",
+    addressCountry: "US",
+  },
+  operatorFilingId: "2026-002072750",
+  contactEmail: "hello@trustedlocksmithnearme.com",
   launchMarket: "Boston and Greater Boston, Massachusetts",
   expansionContentMarkets: [
     "New York City and selected New York State markets",

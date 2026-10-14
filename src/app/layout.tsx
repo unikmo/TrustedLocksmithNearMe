@@ -38,6 +38,16 @@ const organizationSchema = {
   "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
   url: SITE.url,
+  email: SITE.contactEmail,
+  identifier: {
+    "@type": "PropertyValue",
+    name: "Wyoming Secretary of State filing ID",
+    value: SITE.operatorFilingId,
+  },
+  address: {
+    "@type": "PostalAddress",
+    ...SITE.operatorAddress,
+  },
   brand: {
     "@type": "Brand",
     "@id": `${SITE.url}/#brand`,
