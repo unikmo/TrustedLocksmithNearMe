@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/book", destination: "/business-enquiry", permanent: false },
+      { source: "/book/:path*", destination: "/business-enquiry", permanent: false },
+      { source: "/pricing", destination: "/services", permanent: false },
+    ];
+  },
   async headers() {
     return ["/login", "/signup", "/property-manager/:path*", "/admin/:path*", "/provider/:path*", "/providers/claim", "/providers/register", "/auth/:path*"].map(source => ({ source, headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }));
   },
