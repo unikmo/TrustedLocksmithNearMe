@@ -1,10 +1,12 @@
 "use server";
+import { BUSINESS_REQUESTS_AVAILABLE } from "@/lib/business-availability";
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
 export async function createPropertyManagerOrganization(formData: FormData) {
+  if (!BUSINESS_REQUESTS_AVAILABLE) redirect("/property-manager?error=Business%20requests%20are%20temporarily%20unavailable.");
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/property-manager");
@@ -13,12 +15,14 @@ export async function createPropertyManagerOrganization(formData: FormData) {
 
   const { data: org, error } = await supabase.from("pm_organizations").insert({ name, created_by: user.id }).select().single();
   if (error || !org) redirect(`/property-manager?error=${encodeURIComponent(error?.message ?? "Could not create organization")}`);
-  await supabase.from("pm_members").insert({ organization_id: org.id, user_id: user.id, role: "admin" });
+  const { error: membershipError } = await supabase.from("pm_members").insert({ organization_id: org.id, user_id: user.id, role: "admin" });
+  if (membershipError) redirect("/property-manager?error=Could%20not%20finish%20workspace%20setup.%20Please%20contact%20support.");
   revalidatePath("/property-manager");
   redirect("/property-manager?notice=Property-manager workspace created.");
 }
 
 export async function addManagedProperty(formData: FormData) {
+  if (!BUSINESS_REQUESTS_AVAILABLE) redirect("/property-manager?error=Business%20requests%20are%20temporarily%20unavailable.");
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/property-manager");
@@ -34,6 +38,7 @@ export async function addManagedProperty(formData: FormData) {
 }
 
 export async function createPmServiceRequest(formData: FormData) {
+  if (!BUSINESS_REQUESTS_AVAILABLE) redirect("/property-manager?error=Business%20requests%20are%20temporarily%20unavailable.");
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/property-manager");
@@ -44,8 +49,12 @@ export async function createPmServiceRequest(formData: FormData) {
   const residentName = String(formData.get("resident_name") ?? "").trim();
   const residentPhone = String(formData.get("resident_phone") ?? "").trim();
   const notes = String(formData.get("notes") ?? "").trim();
+  if (!["lockout", "rekey", "lock_change", "smart_lock"].includes(serviceType)) redirect("/property-manager?error=Choose%20a%20supported%20service.");
+  const { data: membership } = await supabase.from("pm_members").select("organization_id").eq("organization_id", organizationId).eq("user_id", user.id).maybeSingle();
+  const { data: property } = await supabase.from("pm_properties").select("id").eq("id", propertyId).eq("organization_id", organizationId).maybeSingle();
+  if (!membership || !property) redirect("/property-manager?error=Choose%20a%20property%20from%20your%20organization.");
   const { error } = await supabase.from("pm_service_requests").insert({ organization_id: organizationId, property_id: propertyId, requested_by: user.id, unit_label: unitLabel || null, service_type: serviceType, resident_name: residentName || null, resident_phone: residentPhone || null, notes: notes || null, status: "requested" });
   if (error) redirect(`/property-manager?error=${encodeURIComponent(error.message)}`);
   revalidatePath("/property-manager");
-  redirect("/property-manager?notice=Service request sent to Keepwell operations.");
+  redirect("/property-manager?notice=Service request recorded. Provider availability and acceptance still require confirmation.");
 }

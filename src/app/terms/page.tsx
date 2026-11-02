@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalDoc title="Terms of Service" lastUpdated="August 16, 2026">
+    <LegalDoc title="Terms of Service" lastUpdated="November 2, 2026">
+      <LegalSection title="Current service scope"><p>New service requests and account enrollment are for property businesses only. Direct consumer booking, consumer Digital Access enrollment and household membership gifting are closed. Historical membership provisions below do not reopen enrollment or automatically cancel an existing agreement. Business workspace access does not itself establish provider coverage, a service appointment, a response-time guarantee or commercial billing terms.</p></LegalSection>
       <LegalSection title="1. Trusted Locksmith platform and operator"><p>Trusted Locksmith is a technology platform operated by PlanetHike OÜ. The platform helps customers organize property-access information and request services from independent local providers. PlanetHike OÜ does not itself perform locksmith, security-system, installation, repair, audit fieldwork, or other field work unless explicitly stated for a specific service.</p></LegalSection>
       <LegalSection title="2. Provider availability"><p>Submitting a request does not guarantee provider availability. Provider identity and arrival timing are shown only after a real provider accepts. Arrival estimates may change because of traffic, job conditions, or provider circumstances.</p></LegalSection>
       <LegalSection title="3. Pricing"><p>For standard one-off services, Trusted Locksmith displays one standard all-in price before submission. The displayed standard price includes provider travel/service call. No second generic travel or service-call fee is added later. Hardware and work outside the stated standard scope may be separately priced only after the additional work and price are shown and approved before that work begins.</p></LegalSection>

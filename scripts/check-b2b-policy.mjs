@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import { businessRedirect, safeBusinessNext } from "../src/lib/business-only.ts";
+for (const path of ["/book", "/book/review", "/book/details", "/book/old-id", "/app", "/app/vault"]) assert.equal(businessRedirect(path), "/property-manager", path);
+for (const path of ["/pricing", "/activate/OLD", "/brokerage", "/digital-access", "/second-homes"]) assert.equal(businessRedirect(path), "/for-property-managers", path);
+assert.equal(businessRedirect("/boston-ma/rekey-locks"), "/boston-ma/turnover-rekeying");
+assert.equal(businessRedirect("/new-york-ny/car-lockout"), "/new-york-ny");
+for (const path of ["/property-manager", "/provider", "/provider/onboarding", "/providers/register", "/admin", "/services/access-control"]) assert.equal(businessRedirect(path), null, path);
+for (const path of ["https://outside.example", "//outside.example", "/\\outside.example", "/book", "/app"]) assert.equal(safeBusinessNext(path), "/property-manager", path);
+assert.equal(safeBusinessNext("/provider/onboarding?step=1"), "/provider/onboarding?step=1");
+console.log("B2B route-policy checks passed");

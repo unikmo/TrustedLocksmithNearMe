@@ -1,3 +1,4 @@
+import { BUSINESS_REQUESTS_AVAILABLE, BUSINESS_UNAVAILABLE_MESSAGE } from "@/lib/business-availability";
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -6,7 +7,7 @@ import { submitContact } from "./actions";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Trusted Locksmith about customer support, property partnerships, provider applications or trust and safety.",
+  description: "Contact Trusted Locksmith about business properties, portfolio scope, provider participation and trust or safety.",
   alternates: { canonical: "/contact" },
   openGraph: { images: [PAGE_VISUALS.contact.src] },
   twitter: { card: "summary_large_image", images: [PAGE_VISUALS.contact.src] },
@@ -18,8 +19,8 @@ export default async function ContactPage({
   searchParams: Promise<{ error?: string; sent?: string; topic?: string }>;
 }) {
   const { error, sent, topic } = await searchParams;
-  const topics = ["Customer support", "Billing", "Partnership", "Provider", "Trust & safety", "Something else"];
-  const defaultTopic = topics.includes(topic ?? "") ? topic! : "Customer support";
+  const topics = ["Portfolio enquiry", "Turnover rekey", "Specialist assessment", "Business account support", "Billing", "Provider", "Trust & safety"];
+  const defaultTopic = topics.includes(topic ?? "") ? topic! : "Portfolio enquiry";
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -29,11 +30,11 @@ export default async function ContactPage({
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
             <div>
               <div className="eyebrow">Contact Trusted Locksmith</div>
-              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Choose the right route and keep the request clear</h1>
+              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Tell us about your properties</h1>
               <p className="mt-5 max-w-xl leading-7 text-parchment-dim">
-                Need a locksmith? Start with the service finder instead of support. Use this form for account, billing, partnership, provider or trust-and-safety questions.
+                For property managers, landlords, rental operators and real-estate businesses. Share your business scope, service area and timing; do not include access codes or sensitive resident information.
               </p>
-              <a href="/book" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Find a locksmith</a>
+              <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services & scope</a>
 
               <figure className="relative mt-9 overflow-hidden rounded-[24px] border border-sky/18 bg-surface-raised shadow-[0_22px_52px_rgba(3,18,37,0.22)]">
                 <img
@@ -52,28 +53,32 @@ export default async function ContactPage({
               </figure>
 
               <div className="mt-9 space-y-5 text-sm text-parchment-dim">
-                <Info title="Customer support" body="Account, membership and platform questions." />
+                <Info title="Business accounts" body="Managed properties, recurring requests and portfolio scope." />
                 <Info title="Property partnerships" body="Property managers, landlords and real-estate professionals." />
                 <Info title="Provider network" body="Independent locksmith providers applying to receive local requests." />
               </div>
             </div>
 
             <div className="rounded-3xl border border-line bg-surface p-6 sm:p-8 lg:sticky lg:top-28">
-              {sent && <div className="mb-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Message sent. Trusted Locksmith will follow up using the contact information you provided.</div>}
+              {sent && <div className="mb-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Enquiry received. This is not a confirmed appointment or a guarantee of provider availability.</div>}
               {error && <div className="mb-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
-              <form action={submitContact} className="space-y-5">
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" form="business-contact" aria-hidden="true" />
+              {!BUSINESS_REQUESTS_AVAILABLE && <p role="status" className="mb-6 rounded-xl border border-brass/40 bg-brass/10 p-4 text-sm leading-6">{BUSINESS_UNAVAILABLE_MESSAGE}</p>}
+              <form id="business-contact" action={submitContact} className="space-y-5"><fieldset disabled={!BUSINESS_REQUESTS_AVAILABLE} className="space-y-5 disabled:opacity-50">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field label="Name"><input type="text" name="name" required autoComplete="name" placeholder="Your name" className="field" /></Field>
                   <Field label="Email"><input type="email" name="email" required autoComplete="email" placeholder="you@email.com" className="field" /></Field>
                 </div>
+                <Field label="Company / property business"><input type="text" name="company" required autoComplete="organization" className="field" /></Field>
+                <div className="grid gap-4 sm:grid-cols-2"><Field label="Property city / service area"><input type="text" name="service_area" required className="field" /></Field><Field label="Approximate units"><input type="number" name="units" min="1" max="1000000" className="field" /></Field></div>
                 <Field label="Topic">
                   <select name="topic" defaultValue={defaultTopic} className="field">
                     {topics.map((item) => <option key={item}>{item}</option>)}
                   </select>
                 </Field>
-                <Field label="Message"><textarea name="message" required rows={6} placeholder="Tell us what you need and include the property market or service area if relevant." className="field resize-y" /></Field>
-                <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Send message</button>
-              </form>
+                <Field label="Message"><textarea name="message" required rows={6} placeholder="Describe the buildings, job types, cylinder counts and preferred timing. Specialist availability must be confirmed. Do not include keys, access codes or identity documents." className="field resize-y" /></Field>
+                <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Send business enquiry</button>
+              </fieldset></form>
             </div>
           </div>
         </div>

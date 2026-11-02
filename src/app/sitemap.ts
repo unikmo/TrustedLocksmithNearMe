@@ -1,81 +1,9 @@
 import type { MetadataRoute } from "next";
-import { MA_CITIES, MA_LOCAL_ROUTES } from "@/lib/massachusetts-seo";
-import { NY_AREAS, NY_LOCAL_ROUTES } from "@/lib/new-york-seo";
-import { NY_SERVICE_ROUTES } from "@/lib/new-york-services";
-import { NORTHEAST_AREAS, NORTHEAST_LOCAL_ROUTES } from "@/lib/northeast-seo";
+import { B2B_AREAS, B2B_PATHS } from "@/lib/b2b";
 import { SITE_URL } from "@/lib/site";
-
+// Fixed to the actual B2B content release, rather than changing on every request.
+const CONTENT_UPDATED = new Date("2026-11-02T00:00:00Z");
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    "",
-    "/about",
-    "/services",
-    "/how-it-works",
-    "/pricing",
-    "/digital-access",
-    "/second-homes",
-    "/landlords",
-    "/for-property-managers",
-    "/for-real-estate-agents",
-    "/partner-tech",
-    "/trust-safety",
-    "/contact",
-  ];
-
-  const corePages: MetadataRoute.Sitemap = routes.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority:
-      route === ""
-        ? 1
-        : route === "/services"
-          ? 0.9
-          : route === "/about" || route === "/how-it-works" || route === "/partner-tech"
-            ? 0.8
-            : 0.7,
-  }));
-
-  const maCitySlugs = new Set(MA_CITIES.map((city) => `/${city.slug}`));
-  const massachusettsPages: MetadataRoute.Sitemap = MA_LOCAL_ROUTES.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: maCitySlugs.has(route) ? 0.82 : 0.76,
-  }));
-
-  const nyPriority = new Map(
-    NY_AREAS.map((area) => [
-      `/${area.slug}`,
-      area.slug === "new-york-ny" ? 0.92 : area.kind === "borough" ? 0.88 : area.kind === "neighborhood" ? 0.82 : 0.84,
-    ]),
-  );
-  const newYorkPages: MetadataRoute.Sitemap = NY_LOCAL_ROUTES.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: nyPriority.get(route) ?? 0.8,
-  }));
-
-  const newYorkServicePages: MetadataRoute.Sitemap = NY_SERVICE_ROUTES.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: route.includes("/emergency-locksmith") ? 0.8 : route.includes("/car-lockout") ? 0.78 : 0.74,
-  }));
-
-  const northeastPriority = new Map(
-    NORTHEAST_AREAS.map((area) => [
-      `/${area.slug}`,
-      area.slug === "philadelphia-pa" ? 0.9 : area.kind === "neighborhood" ? 0.8 : 0.82,
-    ]),
-  );
-  const northeastPages: MetadataRoute.Sitemap = NORTHEAST_LOCAL_ROUTES.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: northeastPriority.get(route) ?? 0.8,
-  }));
-
-  return [...corePages, ...massachusettsPages, ...newYorkPages, ...newYorkServicePages, ...northeastPages];
+ const routes = [...B2B_PATHS, ...B2B_AREAS.filter(a=>a.launch).map(a=>`/${a.slug}`), ...["boston-ma","cambridge-ma","newton-ma"].map(slug=>`/${slug}/turnover-rekeying`)];
+ return [...new Set(routes)].map(path=>({url:`${SITE_URL}${path}`,lastModified:CONTENT_UPDATED,changeFrequency:"monthly",priority:path===""?1:path==="/for-property-managers"?0.9:0.7}));
 }

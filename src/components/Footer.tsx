@@ -29,14 +29,14 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Published standard locksmith prices before you request help, with local matching based on the service address.
+              Locksmith coordination for property managers, landlords and rental operators. Independent providers; address-specific coverage.
             </p>
           </div>
 
           <FooterColumn
-            title="Get help"
+            title="Business services"
             links={[
-              { label: "Get my price", href: "/book" },
+              { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
               { label: "Trust & safety", href: "/trust-safety" },
@@ -55,7 +55,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-line/70 pt-6">
-          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Popular locations</div>
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Business enquiry areas</div>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {POPULAR_LOCATIONS.map(([label, href]) => (
               <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
@@ -68,7 +68,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/terms" className="hover:text-parchment">Terms</Link>
-            <Link href="/member-agreement" className="hover:text-parchment">Member agreement</Link>
+            <Link href="/guides/tenant-turnover-lock-checklist" className="hover:text-parchment">Turnover checklist</Link>
             <Link href="/contact" className="hover:text-parchment">Contact</Link>
           </div>
         </div>

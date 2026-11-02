@@ -11,10 +11,8 @@ export const SITE = {
     "Connecticut",
     "Delaware",
   ],
-  businessModel: "Locksmith marketplace platform",
-  positioning:
-    "A locksmith marketplace that shows published standard prices and scope before a customer requests a participating independent local provider. Field work is performed by independent providers. Boston and Greater Boston remain the primary launch market; localized Northeast discovery pages support address-specific requests in New York, New Jersey, Philadelphia, Connecticut and Delaware where participating provider coverage exists.",
+  businessModel: "B2B locksmith marketplace platform",
+  positioning: "Trusted Locksmith is a B2B locksmith coordination platform operated by PlanetHike OÜ for property managers, landlords and real-estate businesses. Services focus on turnover rekeys, managed-property lock changes and resident access requests. Independent providers perform field work. Boston and Greater Boston are the primary launch market; other Northeast locations are enquiry markets with address-specific coverage confirmation. New consumer booking and household membership enrollment are closed. Master-key and commercial access-control pages provide planning guidance, not confirmed specialist coverage.",
 } as const;
 
-/** Public SEO/entity URLs always use the branded production domain. */
 export const SITE_URL = SITE.url;

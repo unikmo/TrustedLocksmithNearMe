@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
-  { label: "Boston", href: "/boston-ma" },
-  { label: "New York", href: "/new-york-ny" },
-  { label: "Services & prices", href: "/services" },
+  { label: "Property managers", href: "/for-property-managers" },
+  { label: "Services", href: "/services" },
+  { label: "Areas", href: "/locations" },
   { label: "For locksmiths", href: "/partner-tech" },
 ];
 
@@ -32,16 +32,16 @@ export function Nav() {
             Log in
           </Link>
           <Link
-            href="/book"
+            href="/business-enquiry"
             className="inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-[14px] font-semibold text-ink transition hover:brightness-110"
           >
-            Get my price
+            Business enquiry
           </Link>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <Link href="/book" className="hidden min-h-10 items-center rounded-full bg-brass px-4 py-2 text-sm font-semibold text-ink sm:inline-flex">
-            Get my price
+          <Link href="/business-enquiry" className="hidden min-h-10 items-center rounded-full bg-brass px-4 py-2 text-sm font-semibold text-ink sm:inline-flex">
+            Business enquiry
           </Link>
           <details className="group relative">
             <summary className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-xl border border-line bg-surface-raised text-parchment marker:content-none" aria-label="Open navigation menu">
@@ -64,8 +64,8 @@ export function Nav() {
                 <Link href="/login" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">
                   Log in
                 </Link>
-                <Link href="/book" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink sm:hidden">
-                  Get my price
+                <Link href="/business-enquiry" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink sm:hidden">
+                  Business enquiry
                 </Link>
               </nav>
             </div>
