@@ -1,9 +1,11 @@
-import { BUSINESS_REQUESTS_AVAILABLE, BUSINESS_UNAVAILABLE_MESSAGE } from "@/lib/business-availability";
+import { BUSINESS_REQUESTS_AVAILABLE } from "@/lib/business-availability";
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PAGE_VISUALS } from "@/lib/visuals";
 import { submitContact } from "./actions";
+import { SITE } from "@/lib/site";
+import { OperatorDetails } from "@/components/OperatorDetails";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -21,18 +23,20 @@ export default async function ContactPage({
   const { error, sent, topic } = await searchParams;
   const topics = ["Portfolio enquiry", "Turnover rekey", "Specialist assessment", "Business account support", "Billing", "Provider", "Trust & safety", "Privacy request", "Legal question"];
   const defaultTopic = topics.includes(topic ?? "") ? topic! : "Portfolio enquiry";
+  const emailHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(`Trusted Locksmith — ${defaultTopic}`)}`;
 
   return (
     <div className="flex min-h-screen flex-col">
+      <a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a>
       <Nav />
-      <main className="flex-1 py-16 sm:py-20">
+      <main id="main" className="flex-1 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
             <div>
               <div className="eyebrow">Contact Trusted Locksmith</div>
-              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Tell us about your properties</h1>
+              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Get in touch</h1>
               <p className="mt-5 max-w-xl leading-7 text-parchment-dim">
-                Share the location, job scope and timing.
+                Business enquiries, support and privacy requests.
               </p>
               <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services & scope</a>
 
@@ -55,10 +59,16 @@ export default async function ContactPage({
             </div>
 
             <div className="rounded-3xl border border-line bg-surface p-6 sm:p-8 lg:sticky lg:top-28">
+              <h2 className="font-display text-2xl">Email Trusted Locksmith</h2>
+              <p className="mt-3 text-sm leading-6 text-parchment-dim">For a job enquiry, include the location, scope and preferred date. Leave out access codes, identity documents and private resident details.</p>
+              <a href={emailHref} className="mt-5 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-3 font-semibold text-ink">Email {SITE.contactEmail}</a>
+              <p className="mt-3 text-xs leading-5 text-parchment-dim">Opens your email app. Review and send the message there.</p>
+              <OperatorDetails />
+              {BUSINESS_REQUESTS_AVAILABLE ? <>
               {sent && <div className="mb-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Enquiry received. Your visit still needs confirmation.</div>}
               {error && <div className="mb-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" form="business-contact" aria-hidden="true" />
-              {!BUSINESS_REQUESTS_AVAILABLE && <p role="status" className="mb-6 rounded-xl border border-brass/40 bg-brass/10 p-4 text-sm leading-6">{BUSINESS_UNAVAILABLE_MESSAGE}</p>}
+
               <form id="business-contact" action={submitContact} className="space-y-5"><fieldset disabled={!BUSINESS_REQUESTS_AVAILABLE} className="space-y-5 disabled:opacity-50">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field label="Name"><input type="text" name="name" required autoComplete="name" placeholder="Your name" className="field" /></Field>
@@ -75,6 +85,7 @@ export default async function ContactPage({
                 <p className="text-xs leading-5 text-parchment-dim">Do not include access codes, identity documents or private resident details. Read our <a href="/privacy" className="text-brass underline">Privacy Policy</a> and <a href="/terms" className="text-brass underline">Terms</a>.</p>
                 <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Send business enquiry</button>
               </fieldset></form>
+              </> : <p role="status" className="mt-5 text-sm leading-6 text-parchment-dim">Online form submissions are temporarily unavailable. Please use the email link above.</p>}
             </div>
           </div>
         </div>

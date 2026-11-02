@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalDoc title="Privacy Policy" lastUpdated="August 16, 2026">
+    <LegalDoc title="Privacy Policy" lastUpdated="November 2, 2026">
       <LegalSection title="1. Operator and information we collect"><p>Trusted Locksmith is operated by PlanetHike OÜ. We may collect account information, Digital Access records, trusted-contact information, reference photos, service-request details, property-manager and brokerage information, provider onboarding and job-response information, transaction records, and technical/security data needed to operate the Service.</p></LegalSection>
       <LegalSection title="2. Digital Access sensitive information"><p>Where secret storage is enabled, sensitive text such as a lockbox or keypad code is encrypted by the Trusted Locksmith application server before the resulting ciphertext is persisted to the database. The server-side encryption key is not stored in the application database. Private reference photos are stored separately in a non-public storage bucket and are presented through short-lived signed access. We do not describe this design as zero-knowledge or end-to-end encryption.</p></LegalSection>
       <LegalSection title="3. Trusted contacts"><p>A trusted contact may be recorded as a spare-key holder, emergency contact, or person who can authorize access. Recording a trusted contact does not by itself grant that person access to the member&apos;s Digital Access secrets.</p></LegalSection>
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <LegalSection title="6. Vendors"><p>PlanetHike OÜ may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
       <LegalSection title="7. Security"><p>Trusted Locksmith uses technical and organizational controls intended to reduce unauthorized access, alteration, or loss. Product security claims should reflect controls actually deployed in production. No system can guarantee absolute security.</p></LegalSection>
       <LegalSection title="8. Retention and rights"><p>Information is retained as reasonably necessary for operations, transactions, safety, disputes, and legal obligations. Depending on applicable law, users may have rights to request access, correction, deletion, or a copy of certain personal information.</p></LegalSection>
-      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the <a href="/contact?topic=Privacy%20request" className="text-brass underline">Trusted Locksmith contact page</a>.</p></LegalSection>
+      <LegalSection title="9. Contact"><p>Email <a href="mailto:hello@planethike.org?subject=Trusted%20Locksmith%20privacy%20request" className="text-brass underline">hello@planethike.org</a> for privacy questions, access, correction or deletion requests. Identify the relevant account or request without including passwords or property-access codes. The company and postal contact details appear above.</p></LegalSection>
     </LegalDoc>
   );
 }

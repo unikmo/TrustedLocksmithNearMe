@@ -25,7 +25,7 @@ export default function TermsPage() {
       <LegalSection title="9. Payments, renewals and cancellation"><p>Payment, renewal, cancellation, refund, failed-match, provider no-show and dispute rules shown in the applicable checkout or request flow form part of these Terms. If automatic renewal is offered, the renewal price, frequency, cancellation method and refund policy must be disclosed before enrollment. No paid membership should be treated as active until the payment system confirms activation.</p></LegalSection>
       <LegalSection title="10. Acceptable use"><p>You may not submit false requests, request unauthorized entry, misuse another person's account, bypass security controls, interfere with the Service, or use Trusted Locksmith unlawfully.</p></LegalSection>
       <LegalSection title="11. Pre-launch legal completion"><p>Before unrestricted paid public launch, these operational terms should be supplemented with the final governing-law provisions, payment/refund terms, provider agreement, final membership terms, company contact details and any market-specific terms required for the launch jurisdictions.</p></LegalSection>
-      <LegalSection title="12. Contact"><p>Questions about these Terms can be submitted through the <a href="/contact?topic=Legal%20question" className="text-brass underline">Trusted Locksmith contact page</a>.</p></LegalSection>
+      <LegalSection title="12. Contact"><p>Email <a href="mailto:hello@planethike.org?subject=Trusted%20Locksmith%20legal%20question" className="text-brass underline">hello@planethike.org</a> about these Terms or send correspondence to the registered address above.</p></LegalSection>
     </LegalDoc>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OperatorDetails } from "@/components/OperatorDetails";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
@@ -25,6 +26,7 @@ export function LegalDoc({
             Last updated {lastUpdated}
           </p>
 
+          <OperatorDetails />
           <nav aria-label="Legal pages" className="mt-6 flex flex-wrap gap-5 text-sm text-brass"><Link href="/terms" className="underline">Terms</Link><Link href="/privacy" className="underline">Privacy</Link><Link href="/cookies" className="underline">Cookies</Link></nav>
           <div className="legal-prose mt-10 space-y-8 text-base leading-7 text-parchment-dim">
             {children}

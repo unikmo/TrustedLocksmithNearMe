@@ -3,6 +3,9 @@ export const SITE = {
   domain: "trustedlocksmithnearme.com",
   url: "https://trustedlocksmithnearme.com",
   operatorName: "PlanetHike OÜ",
+  registrationNumber: "17233027",
+  registeredAddress: "Järvevana tee 9, 11314 Tallinn, Estonia",
+  contactEmail: "hello@planethike.org",
   launchMarket: "Boston and Greater Boston, Massachusetts",
   expansionContentMarkets: [
     "New York City and selected New York State markets",
