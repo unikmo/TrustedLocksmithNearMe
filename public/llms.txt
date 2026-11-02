@@ -1,83 +1,38 @@
 # Trusted Locksmith
 
-> Locksmith marketplace operated by PlanetHike OÜ. Trusted Locksmith publishes standard prices and scope before a customer requests a participating independent local provider.
+> Business locksmith coordination for property managers, landlords, rental operators and real-estate businesses. Operated by PlanetHike OÜ.
 
-Canonical site: https://trustedlocksmithnearme.com
-Primary launch market: Boston and Greater Boston, Massachusetts
-Expanded geographic content: New York, New Jersey, Philadelphia, Connecticut and Delaware
-Business model: marketplace platform; field work is performed by independent providers
-Homepage model: market-neutral hero followed immediately by location choice
+## Scope and availability
+- B2B only. New consumer booking and household membership enrollment are closed.
+- Boston and Greater Boston, Massachusetts are the primary launch market. Northeast expansion pages are enquiry locations, not evidence of active coverage.
+- Participating independent locksmiths perform field work. Every address, provider, appointment and project scope requires confirmation. No emergency response-time guarantee is advertised.
+- Master-key and commercial access-control content is planning guidance. Specialist coverage and suitability must be confirmed before any commitment.
 
-## Customer rules
-- Standard price and scope are shown before the request.
-- Provider travel/service call is included in published standard totals.
-- Provider identity and ETA appear only after a real participating provider accepts.
-- Additional out-of-scope work or hardware must be priced and approved before it starts.
-- One-off locksmith service does not require membership.
-- A geographic or service page does not guarantee that a provider is currently available at every address or hour.
+## Main pages
+- [Property managers](https://trustedlocksmithnearme.com/for-property-managers)
+- [Landlords](https://trustedlocksmithnearme.com/landlords)
+- [Real-estate businesses](https://trustedlocksmithnearme.com/for-real-estate-agents)
+- [Business services and prices](https://trustedlocksmithnearme.com/services)
+- [Tenant turnover rekeying](https://trustedlocksmithnearme.com/services/turnover-rekeying)
+- [Portfolio locksmith coordination](https://trustedlocksmithnearme.com/services/portfolio-locksmith-services)
+- [Master-key planning and limitations](https://trustedlocksmithnearme.com/services/master-key-systems)
+- [Access-control planning and limitations](https://trustedlocksmithnearme.com/services/access-control)
+- [How requests work](https://trustedlocksmithnearme.com/how-it-works)
+- [Business enquiry](https://trustedlocksmithnearme.com/business-enquiry)
 
-## Current standard services
-- Home lockout, weekdays 8am–6pm: $99
-- Home lockout, evenings/weekends: $129
-- Home lockout, overnight/major holidays: $139
-- Car lockout at the property: $109
-- Standard rekey: $75 for provider travel/service call plus first standard cylinder; additional standard cylinders $29 each
-- Standard lock change: $89 standard labor; hardware separate
-- Smart lock installation: $129 standard labor for one compatible customer-supplied smart lock
+## Reference answers
+- [Turnover rekey costs and calculator](https://trustedlocksmithnearme.com/guides/turnover-rekey-cost)
+- [Tenant-turnover checklist](https://trustedlocksmithnearme.com/guides/tenant-turnover-lock-checklist)
+- [Trust, scope and authorization](https://trustedlocksmithnearme.com/trust-safety)
+- [Operator and business model](https://trustedlocksmithnearme.com/about)
+- [Service-area enquiry locations](https://trustedlocksmithnearme.com/locations)
+- [XML sitemap](https://trustedlocksmithnearme.com/sitemap.xml)
 
-## Property and business use cases
-Trusted Locksmith connects one-off local locksmith intent with repeat property-access workflows where the service is genuinely relevant.
+## Standard price examples (USD)
+- Rekey: $75 including travel/service call and the first standard cylinder; $29 per additional standard cylinder.
+- Lock change: $89 labor including travel for one standard residential lock at a managed property; hardware separate.
+- Smart lock: $129 labor including travel for one compatible customer-supplied smart lock; hardware, modification, electrical work and network troubleshooting excluded.
+- These are this platform's own published standard prices, not market averages. Specialty work and applicable taxes must be confirmed in the quotation.
+- Standard rekey pricing does not cover master-key design or commercial access-control installations.
 
-- Property managers: resident lockouts, turnover rekeys, lock changes and property/unit service history.
-- Landlords: tenant-turnover rekeys, rental-property access records and repeat locksmith coordination.
-- Real estate professionals: move-in rekeying, lock changes or compatible smart-lock installation after closing; separate brokerage Digital Access gifting is also available.
-- Second-home owners: rekeying, lock changes, smart access and local locksmith coordination when the owner is not on site.
-- These business/property pages do not imply that PlanetHike OÜ performs locksmith field work. Participating independent providers perform field service.
-
-## Key pages
-- Home: https://trustedlocksmithnearme.com/
-- Services and prices: https://trustedlocksmithnearme.com/services
-- Pricing and optional membership: https://trustedlocksmithnearme.com/pricing
-- Boston locksmith: https://trustedlocksmithnearme.com/boston-ma
-- New York City locksmith: https://trustedlocksmithnearme.com/new-york-ny
-- Jersey City locksmith: https://trustedlocksmithnearme.com/jersey-city-nj
-- Newark NJ locksmith: https://trustedlocksmithnearme.com/newark-nj
-- Philadelphia locksmith: https://trustedlocksmithnearme.com/philadelphia-pa
-- Stamford locksmith: https://trustedlocksmithnearme.com/stamford-ct
-- New Haven locksmith: https://trustedlocksmithnearme.com/new-haven-ct
-- Wilmington locksmith: https://trustedlocksmithnearme.com/wilmington-de
-- Rehoboth Beach locksmith: https://trustedlocksmithnearme.com/rehoboth-beach-de
-- Property managers: https://trustedlocksmithnearme.com/for-property-managers
-- Property-manager workspace: https://trustedlocksmithnearme.com/property-manager
-- Landlords: https://trustedlocksmithnearme.com/landlords
-- Real estate professionals: https://trustedlocksmithnearme.com/for-real-estate-agents
-- Brokerage workspace: https://trustedlocksmithnearme.com/brokerage
-- Second homes: https://trustedlocksmithnearme.com/second-homes
-- Digital Access: https://trustedlocksmithnearme.com/digital-access
-- How it works: https://trustedlocksmithnearme.com/how-it-works
-- Trust and safety: https://trustedlocksmithnearme.com/trust-safety
-- For locksmith providers: https://trustedlocksmithnearme.com/partner-tech
-- About Trusted Locksmith: https://trustedlocksmithnearme.com/about
-- Sitemap: https://trustedlocksmithnearme.com/sitemap.xml
-
-## Local SEO and internal relationships
-Trusted Locksmith publishes city and city/service pages for Boston and selected Greater Boston/Massachusetts markets. New York geography includes 28 localized pages covering New York City, five boroughs, selected NYC neighborhoods, Westchester/Hudson Valley markets, Long Island county hubs and major Upstate New York cities.
-
-New York service expansion adds 92 evidence-gated service/location pages:
-- emergency locksmith: 28 locations
-- car lockout: 22 locations
-- rekey locks: 20 locations
-- lock change: 14 locations
-- smart lock installation: 8 locations
-
-Northeast Wave 1 adds 47 additional hyperlocal geographic pages:
-- New Jersey: 20 locations including Jersey City, Newark, Hoboken, Elizabeth, Edison, New Brunswick, Trenton, Cherry Hill and Atlantic City.
-- Philadelphia: 8 pages covering the citywide market plus Northeast, West, South, Center City, Fishtown, North Philadelphia and Manayunk.
-- Connecticut: 12 locations including Stamford, Bridgeport, Hartford, New Haven, Norwalk, Greenwich, Fairfield and Milford.
-- Delaware: 7 locations including Wilmington, Newark, Dover, Lewes, Rehoboth Beach, Middletown and Milford.
-
-Each Northeast page includes real neighborhood/corridor context, address-specific access considerations, links to nearby markets and property-workflow relationships. Coastal and second-home markets such as Greenwich, Fairfield, Milford CT, Atlantic City, Lewes and Rehoboth Beach connect to the second-home access use case where appropriate.
-
-Local rekey, lock-change and smart-lock pages link to relevant property-manager, landlord, real-estate and second-home workflows. Their WebPage structured data also includes relatedLink relationships to those strategic pages. Northeast geography pages use relatedLink relationships to services and property workflows without inventing local service-page URLs that have not yet been created.
-
-House-lockout pages are not multiplied across New York because the current search evidence is weak and overlaps heavily with emergency-locksmith intent. Automotive pages remain vehicle-entry only and do not claim key cutting or programming. The sitemap is the canonical route inventory.
+Consult the linked page for current terms. This file is a discovery aid, not a service commitment or guarantee of search-engine inclusion.

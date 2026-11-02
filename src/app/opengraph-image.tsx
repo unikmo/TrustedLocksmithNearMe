@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Trusted Locksmith — local locksmith requests with upfront prices";
+export const alt = "Trusted Locksmith — locksmith coordination for managed properties";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,16 +54,16 @@ export default function OpenGraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 930 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 70, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
-            <span>Find a trusted locksmith</span>
-            <span style={{ color: "#D6AD57" }}>near you.</span>
+            <span>Every property.</span>
+            <span style={{ color: "#D6AD57" }}>One locksmith workflow.</span>
           </div>
           <div style={{ display: "flex", fontSize: 28, lineHeight: 1.4, color: "#B8C7DA" }}>
-            <span>Participating local providers. Upfront standard prices.</span>
+            <span>For property managers, landlords and rental operators.</span>
           </div>
         </div>
 
         <div style={{ display: "flex", gap: 24, fontSize: 20, color: "#B8C7DA" }}>
-          <span>Lockouts</span><span>·</span><span>Rekeys</span><span>·</span><span>Lock changes</span><span>·</span><span>Smart locks</span>
+          <span>Turnover rekeys</span><span>·</span><span>Portfolio requests</span><span>·</span><span>Lock changes</span><span>·</span><span>Smart locks</span>
         </div>
       </div>
     ),

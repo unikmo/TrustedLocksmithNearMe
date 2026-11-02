@@ -1,3 +1,4 @@
+import { BUSINESS_REQUESTS_AVAILABLE, BUSINESS_UNAVAILABLE_MESSAGE } from "@/lib/business-availability";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -5,8 +6,11 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { addManagedProperty, createPmServiceRequest, createPropertyManagerOrganization } from "./actions";
 
+export const metadata = { title: "Business property workspace", robots: { index: false, follow: false } };
+
 export default async function PropertyManagerWorkspace({ searchParams }: { searchParams: Promise<{ notice?: string; error?: string }> }) {
   const { notice, error } = await searchParams;
+  if (!BUSINESS_REQUESTS_AVAILABLE) return <div className="flex min-h-screen flex-col"><Nav /><main className="mx-auto w-full max-w-4xl flex-1 px-6 py-16"><div className="eyebrow">Business workspace</div><h1 className="mt-5 font-display text-4xl">We are preparing business onboarding.</h1><p role="status" className="mt-6 max-w-2xl leading-8 text-parchment-dim">{BUSINESS_UNAVAILABLE_MESSAGE}</p><Link href="/for-property-managers" className="mt-8 inline-block text-brass underline">Explore the property-manager workflow →</Link></main><Footer /></div>;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/property-manager");
@@ -49,7 +53,7 @@ export default async function PropertyManagerWorkspace({ searchParams }: { searc
             <form action={createPropertyManagerOrganization} className="mt-8 max-w-xl rounded-2xl border border-line bg-surface p-6">
               <h2 className="font-display text-2xl text-parchment">Create your portfolio workspace</h2>
               <p className="mt-2 text-sm leading-6 text-parchment-dim">Start with the organization name. Properties and requests are added after the workspace is created.</p>
-              <input name="organization_name" required placeholder="Company / management organization" className="mt-4 w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+              <input name="organization_name" required aria-label="Company / management organization" placeholder="Company / management organization" className="mt-4 w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
               <button className="mt-3 rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Create workspace</button>
             </form>
           ) : (
@@ -75,8 +79,8 @@ export default async function PropertyManagerWorkspace({ searchParams }: { searc
                   <h2 className="font-display text-2xl text-parchment">Add property</h2>
                   <p className="mt-2 text-xs leading-5 text-parchment-dim">Keep the address and unit count attached to future service requests.</p>
                   <div className="mt-4 space-y-3">
-                    <input name="name" required placeholder="Property / building name" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
-                    <input name="address" required placeholder="Street address" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                    <input name="name" required aria-label="Property name" placeholder="Property / building name" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                    <input name="address" required aria-label="Property address" placeholder="Street address" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
                     <input name="unit_count" type="number" min="1" defaultValue="1" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" aria-label="Number of units" />
                     <button className="w-full rounded-full border border-brass/40 px-5 py-2.5 text-sm font-semibold text-brass">Add property</button>
                   </div>
@@ -87,13 +91,13 @@ export default async function PropertyManagerWorkspace({ searchParams }: { searc
                   <h2 className="font-display text-2xl text-parchment">Create locksmith request</h2>
                   <p className="mt-2 text-xs leading-5 text-parchment-dim">The request stays attached to the property from intake through completion.</p>
                   <div className="mt-4 space-y-3">
-                    <select name="property_id" required className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment">
+                    <select name="property_id" aria-label="Property" required className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment">
                       <option value="">Choose property</option>
                       {propertyList.map((property: any) => <option key={property.id} value={property.id}>{property.name} · {property.address}</option>)}
                     </select>
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <input name="unit_label" placeholder="Unit (optional)" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
-                      <select name="service_type" defaultValue="lockout" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment">
+                      <input name="unit_label" aria-label="Unit" placeholder="Unit (optional)" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                      <select name="service_type" aria-label="Service type" defaultValue="lockout" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment">
                         <option value="lockout">Resident lockout</option>
                         <option value="rekey">Turnover rekey</option>
                         <option value="lock_change">Lock change</option>
@@ -101,10 +105,10 @@ export default async function PropertyManagerWorkspace({ searchParams }: { searc
                       </select>
                     </div>
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <input name="resident_name" placeholder="Resident / contact" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
-                      <input name="resident_phone" placeholder="Phone" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                      <input name="resident_name" aria-label="Site contact name" placeholder="Resident / contact" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                      <input name="resident_phone" aria-label="Site contact phone" placeholder="Phone" className="rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
                     </div>
-                    <textarea name="notes" rows={2} placeholder="Access notes / service details" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
+                    <textarea name="notes" aria-label="Job scope and access arrangements" rows={2} placeholder="Access notes / service details" className="w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-sm text-parchment" />
                     <button className="w-full rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Submit request</button>
                   </div>
                 </form>

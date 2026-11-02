@@ -34,7 +34,7 @@ export default async function LoginPage({
         )}
 
         <form action={login} className="mt-6 space-y-4">
-          <input type="hidden" name="next" value={next ?? "/app"} />
+          <input type="hidden" name="next" value={next ?? "/property-manager"} />
           <div>
             <label className="mb-1.5 block text-xs font-mono uppercase tracking-wide text-parchment-dim">Email</label>
             <input
@@ -61,7 +61,7 @@ export default async function LoginPage({
         </form>
 
         <div className="mt-6 grid gap-2 text-center text-xs text-parchment-dim">
-          <p>New customer? <Link href="/signup" className="text-brass hover:underline">Create a membership account</Link></p>
+          <p>Property business? <Link href="/signup" className="text-brass hover:underline">Create a business account</Link></p>
           <p>Locksmith provider? <Link href="/providers/register" className="text-brass hover:underline">Create a provider account</Link></p>
         </div>
       </div>

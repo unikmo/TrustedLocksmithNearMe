@@ -1,5 +1,6 @@
 "use server";
 
+import { safeBusinessNext } from "@/lib/business-only";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -8,7 +9,7 @@ export async function login(formData: FormData) {
 
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
-  const next = String(formData.get("next") ?? "/app");
+  const next = String(formData.get("next") ?? "/property-manager");
 
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
@@ -16,5 +17,5 @@ export async function login(formData: FormData) {
     redirect(`/login?error=${encodeURIComponent(error.message)}`);
   }
 
-  redirect(next || "/app");
+  redirect(safeBusinessNext(next));
 }
