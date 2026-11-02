@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
@@ -12,8 +13,9 @@ export function LegalDoc({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a>
       <Nav />
-      <main className="flex-1 py-20">
+      <main id="main" className="flex-1 py-12 sm:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <div className="eyebrow">Legal</div>
           <h1 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
@@ -23,7 +25,8 @@ export function LegalDoc({
             Last updated {lastUpdated}
           </p>
 
-          <div className="legal-prose mt-12 space-y-8 text-sm leading-relaxed text-parchment-dim">
+          <nav aria-label="Legal pages" className="mt-6 flex flex-wrap gap-5 text-sm text-brass"><Link href="/terms" className="underline">Terms</Link><Link href="/privacy" className="underline">Privacy</Link><Link href="/cookies" className="underline">Cookies</Link></nav>
+          <div className="legal-prose mt-10 space-y-8 text-base leading-7 text-parchment-dim">
             {children}
           </div>
         </div>

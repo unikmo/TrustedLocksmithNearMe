@@ -29,7 +29,7 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Locksmith coordination for property managers, landlords and rental operators. Independent providers; address-specific coverage.
+              Property access work, organized.
             </p>
           </div>
 
@@ -39,6 +39,7 @@ export function Footer() {
               { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
+              { label: "FAQ", href: "/faq" },
               { label: "Trust & safety", href: "/trust-safety" },
             ]}
           />
@@ -68,7 +69,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/terms" className="hover:text-parchment">Terms</Link>
-            <Link href="/guides/tenant-turnover-lock-checklist" className="hover:text-parchment">Turnover checklist</Link>
+            <Link href="/cookies" className="hover:text-parchment">Cookies</Link>
             <Link href="/contact" className="hover:text-parchment">Contact</Link>
           </div>
         </div>

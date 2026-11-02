@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <LegalSection title="6. Vendors"><p>PlanetHike OÜ may use hosting, authentication, storage, communications, analytics, and payment vendors to operate Trusted Locksmith. Information is shared with those vendors only as appropriate for their role and subject to applicable requirements.</p></LegalSection>
       <LegalSection title="7. Security"><p>Trusted Locksmith uses technical and organizational controls intended to reduce unauthorized access, alteration, or loss. Product security claims should reflect controls actually deployed in production. No system can guarantee absolute security.</p></LegalSection>
       <LegalSection title="8. Retention and rights"><p>Information is retained as reasonably necessary for operations, transactions, safety, disputes, and legal obligations. Depending on applicable law, users may have rights to request access, correction, deletion, or a copy of certain personal information.</p></LegalSection>
-      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the Trusted Locksmith contact page.</p></LegalSection>
+      <LegalSection title="9. Contact"><p>Privacy questions and requests can be submitted through the <a href="/contact?topic=Privacy%20request" className="text-brass underline">Trusted Locksmith contact page</a>.</p></LegalSection>
     </LegalDoc>
   );
 }

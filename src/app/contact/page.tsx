@@ -19,7 +19,7 @@ export default async function ContactPage({
   searchParams: Promise<{ error?: string; sent?: string; topic?: string }>;
 }) {
   const { error, sent, topic } = await searchParams;
-  const topics = ["Portfolio enquiry", "Turnover rekey", "Specialist assessment", "Business account support", "Billing", "Provider", "Trust & safety"];
+  const topics = ["Portfolio enquiry", "Turnover rekey", "Specialist assessment", "Business account support", "Billing", "Provider", "Trust & safety", "Privacy request", "Legal question"];
   const defaultTopic = topics.includes(topic ?? "") ? topic! : "Portfolio enquiry";
 
   return (
@@ -32,7 +32,7 @@ export default async function ContactPage({
               <div className="eyebrow">Contact Trusted Locksmith</div>
               <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Tell us about your properties</h1>
               <p className="mt-5 max-w-xl leading-7 text-parchment-dim">
-                For property managers, landlords, rental operators and real-estate businesses. Share your business scope, service area and timing; do not include access codes or sensitive resident information.
+                Share the location, job scope and timing.
               </p>
               <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services & scope</a>
 
@@ -52,15 +52,10 @@ export default async function ContactPage({
                 </figcaption>
               </figure>
 
-              <div className="mt-9 space-y-5 text-sm text-parchment-dim">
-                <Info title="Business accounts" body="Managed properties, recurring requests and portfolio scope." />
-                <Info title="Property partnerships" body="Property managers, landlords and real-estate professionals." />
-                <Info title="Provider network" body="Independent locksmith providers applying to receive local requests." />
-              </div>
             </div>
 
             <div className="rounded-3xl border border-line bg-surface p-6 sm:p-8 lg:sticky lg:top-28">
-              {sent && <div className="mb-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Enquiry received. This is not a confirmed appointment or a guarantee of provider availability.</div>}
+              {sent && <div className="mb-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Enquiry received. Your visit still needs confirmation.</div>}
               {error && <div className="mb-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" form="business-contact" aria-hidden="true" />
               {!BUSINESS_REQUESTS_AVAILABLE && <p role="status" className="mb-6 rounded-xl border border-brass/40 bg-brass/10 p-4 text-sm leading-6">{BUSINESS_UNAVAILABLE_MESSAGE}</p>}
@@ -76,7 +71,8 @@ export default async function ContactPage({
                     {topics.map((item) => <option key={item}>{item}</option>)}
                   </select>
                 </Field>
-                <Field label="Message"><textarea name="message" required rows={6} placeholder="Describe the buildings, job types, cylinder counts and preferred timing. Specialist availability must be confirmed. Do not include keys, access codes or identity documents." className="field resize-y" /></Field>
+                <Field label="Message"><textarea name="message" required rows={6} placeholder="Buildings, job types, cylinder counts and preferred timing." className="field resize-y" /></Field>
+                <p className="text-xs leading-5 text-parchment-dim">Do not include access codes, identity documents or private resident details. Read our <a href="/privacy" className="text-brass underline">Privacy Policy</a> and <a href="/terms" className="text-brass underline">Terms</a>.</p>
                 <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Send business enquiry</button>
               </fieldset></form>
             </div>
@@ -91,8 +87,4 @@ export default async function ContactPage({
 
 function Field({ label, children }: { label: string; children?: React.ReactNode }) {
   return <label className="block"><span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-parchment-dim">{label}</span>{children}</label>;
-}
-
-function Info({ title, body }: { title: string; body: string }) {
-  return <div className="border-l border-line pl-4"><div className="font-medium text-parchment">{title}</div><div className="mt-1 text-sm leading-6 text-parchment-dim">{body}</div></div>;
 }

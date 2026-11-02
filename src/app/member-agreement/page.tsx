@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 export default function MemberAgreementPage() {
   return (
     <LegalDoc title="Member Agreement" lastUpdated="August 16, 2026">
+      <LegalSection title="Historical membership terms"><p>New consumer membership enrollment is closed. These terms are retained for reference and do not offer a new plan or cancel an existing agreement.</p></LegalSection>
       <LegalSection title="1. Membership is optional and is not insurance">
         <p>Trusted Locksmith membership is an optional service-platform membership operated by PlanetHike OÜ. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
       </LegalSection>

@@ -56,7 +56,7 @@ export const B2B_GUIDES = {
   },
 } as const;
 export type GuideSlug = keyof typeof B2B_GUIDES;
-export const B2B_PATHS = ["", "/about", "/services", "/how-it-works", "/locations", "/landlords", "/for-property-managers", "/for-real-estate-agents", "/partner-tech", "/trust-safety", "/contact", "/business-enquiry", ...Object.keys(B2B_SERVICES).map(s => `/services/${s}`), ...Object.keys(B2B_GUIDES).map(s => `/guides/${s}`)];
+export const B2B_PATHS = ["", "/about", "/services", "/how-it-works", "/faq", "/locations", "/landlords", "/for-property-managers", "/for-real-estate-agents", "/partner-tech", "/trust-safety", "/contact", "/business-enquiry", ...Object.keys(B2B_SERVICES).map(s => `/services/${s}`), ...Object.keys(B2B_GUIDES).map(s => `/guides/${s}`)];
 export function businessMetadata(title: string, description: string, path: string): Metadata {
   return { title, description, alternates: { canonical: path }, openGraph: { title, description, url: `${SITE_URL}${path}`, type: "website", images: ["/opengraph-image"] }, twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] } };
 }
