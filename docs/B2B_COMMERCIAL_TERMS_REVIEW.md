@@ -18,7 +18,7 @@ These are proposed commercial choices, not findings about an existing agreement.
 
 ### 1. Parties and scope
 
-The platform operator is PlanetHike OÜ, Estonian registry no. 17233027, Järvevana tee 9, 11314 Tallinn, Estonia. Contact: hello@planethike.org. Trusted Locksmith is its business name for the property-service platform.
+The platform operator is PlanetHike OÜ, Estonian registry no. 17233027, Järvevana tee 9, 11314 Tallinn, Estonia. Contact: hello@trustedlocksmithnearme.com. Trusted Locksmith is its business name for the property-service platform.
 
 The customer is the property business identified in the accepted quotation. Each quotation must identify the independent provider performing the work and state who contracts for, invoices and receives payment for the field service. Do not accept a paid job while that allocation is unresolved. The platform's coordination role does not replace a provider's responsibility for its work or the operator's responsibility for its own services.
 
@@ -46,7 +46,7 @@ If no provider attends or the agreed work is not performed, do not charge for th
 
 ### 7. Completion and disputes
 
-Record the work performed, approved variations, charges and key handover. The customer should report a workmanship or billing issue promptly to the provider and copy hello@planethike.org so the platform can help trace the record. Do not treat acknowledgement of attendance or payment as a waiver of non-waivable rights. No special warranty period is offered by this draft; each accepted quotation must disclose any offered warranty.
+Record the work performed, approved variations, charges and key handover. The customer should report a workmanship or billing issue promptly to the provider and copy hello@trustedlocksmithnearme.com so the platform can help trace the record. Do not treat acknowledgement of attendance or payment as a waiver of non-waivable rights. No special warranty period is offered by this draft; each accepted quotation must disclose any offered warranty.
 
 ### 8. Responsibilities and claims
 
@@ -63,7 +63,7 @@ The proposed agreement is governed by Massachusetts law, subject to mandatory la
 3. **Offer acceptance:** Each offer identifies the job scope, site, timing, customer price where relevant, provider payout, platform fees, taxes, invoicing party and cancellation treatment. No hidden fee or payout formula is introduced by this schedule. Do not activate paid acceptance until these terms are populated and accepted.
 4. **Changes and completion:** Do not carry out or charge for extra work without approval. Record attendance, completion, approved variations and key handover. Notify the customer and platform promptly if a job cannot be fulfilled.
 5. **Payment and charge disputes:** Stripe-hosted onboarding may collect payout information. Payout timing, reserves, refunds and chargeback allocation must be disclosed in the accepted provider offer or signed schedule before paid work begins. This draft does not authorize deductions from unrelated jobs.
-6. **Personal data and access secrets:** Use only the information necessary for the accepted job. Do not retain or reuse access codes, documents or resident details for unrelated purposes. Report a suspected data or access incident promptly to hello@planethike.org. A separate data-role assessment and processing agreement is required where applicable.
+6. **Personal data and access secrets:** Use only the information necessary for the accepted job. Do not retain or reuse access codes, documents or resident details for unrelated purposes. Report a suspected data or access incident promptly to hello@trustedlocksmithnearme.com. A separate data-role assessment and processing agreement is required where applicable.
 7. **Removal and existing jobs:** A provider may stop accepting new offers. The operator may restrict future offers for unresolved safety, eligibility or misuse concerns. Existing accepted jobs, earned payments and complaints still need to be resolved under their applicable terms.
 
 ## Release requirements

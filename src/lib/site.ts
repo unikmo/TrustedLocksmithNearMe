@@ -5,7 +5,7 @@ export const SITE = {
   operatorName: "PlanetHike OÜ",
   registrationNumber: "17233027",
   registeredAddress: "Järvevana tee 9, 11314 Tallinn, Estonia",
-  contactEmail: "hello@planethike.org",
+  contactEmail: "hello@trustedlocksmithnearme.com",
   launchMarket: "Boston and Greater Boston, Massachusetts",
   expansionContentMarkets: [
     "New York City and selected New York State markets",
