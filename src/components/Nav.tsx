@@ -41,7 +41,7 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <Link href="/concierge" className="hidden min-h-10 items-center rounded-full bg-brass px-4 py-2 text-sm font-semibold text-ink sm:inline-flex">
+          <Link href="/business-enquiry" className="hidden min-h-10 items-center rounded-full bg-brass px-4 py-2 text-sm font-semibold text-ink sm:inline-flex">
             Business enquiry
           </Link>
           <details className="group relative">
@@ -65,7 +65,7 @@ export function Nav() {
                 <Link href="/login" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">
                   Log in
                 </Link>
-                <Link href="/concierge" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink sm:hidden">
+                <Link href="/business-enquiry" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink sm:hidden">
                   Business enquiry
                 </Link>
               </nav>
