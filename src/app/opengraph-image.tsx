@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Trusted Locksmith — locksmith coordination for managed properties";
+export const alt = "Trusted Locksmith — Keys missing. Panic optional.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,16 +54,16 @@ export default function OpenGraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 930 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 70, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
-            <span>Every property.</span>
-            <span style={{ color: "#D6AD57" }}>One locksmith workflow.</span>
+            <span>Keys missing.</span>
+            <span style={{ color: "#D6AD57" }}>Panic optional.</span>
           </div>
           <div style={{ display: "flex", fontSize: 28, lineHeight: 1.4, color: "#B8C7DA" }}>
-            <span>For property managers, landlords and rental operators.</span>
+            <span>Clear locksmith guidance. Digital-first, no physical boxes.</span>
           </div>
         </div>
 
         <div style={{ display: "flex", gap: 24, fontSize: 20, color: "#B8C7DA" }}>
-          <span>Turnover rekeys</span><span>·</span><span>Portfolio requests</span><span>·</span><span>Lock changes</span><span>·</span><span>Smart locks</span>
+          <span>Lockouts</span><span>·</span><span>Rekeying</span><span>·</span><span>Smart locks</span><span>·</span><span>Property services</span>
         </div>
       </div>
     ),
