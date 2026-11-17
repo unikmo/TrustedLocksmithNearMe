@@ -4,7 +4,11 @@ import { Footer } from "@/components/Footer";
 import { B2B_SERVICES } from "@/lib/b2b";
 import type { Metadata } from "next";
 import { PAGE_VISUALS } from "@/lib/visuals";
-export const metadata: Metadata = { title: "Trusted Locksmith | Keys Missing. Panic Optional.", description: "Clear locksmith guidance, transparent standard service prices and a no-app digital concierge. Property management services also available. Coverage and appointments require confirmation.", alternates: {canonical: "/"} }; address-specific availability.", "/");
+export const metadata: Metadata = {
+  title: "Trusted Locksmith | Keys Missing. Panic Optional.",
+  description: "Clear locksmith guidance, transparent standard prices and a no-app digital concierge. Property services also available. Coverage and appointments require confirmation.",
+  alternates: { canonical: "/" }
+};
 export default function Home() { return <div className="flex min-h-screen flex-col"><a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a><Nav /><main id="main">
 <section className="home-hero border-b border-line">
   <div className="home-hero__inner">
