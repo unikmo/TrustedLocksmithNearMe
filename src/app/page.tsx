@@ -21,7 +21,7 @@ export default function Home() { return <div className="flex min-h-screen flex-c
       </div>
     </div>
     <div className="home-hero__media border border-line">
-      <img src="/brownstone-lockout-story.png" alt="Editorial illustration of a woman inside a brownstone holding up found keys while her smiling dog waits safely on the stoop" width="1536" height="1024" fetchPriority="high" />
+      <img src="/found-keys-editorial.svg" alt="Hand-built editorial illustration of a woman inside a brownstone holding up found keys after an almost-lockout" width="1600" height="1050" fetchPriority="high" />
     </div>
   </div>
 </section>
