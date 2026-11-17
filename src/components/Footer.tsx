@@ -29,7 +29,7 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Keys missing? Panic optional. Clear locksmith guidance and property services.
+              Keys missing? Panic optional. Digital access guidance and property-service coordination; field work, when available, is performed by independent providers.
             </p>
           </div>
 

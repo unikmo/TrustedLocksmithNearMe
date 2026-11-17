@@ -33,7 +33,7 @@ export function Nav() {
             Log in
           </Link>
           <Link
-            href="/concierge"
+            href="/business-enquiry"
             className="inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-[14px] font-semibold text-ink transition hover:brightness-110"
           >
             Business enquiry

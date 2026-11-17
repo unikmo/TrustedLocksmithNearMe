@@ -5,23 +5,23 @@ import { B2B_SERVICES } from "@/lib/b2b";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Trusted Locksmith | Keys Missing. Panic Optional.",
-  description: "Clear locksmith guidance, transparent standard prices and a no-app digital concierge. Property services also available. Coverage and appointments require confirmation.",
+  description: "Digital access guidance and property-service coordination. Trusted Locksmith connects enquiries with independent providers when availability and applicable requirements are confirmed.",
   alternates: { canonical: "/" }
 };
 export default function Home() { return <div className="flex min-h-screen flex-col"><a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a><Nav /><main id="main">
 <section className="home-hero border-b border-line">
   <div className="home-hero__inner">
     <div className="home-hero__copy">
-      <div className="eyebrow">The digital-first locksmith guide</div>
+      <div className="eyebrow">Digital guidance · independent providers where confirmed</div>
       <h1 className="home-hero__title font-display">Keys missing.<span className="block italic text-brass">Panic optional.</span></h1>
-      <p className="home-hero__description text-parchment-dim">Locked out, moving in or upgrading your locks? Get clear next steps and published service prices before making a decision.</p>
+      <p className="home-hero__description text-parchment-dim">Start with practical access guidance. Trusted Locksmith is a digital platform: independent providers handle any field work, subject to availability and applicable requirements.</p>
       <div className="home-hero__actions">
         <Link href="/concierge" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Start with digital concierge</Link>
-        <Link href="/for-property-managers" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm">For property managers →</Link>
+        <Link href="/business-enquiry" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm">Business enquiry →</Link>
       </div>
     </div>
     <div className="home-hero__media border border-line">
-      <img src={"/hero-key-art.svg"} alt="Original editorial illustration of a gold key against a midnight-blue lock" width="1600" height="1100" fetchPriority="high" />
+      <img src="/brownstone-lockout-story.png" alt="Editorial illustration of a woman inside a brownstone holding up found keys while her smiling dog waits safely on the stoop" width="1536" height="1024" fetchPriority="high" />
     </div>
   </div>
 </section>
