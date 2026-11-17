@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     description:
       "Lockout and rekey guidance, transparent standard pricing and business locksmith coordination. Availability and appointments confirmed separately.",
     url: SITE.url,
-    images: [PAGE_VISUALS.services.src],
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith | Business Property Services",
+    title: "Trusted Locksmith | Keys Missing. Panic Optional.",
     description:
       "Locksmith guidance and property access services, with clear next steps.",
     images: [PAGE_VISUALS.services.src],
