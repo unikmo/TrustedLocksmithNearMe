@@ -18,7 +18,7 @@ export default function Home() { return <div className="flex min-h-screen flex-c
       </div>
     </div>
     <div className="home-hero__media border border-line">
-      <img src={PAGE_VISUALS.booking.src} alt={PAGE_VISUALS.booking.alt} width="1600" height="1100" fetchPriority="high" />
+      <img src={"/hero-key-art.svg"} alt="Original editorial illustration of a gold key against a midnight-blue lock" width="1600" height="1100" fetchPriority="high" />
     </div>
   </div>
 </section>
