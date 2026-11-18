@@ -29,13 +29,14 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Property access work, organized.
+              Keys missing? Panic optional. Digital access guidance and property-service coordination; field work, when available, is performed by independent providers.
             </p>
           </div>
 
           <FooterColumn
-            title="Business services"
+            title="Explore"
             links={[
+              { label: "Digital concierge", href: "/concierge" },
               { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
@@ -44,7 +45,7 @@ export function Footer() {
             ]}
           />
           <FooterColumn
-            title="More"
+            title="For businesses & providers"
             links={[
               { label: "About", href: "/about" },
               { label: "For locksmiths", href: "/partner-tech" },
@@ -56,7 +57,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-line/70 pt-6">
-          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Business enquiry areas</div>
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Location guides · availability must be confirmed</div>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {POPULAR_LOCATIONS.map(([label, href]) => (
               <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>

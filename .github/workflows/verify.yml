@@ -1,0 +1,26 @@
+name: Verify Trusted Locksmith
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: node scripts/check-b2b-policy.mjs
+      - run: npm run build
+      - name: Assert consumer discovery is public while transactions remain closed
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';let h=fs.readFileSync('src/app/page.tsx','utf8');let c=fs.readFileSync('src/app/concierge/page.tsx','utf8');let b=fs.readFileSync('src/lib/business-only.ts','utf8');if(!h.includes('Panic optional')||!c.includes('Email the concierge')||!b.includes('CLOSED_CONSUMER_ROOTS'))process.exit(1)"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
+  { label: "Digital concierge", href: "/concierge" },
   { label: "Property managers", href: "/for-property-managers" },
   { label: "Services", href: "/services" },
   { label: "Areas", href: "/locations" },

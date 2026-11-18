@@ -6,27 +6,27 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Trusted Locksmith | Property & Portfolio Locksmith Services",
+    default: "Trusted Locksmith | Keys Missing. Panic Optional.",
     template: `%s | ${SITE.brandName}`,
   },
   description:
-    "Business locksmith coordination for property managers, landlords and rental portfolios. Turnover rekeys and property service history; address-specific coverage.",
+    "Digital-first locksmith guidance, transparent service scope and a no-app concierge, alongside property-manager locksmith workflows. Service coverage requires confirmation.",
   applicationName: SITE.brandName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.brandName,
-    title: "Trusted Locksmith | Business Property Services",
+    title: "Trusted Locksmith | Clear Locksmith Guidance",
     description:
-      "Turnover rekeys and locksmith coordination for managed properties. Independent providers; coverage confirmed by address.",
+      "Lockout and rekey guidance, transparent standard pricing and business locksmith coordination. Availability and appointments confirmed separately.",
     url: SITE.url,
-    images: [PAGE_VISUALS.services.src],
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith | Business Property Services",
+    title: "Trusted Locksmith | Keys Missing. Panic Optional.",
     description:
-      "Business locksmith workflows for property managers and rental operators.",
+      "Locksmith guidance and property access services, with clear next steps.",
     images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 } },

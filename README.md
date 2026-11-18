@@ -2,6 +2,14 @@
 
 Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
 
+## Positioning update (17 November 2026) — consumer-aware, digital first
+
+The homepage and navigation now introduce the Trusted Locksmith consumer-facing brand using a memorable editorial voice and simple digital concierge guidance. Property managers and other B2B customers retain their dedicated services and workflows.
+
+**Release boundary:** The /concierge route offers self-serve guidance and a user-initiated email enquiry. It is **not live dispatch**. Consumer booking routes remain redirected and server-side order mutations remain closed. B2B intake is also disabled by `BUSINESS_REQUESTS_AVAILABLE = false` pending verified database restoration and operational QA. No physical key-box logistics or consumer membership enrollment are included in this repositioning.
+
+**Product strategy:** B2C-led awareness, B2B-led initial monetization, with paid consumer requests activated only after provider availability, payment, address/service-area matching, communications and legal requirements are verified.
+
 ## Canonical project identity
 
 - Brand: Trusted Locksmith
