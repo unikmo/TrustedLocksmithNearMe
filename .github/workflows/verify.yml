@@ -20,6 +20,7 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: node scripts/check-b2b-policy.mjs
+      - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
       - run: npm run build
       - name: Assert free plan and deferred quote safeguards
         run: |
