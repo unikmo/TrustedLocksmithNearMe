@@ -17,11 +17,11 @@ const options = [
 ];
 export default async function Concierge({searchParams}:{searchParams: Promise<{need?: string}>}) {
  const {need} = await searchParams;
- return <div className="flex min-h-screen flex-col"><Nav/><main className="flex-1">
+ return <div className="kh-theme flex min-h-screen flex-col"><Nav/><main className="flex-1">
   <section className="mx-auto max-w-[1000px] px-6 py-14 sm:px-8">
-   <div className="eyebrow">Digital concierge · No app, no boxes</div>
-   <h1 className="mt-4 max-w-3xl font-display text-5xl tracking-tight sm:text-6xl">Door trouble? Start here.</h1>
-   <p className="mt-5 max-w-2xl text-lg leading-8 text-parchment-dim">Choose what you need. We will help you understand the options before you request any work.</p>
+   <div className="eyebrow">Free guidance · No pressure</div>
+   <h1 className="mt-4 max-w-3xl font-display text-5xl tracking-tight sm:text-6xl">Keys happen. Here are your options.</h1>
+   <p className="mt-5 max-w-2xl text-lg leading-8 text-parchment-dim">Choose what you need, check your backup options and see what a locksmith visit may involve. You stay in control.</p>
    <div className="mt-10 grid gap-4 md:grid-cols-3">
     {options.map(item=><article key={item.id} className={`rounded-2xl border p-6 ${need===item.id?"border-brass bg-surface-raised":"border-line bg-surface"}`}>
       <h2 className="font-display text-2xl">{item.title}</h2><p className="mt-3 min-h-28 text-sm leading-6 text-parchment-dim">{item.description}</p>
