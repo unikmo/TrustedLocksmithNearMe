@@ -13,12 +13,12 @@ Three public product journeys:
 
 **No-pressure policy:** optional add-on recommendations must be written, itemized and considered away from the provider; proposed 24-hour acceptance delay. Genuine change-of-scope, urgent security and pre-authorized B2B maintenance require separate approval logic. The pure eligibility function is tested but is not integrated with authenticated database quote acceptance or payment. No claim of live enforcement until operational tests and legal signoff.
 
-**Release state:** Draft PR #12 only; no merge or production promotion. Consumer dispatch and paid membership remain blocked. Business intake remains disabled. The current connected Supabase account does not reveal a verified TLNM project. Public preview and any paid functionality require end-to-end QA and the correct infrastructure.
+**Legal operator:** TSquare Ventures LLC, a Wyoming limited liability company (filing ID 2026-002072750). The previously used PlanetHike OÜ identity is superseded for TLNM.\n\n**Release state:** Draft PR #12 only; no merge or production promotion. Consumer dispatch and paid membership remain blocked. Business intake remains disabled. The current connected Supabase account does not reveal a verified TLNM project. Public preview and any paid functionality require end-to-end QA and the correct infrastructure.
 
 **Design approach:** warm cream backgrounds, clear navy type, lime CTAs, friendly people-first photography, no fear-based messaging, common TLNM navigation and footer, and copy that never implies unverified provider availability.
 
 
-Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
+Locksmith marketplace and property-access platform operated by TSquare Ventures LLC.
 
 ## Positioning update (17 November 2026) — consumer-aware, digital first
 
@@ -34,7 +34,7 @@ The homepage and navigation now introduce the Trusted Locksmith consumer-facing 
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
 - npm package: `trusted-locksmith-near-me`
-- Operator: PlanetHike OÜ
+- Operator: TSquare Ventures LLC
 - Primary launch market: Boston and Greater Boston, Massachusetts
 - Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work
