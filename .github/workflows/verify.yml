@@ -27,6 +27,9 @@ jobs:
             echo "Obsolete legal operator text detected" >&2
             exit 1
           fi
+      - name: Verify membership pricing remains public
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';const c=fs.readFileSync('next.config.ts','utf8');if(/source:\\s*['\"']\\/pricing['\"']/.test(c))process.exit(1)"
       - run: npx tsc --noEmit
       - run: node scripts/check-b2b-policy.mjs
       - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
