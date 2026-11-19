@@ -80,7 +80,7 @@ async def run():
         response=await page.goto(BASE+path,wait_until="domcontentloaded",timeout=30000)
         text=await page.locator("body").inner_text()
         final_url=page.url
-        if path=="/book": ok="/property-manager" in final_url or "not available" in text.lower() or "preparing business onboarding" in text.lower()
+        if path=="/book": ok=("/property-manager" in final_url or "/business-enquiry" in final_url) and not any(x in text.lower() for x in ["pay now", "confirm booking"])
         else: ok="temporarily unavailable" in text.lower() or "not accepting" in text.lower() or "email" in text.lower()
         record(f"closed operational route {path}",ok,f"HTTP {response.status if response else 0}; final={final_url}; snippet={text[:160]}")
       except Exception as e:record(f"closed operational route {path}",False,repr(e))
