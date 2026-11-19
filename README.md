@@ -1,6 +1,24 @@
 # Trusted Locksmith Near Me
 
-Locksmith marketplace and property-access platform operated by PlanetHike OÜ.
+## TLNM / Keys Happen direction — 19 November 2026
+
+**Brand promise:** Keys happen. Have a plan. Pressure shouldn't.
+
+Three public product journeys:
+1. Household: free Keys Happen Plan using safe preset contact roles, no access secrets, local share/print, and no sign-in.
+2. Property businesses: rekeying, turnover, lock changes and portfolio access coordination; business intake remains closed until the verified TLNM database and operations are restored.
+3. Independent locksmiths: jobs scoped upfront, provider choice, no lead-purchase fees, fixed provider payout covering standard travel and labor within the defined radius; claim, payout readiness and marketplace validation remain gates.
+
+**Membership proposal (not open):** $30/year and up to $100 per membership year toward eligible labor only; materials and labor exceeding the remaining balance are customer-paid. Provider payout and TLNM member contribution are distinct financial flows. The old $29/$49/$89 tiers and membership agreement are historical product records and must not be silently migrated or applied to the proposed offer. A labor-benefit preview is available at /pricing, not a checkout.
+
+**No-pressure policy:** optional add-on recommendations must be written, itemized and considered away from the provider; proposed 24-hour acceptance delay. Genuine change-of-scope, urgent security and pre-authorized B2B maintenance require separate approval logic. The pure eligibility function is tested but is not integrated with authenticated database quote acceptance or payment. No claim of live enforcement until operational tests and legal signoff.
+
+**Legal operator:** TSquare Ventures LLC, a Wyoming limited liability company (filing ID 2026-002072750). Use TSquare Ventures LLC consistently across every TLNM public and legal surface.\n\n**Release state:** Draft PR #12 only; no merge or production promotion. Consumer dispatch and paid membership remain blocked. Business intake remains disabled. The current connected Supabase account does not reveal a verified TLNM project. Public preview and any paid functionality require end-to-end QA and the correct infrastructure.
+
+**Design approach:** warm cream backgrounds, clear navy type, lime CTAs, friendly people-first photography, no fear-based messaging, common TLNM navigation and footer, and copy that never implies unverified provider availability.
+
+
+Locksmith marketplace and property-access platform operated by TSquare Ventures LLC.
 
 ## Positioning update (17 November 2026) — consumer-aware, digital first
 
@@ -16,7 +34,7 @@ The homepage and navigation now introduce the Trusted Locksmith consumer-facing 
 - Domain: https://trustedlocksmithnearme.com
 - Repository: unikmo/TrustedLocksmithNearMe
 - npm package: `trusted-locksmith-near-me`
-- Operator: PlanetHike OÜ
+- Operator: TSquare Ventures LLC
 - Primary launch market: Boston and Greater Boston, Massachusetts
 - Expansion discovery markets: New York City and selected New York State markets
 - Platform role: Trusted Locksmith operates the marketplace; participating independent providers perform field locksmith work

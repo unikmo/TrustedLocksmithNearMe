@@ -1,0 +1,11 @@
+import {strict as assert} from "node:assert";import {test} from "node:test";import {canAcceptAdditionalWork, type OptionalQuote} from "../src/lib/no-pressure-policy";
+const t0=Date.parse("2026-11-19T12:00:00Z");
+const base:OptionalQuote={id:"Q1",kind:"optional",customerVisibleAt:new Date(t0).toISOString(),expiresAt:new Date(t0+72*3600000).toISOString(),providerOnSite:false,acceptedVersion:1,currentVersion:1,writtenTotalCents:11000,originalJobClosed:true,independentApproval:false};
+test("24 hour delay enforced",()=>assert.equal(canAcceptAdditionalWork(base,new Date(t0+23*3600000)).allowed,false));
+test("eligible after 24h",()=>assert.equal(canAcceptAdditionalWork(base,new Date(t0+24*3600000)).allowed,true));
+test("provider present blocks acceptance",()=>assert.equal(canAcceptAdditionalWork({...base,providerOnSite:true},new Date(t0+30*3600000)).allowed,false));
+test("new quote version requires new consent",()=>assert.equal(canAcceptAdditionalWork({...base,currentVersion:2},new Date(t0+30*3600000)).allowed,false));
+test("original work not closed blocks upsell",()=>assert.equal(canAcceptAdditionalWork({...base,originalJobClosed:false},new Date(t0+30*3600000)).allowed,false));
+test("expired quote rejected",()=>assert.equal(canAcceptAdditionalWork(base,new Date(t0+73*3600000)).allowed,false));
+test("emergency exception is not self-declared",()=>assert.equal(canAcceptAdditionalWork({...base,kind:"urgent_security"},new Date(t0+1000)).allowed,false));
+test("B2B separate authorization required",()=>assert.equal(canAcceptAdditionalWork({...base,kind:"b2b_preauthorized"},new Date(t0+1000)).allowed,false));

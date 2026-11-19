@@ -47,7 +47,7 @@ export default async function AdminPage({
   const acceptedOffers = (offers ?? []).filter((offer: any) => offer.status === "accepted");
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="kh-theme flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1 py-10">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">

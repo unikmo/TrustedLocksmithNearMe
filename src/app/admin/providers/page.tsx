@@ -44,7 +44,7 @@ export default async function ProviderAcquisitionPage() {
   const available = providers.filter((provider: any) => provider.is_available && provider.stripe_payouts_enabled);
 
   return (
-    <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1 py-10"><div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="flex-1 py-10"><div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><div className="eyebrow">Internal provider acquisition</div><h1 className="mt-2 font-display text-4xl text-parchment">Provider supply funnel</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">One source of truth across markets for who can be contacted, who received an invitation, who opened it, who claimed, who completed secure payouts and who is available for work.</p></div><Link href="/admin" className="text-sm font-semibold text-brass">Network operations →</Link></div>
 
       {!schemaReady && <div className="mt-6 rounded-2xl border border-ember/30 bg-ember/10 p-5 text-sm leading-6 text-ember"><strong>Database activation pending.</strong> The provider acquisition schema is in the repo but has not been verified against the connected Trusted Locksmith Supabase project. Outreach remains safely disabled until that database is connected and migrated.</div>}

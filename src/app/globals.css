@@ -121,3 +121,53 @@ summary::-webkit-details-marker { display: none; }
   .home-hero__actions { gap: .5rem; }
   .home-hero__actions a { padding-inline: 1rem; }
 }
+
+/* TLNM Keys Happen visual layer — scoped so legacy portal styles remain intact. */
+.kh-theme {background:#faf8f1;color:#101827;font-family:Arial,"Segoe UI",sans-serif;}
+.kh-theme .kh-heading {font-size:clamp(2.65rem,5.7vw,5.3rem);font-weight:900;line-height:1.05;letter-spacing:-.055em;color:#0d1422;}
+.kh-theme .kh-wrap {max-width:1180px;margin-inline:auto;padding-inline:clamp(1.2rem,3vw,2.5rem);}
+.kh-theme .kh-kicker {font-size:.76rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:#4a6a08;}
+.kh-theme .kh-card {background:#fff;border-color:#e4e5dc;box-shadow:0 5px 24px rgba(15,25,40,.05);}
+.kh-theme .kh-primary {background:#bfff12;color:#0d1422;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;}
+.kh-theme .kh-primary:hover {background:#a5ee04;}
+.kh-theme button {cursor:pointer;}
+@media print {.kh-nav,.kh-theme footer,.kh-theme button,.kh-theme a{display:none!important}.kh-theme{background:white!important;color:black!important}.kh-card{box-shadow:none!important}}
+
+/* Public TLNM system: warm surfaces, friendly type, clear call-to-action. App-only
+   dashboards outside .kh-theme deliberately retain their existing UI until QA. */
+.kh-theme {
+  --ink: #faf8f1;
+  --surface: #ffffff;
+  --surface-raised: #f2f5ed;
+  --parchment: #151e2c;
+  --parchment-dim: #4b5a67;
+  --line: #d7ddd7;
+  --brass: #baf434;
+  --brass-dim: #60801d;
+  --sky: #557e7b;
+  --mist: #f0f3ec;
+  --mist-strong: #e1eee1;
+  --navy-text: #151e2c;
+  color:var(--parchment);
+}
+.kh-theme .font-display {font-family:var(--font-body);letter-spacing:-.035em;font-weight:750;}
+.kh-theme .bg-brass.text-ink, .kh-theme .bg-brass .text-ink {color:#172030;}
+.kh-theme .eyebrow {color:#577c21;font-weight:800;}
+.kh-theme footer {
+  --parchment:#f6faf6;
+  --parchment-dim:#c6d1d5;
+  --line:#334252;
+  --surface-raised:#253a4c;
+  --brass:#bef535;
+  --ink:#162335;
+}
+.kh-theme footer .text-ink {color:#162335;}
+.kh-theme .kh-nav {--parchment:#172030;--parchment-dim:#485665;--line:#d9e0d8;}
+.kh-theme .kh-card {background:#fff;border-color:#dbe2d8;}
+@media print {
+ body:has(#make-plan) * {visibility:hidden!important;}
+ body:has(#make-plan) #make-plan, body:has(#make-plan) #make-plan * {visibility:visible!important;}
+ body:has(#make-plan) #make-plan {position:absolute;left:0;top:0;width:100%;max-width:none!important;margin:0!important;padding:18mm!important;background:white!important;color:black!important;border:0!important;}
+ body:has(#make-plan) #make-plan button, body:has(#make-plan) #make-plan input, body:has(#make-plan) #make-plan label, body:has(#make-plan) #make-plan .kh-kicker {display:none!important;}
+ body:has(#make-plan) #make-plan pre {font-size:13pt;white-space:pre-wrap;}
+}
