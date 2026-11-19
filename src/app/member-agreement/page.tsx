@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function MemberAgreementPage() {
   return (
-    <LegalDoc title="Member Agreement" lastUpdated="August 16, 2026">
+    <LegalDoc title="Member Agreement" lastUpdated="November 19, 2026">\n      <LegalSection title="Proposed Keys Happen membership — not yet offered"><p>Public pages may describe a proposed $30/year pilot with up to $100 per membership year toward eligible locksmith labor. No checkout, benefit coverage, or redemption is available for that proposal. This historical agreement continues to describe legacy plans for reference; no existing customer’s terms change automatically.</p></LegalSection>
       <LegalSection title="Historical membership terms"><p>New consumer membership enrollment is closed. These terms are retained for reference and do not offer a new plan or cancel an existing agreement.</p></LegalSection>
       <LegalSection title="1. Membership is optional and is not insurance">
         <p>Trusted Locksmith membership is an optional service-platform membership operated by PlanetHike OÜ. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
