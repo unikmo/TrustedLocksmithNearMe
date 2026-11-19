@@ -9,7 +9,7 @@ import { OperatorDetails } from "@/components/OperatorDetails";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Trusted Locksmith about business properties, portfolio scope, provider participation and trust or safety.",
+  description: "Talk to TLNM about business properties, portfolio scope, provider participation and trust or safety.",
   alternates: { canonical: "/contact" },
   openGraph: { images: [PAGE_VISUALS.contact.src] },
   twitter: { card: "summary_large_image", images: [PAGE_VISUALS.contact.src] },
@@ -26,7 +26,7 @@ export default async function ContactPage({
   const emailHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(`Trusted Locksmith — ${defaultTopic}`)}`;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="kh-theme flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a>
       <Nav />
       <main id="main" className="flex-1 py-16 sm:py-20">
@@ -34,11 +34,11 @@ export default async function ContactPage({
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
             <div>
               <div className="eyebrow">Contact Trusted Locksmith</div>
-              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Get in touch</h1>
+              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Good questions start here.</h1>
               <p className="mt-5 max-w-xl leading-7 text-parchment-dim">
-                Business enquiries, support and privacy requests.
+                Questions about rekeying, property access, working with TLNM, or keeping your keys plan simple? Tell us what you need—no pressure.
               </p>
-              <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services & scope</a>
+              <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services and scope</a>
 
               <figure className="relative mt-9 overflow-hidden rounded-[24px] border border-sky/18 bg-surface-raised shadow-[0_22px_52px_rgba(3,18,37,0.22)]">
                 <img
@@ -59,8 +59,8 @@ export default async function ContactPage({
             </div>
 
             <div className="rounded-3xl border border-line bg-surface p-6 sm:p-8 lg:sticky lg:top-28">
-              <h2 className="font-display text-2xl">Email Trusted Locksmith</h2>
-              <p className="mt-3 text-sm leading-6 text-parchment-dim">For a job enquiry, include the location, scope and preferred date. Leave out access codes, identity documents and private resident details.</p>
+              <h2 className="font-display text-2xl">Contact our team</h2>
+              <p className="mt-3 text-sm leading-6 text-parchment-dim">Tell us the city, general job scope and a preferred date if relevant. Please keep access codes and private resident details out of your message.</p>
               <a href={emailHref} className="mt-5 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-3 font-semibold text-ink">Email {SITE.contactEmail}</a>
               <p className="mt-3 text-xs leading-5 text-parchment-dim">Opens your email app. Review and send the message there.</p>
               <OperatorDetails />
