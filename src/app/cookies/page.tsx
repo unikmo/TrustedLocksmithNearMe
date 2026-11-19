@@ -14,7 +14,7 @@ export default function CookiesPage() {
     <LegalDoc title="Cookie Preferences" lastUpdated="November 2, 2026">
       <LegalSection title="How we use cookies">
         <p>
-          Trusted Locksmith, operated by PlanetHike OÜ, uses essential cookies for sign-in and session security. This page describes the current application setup.
+          Trusted Locksmith, operated by TSquare Ventures LLC, uses essential cookies for sign-in and session security. This page describes the current application setup.
         </p>
       </LegalSection>
 
