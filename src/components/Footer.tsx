@@ -23,10 +23,8 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-[1.45fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3 font-display text-xl font-medium text-parchment">
-              <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/20 bg-surface-raised/70">
-                <Keyhole className="h-4 w-3 text-brass" />
-              </span>
-              Trusted Locksmith
+              <span className="text-2xl font-black tracking-tighter">TLNM<span className="text-brass">/</span></span>
+              <span className="text-sm">Trusted Locksmith</span>
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
               Keys happen. Have a plan. Start free, compare clear prices, and choose the next step without pressure. Locksmith work, where available, is performed by independent providers.
