@@ -121,3 +121,14 @@ summary::-webkit-details-marker { display: none; }
   .home-hero__actions { gap: .5rem; }
   .home-hero__actions a { padding-inline: 1rem; }
 }
+
+/* TLNM Keys Happen visual layer — scoped so legacy portal styles remain intact. */
+.kh-theme {background:#faf8f1;color:#101827;font-family:Arial,"Segoe UI",sans-serif;}
+.kh-theme .kh-heading {font-size:clamp(2.65rem,5.7vw,5.3rem);font-weight:900;line-height:1.05;letter-spacing:-.055em;color:#0d1422;}
+.kh-theme .kh-wrap {max-width:1180px;margin-inline:auto;padding-inline:clamp(1.2rem,3vw,2.5rem);}
+.kh-theme .kh-kicker {font-size:.76rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:#4a6a08;}
+.kh-theme .kh-card {background:#fff;border-color:#e4e5dc;box-shadow:0 5px 24px rgba(15,25,40,.05);}
+.kh-theme .kh-primary {background:#bfff12;color:#0d1422;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;}
+.kh-theme .kh-primary:hover {background:#a5ee04;}
+.kh-theme button {cursor:pointer;}
+@media print {.kh-nav,.kh-theme footer,.kh-theme button,.kh-theme a{display:none!important}.kh-theme{background:white!important;color:black!important}.kh-card{box-shadow:none!important}}
