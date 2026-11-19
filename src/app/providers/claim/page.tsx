@@ -30,7 +30,7 @@ export default async function ClaimProviderPage({ searchParams }: { searchParams
 
   if (!provider) {
     return (
-      <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1 py-16"><div className="mx-auto max-w-4xl px-6">
+      <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="flex-1 py-16"><div className="mx-auto max-w-4xl px-6">
         <div className="eyebrow">Claim your business</div>
         <h1 className="mt-3 font-display text-4xl text-parchment">Find your locksmith profile</h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">Profiles can be prepared from public business information so local locksmith businesses can claim and complete onboarding without rebuilding their listing from scratch.</p>
@@ -49,7 +49,7 @@ export default async function ClaimProviderPage({ searchParams }: { searchParams
   if (invitedEmail) registrationParams.set("email", invitedEmail);
 
   return (
-    <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1 py-16"><div className="mx-auto max-w-2xl px-6">
+    <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="flex-1 py-16"><div className="mx-auto max-w-2xl px-6">
       <Link href="/providers/claim" className="text-xs text-parchment-dim hover:text-parchment">← All provider profiles</Link>
       <div className="mt-6 eyebrow">Provider onboarding · Step 1</div>
       <h1 className="mt-3 font-display text-4xl text-parchment">Claim {provider.business_name}</h1>
