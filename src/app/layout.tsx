@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith | Keys Missing. Panic Optional.",
+    title: "TLNM | Keys happen. Have a plan.",
     description:
       "Make a free household backup plan and find clear next steps without pressure.",
     images: [PAGE_VISUALS.services.src],
@@ -38,6 +38,8 @@ const organizationSchema = {
   "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
   url: SITE.url,
+  legalName: SITE.operatorName,
+  address: { "@type": "PostalAddress", ...SITE.operatorAddress },
   brand: {
     "@type": "Brand",
     "@id": `${SITE.url}/#brand`,
