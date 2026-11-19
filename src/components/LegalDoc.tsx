@@ -13,7 +13,7 @@ export function LegalDoc({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="kh-theme flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:bg-brass focus:p-4 focus:text-ink">Skip to content</a>
       <Nav />
       <main id="main" className="flex-1 py-12 sm:py-20">
