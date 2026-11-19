@@ -6,19 +6,19 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Trusted Locksmith | Keys Missing. Panic Optional.",
+    default: "TLNM | Keys happen. Have a plan.",
     template: `%s | ${SITE.brandName}`,
   },
   description:
-    "Digital-first locksmith guidance, transparent service scope and a no-app concierge, alongside property-manager locksmith workflows. Service coverage requires confirmation.",
+    "Create a free household Keys Happen backup plan and explore clear, no-pressure locksmith and business property-access guidance. Service availability requires confirmation.",
   applicationName: SITE.brandName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.brandName,
-    title: "Trusted Locksmith | Clear Locksmith Guidance",
+    title: "TLNM | Keys happen. Have a plan.",
     description:
-      "Lockout and rekey guidance, transparent standard pricing and business locksmith coordination. Availability and appointments confirmed separately.",
+      "Free Keys Happen household planning and transparent locksmith scopes, plus business rekeying guidance. Availability and appointments require confirmation.",
     url: SITE.url,
     images: ["/opengraph-image"],
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Trusted Locksmith | Keys Missing. Panic Optional.",
     description:
-      "Locksmith guidance and property access services, with clear next steps.",
+      "Make a free household backup plan and find clear next steps without pressure.",
     images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 } },
