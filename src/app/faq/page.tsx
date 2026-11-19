@@ -18,7 +18,7 @@ const page={
  ["Who can use TLNM for business?","Property managers, real-estate teams, landlords, short-term rental operators, facilities managers, student housing and other multi-site property organizations."],
  ["Where will the pilot operate?","Boston and Greater Boston, Massachusetts are the planned first service area. Pages for other locations do not mean a verified active provider network exists there."],
  ["What should I never share?","Door codes, lockbox codes, passwords, spare-key locations, government IDs, master-key plans and private resident information do not belong in an initial enquiry or shared plan."],
- ["Who operates TLNM?","The current repository identifies PlanetHike OÜ as operator. Any proposed operator change requires reconciliation and legal approval before publication."]
+ ["Who operates TLNM?","TLNM is operated by TSquare Ventures LLC, a Wyoming limited liability company. Its registered address and filing details appear on our contact and legal pages."]
  ] as const
 };
 export const metadata=businessMetadata(page.title,page.description,"/faq");
