@@ -20,6 +20,13 @@ jobs:
       - run: npm ci
       - name: Security audit (high and critical)
         run: npm audit --audit-level=high
+      - name: Verify TSquare legal operator identity
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';let s=fs.readFileSync('src/lib/site.ts','utf8');let o=fs.readFileSync('src/components/OperatorDetails.tsx','utf8');if(!s.includes('TSquare Ventures LLC')||!s.includes('2026-002072750')||!o.includes('operatorFilingId'))process.exit(1)"
+          if git grep -n -i -E 'PlanetHike|17233027|Järvevana|Estonian commercial register' -- README.md public src; then
+            echo "Obsolete legal operator text detected" >&2
+            exit 1
+          fi
       - run: npx tsc --noEmit
       - run: node scripts/check-b2b-policy.mjs
       - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
