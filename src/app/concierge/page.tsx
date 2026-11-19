@@ -20,18 +20,18 @@ export default async function Concierge({searchParams}:{searchParams: Promise<{n
  return <div className="kh-theme flex min-h-screen flex-col"><Nav/><main className="flex-1">
   <section className="mx-auto max-w-[1000px] px-6 py-14 sm:px-8">
    <div className="eyebrow">Free guidance · No pressure</div>
-   <h1 className="mt-4 max-w-3xl font-display text-5xl tracking-tight sm:text-6xl">Keys happen. Here are your options.</h1>
-   <p className="mt-5 max-w-2xl text-lg leading-8 text-parchment-dim">Choose what you need, check your backup options and see what a locksmith visit may involve. You stay in control.</p>
+   <h1 className="mt-4 max-w-3xl font-display text-5xl tracking-tight sm:text-6xl">Locked out? Start with the move you might have missed.</h1>
+   <p className="mt-5 max-w-2xl text-lg leading-8 text-parchment-dim">Before paying for help, check your options. The right next move might be simpler than you think.</p>
    <div className="mt-10 grid gap-4 md:grid-cols-3">
     {options.map(item=><article key={item.id} className={`rounded-2xl border p-6 ${need===item.id?"border-brass bg-surface-raised":"border-line bg-surface"}`}>
       <h2 className="font-display text-2xl">{item.title}</h2><p className="mt-3 min-h-28 text-sm leading-6 text-parchment-dim">{item.description}</p>
-      <a className="inline-flex min-h-11 items-center rounded-full bg-brass px-4 py-2.5 text-sm font-semibold text-ink" href={`mailto:${SITE.contactEmail}?subject=${encodeURIComponent(item.subject)}&body=${encodeURIComponent("My city/ZIP: \nMy question (no access codes or sensitive documents): \n")}`}>Email the concierge →</a>
+      <a className="inline-flex min-h-11 items-center rounded-full bg-brass px-4 py-2.5 text-sm font-semibold text-ink" href={`mailto:${SITE.contactEmail}?subject=${encodeURIComponent(item.subject)}&body=${encodeURIComponent("My city/ZIP: \nMy question (no access codes or sensitive documents): \n")}`}>Ask about this option →</a>
     </article>)}
    </div>
    <div className="mt-9 rounded-xl border border-line p-5 text-sm leading-7 text-parchment-dim">
      <strong className="text-parchment">Important:</strong> Email is not monitored as an emergency dispatch service. Do not assume a provider or appointment is confirmed. For urgent safety or medical emergencies, contact local emergency services. Never send door codes, spare-key locations or identity documents in an initial enquiry.
    </div>
-   <div className="mt-10 flex flex-wrap gap-6 text-sm"><Link href="/services" className="text-brass underline">Services &amp; published scope →</Link><Link href="/for-property-managers" className="text-brass underline">Property business help →</Link><Link href="/trust-safety" className="text-brass underline">How provider verification works →</Link></div>
+   <div className="mt-10 flex flex-wrap gap-6 text-sm"><Link href="/services" className="text-brass underline">See what a visit could cost →</Link><Link href="/for-property-managers" className="text-brass underline">Property business help →</Link><Link href="/trust-safety" className="text-brass underline">How provider verification works →</Link></div>
   </section>
- </main><Footer/></div>;
+ <section className="kh-wrap pb-14"><div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6"><div><h2 className="text-xl font-extrabold">Curious about the details?</h2><p className="mt-1 text-sm text-slate-600">Prices, practical questions, and the fine print worth knowing.</p></div><Link href="/faq" className="font-bold underline">Explore the FAQ →</Link></div></section></main><Footer/></div>;
 }
