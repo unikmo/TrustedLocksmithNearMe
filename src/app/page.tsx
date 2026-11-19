@@ -12,16 +12,17 @@ export default function Home() { return <div className="flex min-h-screen flex-c
 <section className="home-hero border-b border-line">
   <div className="home-hero__inner">
     <div className="home-hero__copy">
-      <div className="eyebrow">Digital guidance · independent providers where confirmed</div>
-      <h1 className="home-hero__title font-display">Keys missing.<span className="block italic text-brass">Panic optional.</span></h1>
-      <p className="home-hero__description text-parchment-dim">Start with practical access guidance. Trusted Locksmith is a digital platform: independent providers handle any field work, subject to availability and applicable requirements.</p>
+      <div className="eyebrow">Your door had one job.</div>
+      <h1 className="home-hero__title font-display">Keys in there.<span className="block italic text-brass">You out here.</span></h1>
+      <p className="home-hero__description text-parchment-dim">Take a breath. Get clear on the next move before you make one.</p>
       <div className="home-hero__actions">
-        <Link href="/concierge" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Start with digital concierge</Link>
-        <Link href="/business-enquiry" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm">Business enquiry →</Link>
+        <Link href="/concierge" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Get a game plan →</Link>
+        <Link href="/business-enquiry" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm">For property teams →</Link>
       </div>
+      <p className="home-hero__disclosure text-parchment-dim">Digital guidance first. Any provider visit is confirmed separately.</p>
     </div>
     <div className="home-hero__media border border-line">
-      <img src="/found-keys-editorial.svg" alt="Hand-built editorial illustration of a woman inside a brownstone holding up found keys after an almost-lockout" width="1600" height="1050" fetchPriority="high" />
+      <img src="/brownstone-dog-keys-hero.png" alt="Woman laughing outside a brownstone window as a smiling dog waits inside beside a set of keys" width="1680" height="945" fetchPriority="high" />
     </div>
   </div>
 </section>
