@@ -9,15 +9,15 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
   const { error } = await searchParams;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
+    <div className="kh-theme flex min-h-screen items-center justify-center bg-ink px-5 py-12">
       <div className="w-full max-w-md rounded-3xl border border-sky/15 bg-surface p-6 shadow-[0_24px_70px_rgba(3,18,37,0.28)] sm:p-8">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
-            <span className="grid h-8 w-8 place-items-center rounded-xl border border-sky/25 bg-surface-raised"><Keyhole className="h-4 w-3 text-brass" /></span>
+            <span className="grid h-8 w-8 place-items-center rounded-xl border border-sky/25 bg-surface-raised"><span className="font-bold">TLNM</span></span>
             Trusted Locksmith
           </Link>
           <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">Property business</div>
-          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Create your business account</h1>
+          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Business workspace (pilot)</h1>
           <p className="mt-2 text-sm leading-6 text-parchment-dim">For property managers, landlords, rental operators and real-estate businesses. Consumer membership enrollment is closed.</p>
         </div>
 
