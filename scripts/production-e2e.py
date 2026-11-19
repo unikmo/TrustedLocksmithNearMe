@@ -48,7 +48,7 @@ async def run():
             record(f"{device} FAQ scope",("24-hour" in text or "24 hours" in text) and "TSquare Ventures LLC" in text,"Contains operator and optional quote detail")
             first=page.locator("main details summary").first
             await first.click()
-            record(f"{device} FAQ expands",await page.locator("details").first.evaluate("(el)=>el.open"),"Disclosure can open")
+            record(f"{device} FAQ expands",await page.locator("main details").first.evaluate("(el)=>el.open"),"Disclosure can open")
           overflow=await page.evaluate("document.documentElement.scrollWidth > window.innerWidth+3")
           record(f"{device} horizontal overflow {path}",not overflow,"No significant horizontal scroll",severity="P2")
           if path in ["/","/keys-happen","/for-businesses","/pricing"]:
