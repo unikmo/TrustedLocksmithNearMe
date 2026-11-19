@@ -33,5 +33,5 @@ export default async function Concierge({searchParams}:{searchParams: Promise<{n
    </div>
    <div className="mt-10 flex flex-wrap gap-6 text-sm"><Link href="/services" className="text-brass underline">See what a visit could cost →</Link><Link href="/for-property-managers" className="text-brass underline">Property business help →</Link><Link href="/trust-safety" className="text-brass underline">How provider verification works →</Link></div>
   </section>
- </main><Footer/></div>;
+ <section className="kh-wrap pb-14"><div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6"><div><h2 className="text-xl font-extrabold">Curious about the details?</h2><p className="mt-1 text-sm text-slate-600">Prices, practical questions, and the fine print worth knowing.</p></div><Link href="/faq" className="font-bold underline">Explore the FAQ →</Link></div></section></main><Footer/></div>;
 }
