@@ -36,7 +36,9 @@ export function Footer() {
           <FooterColumn
             title="Explore"
             links={[
-              { label: "Free Keys Happen Plan", href: "/keys-happen" },\n              { label: "Membership proposal", href: "/pricing" },\n              { label: "Digital concierge", href: "/concierge" },
+              { label: "Free Keys Happen Plan", href: "/keys-happen" },
+              { label: "Membership proposal", href: "/pricing" },
+              { label: "Digital concierge", href: "/concierge" },
               { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
@@ -48,7 +50,8 @@ export function Footer() {
             title="For businesses & providers"
             links={[
               { label: "About", href: "/about" },
-              { label: "For businesses", href: "/for-businesses" },\n              { label: "For locksmiths", href: "/for-locksmiths" },
+              { label: "For businesses", href: "/for-businesses" },
+              { label: "For locksmiths", href: "/for-locksmiths" },
               { label: "Property managers", href: "/for-property-managers" },
               { label: "Real estate agents", href: "/for-real-estate-agents" },
               { label: "Contact", href: "/contact" },
