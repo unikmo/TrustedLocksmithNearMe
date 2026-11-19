@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Keyhole } from "./Keyhole";
+
 
 const POPULAR_LOCATIONS = [
   ["Boston", "/boston-ma"],
@@ -29,14 +29,14 @@ export function Footer() {
               Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Keys missing? Panic optional. Digital access guidance and property-service coordination; field work, when available, is performed by independent providers.
+              Keys happen. Have a plan. Start free, compare clear prices, and choose the next step without pressure. Locksmith work, where available, is performed by independent providers.
             </p>
           </div>
 
           <FooterColumn
             title="Explore"
             links={[
-              { label: "Digital concierge", href: "/concierge" },
+              { label: "Free Keys Happen Plan", href: "/keys-happen" },\n              { label: "Membership proposal", href: "/pricing" },\n              { label: "Digital concierge", href: "/concierge" },
               { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
@@ -48,7 +48,7 @@ export function Footer() {
             title="For businesses & providers"
             links={[
               { label: "About", href: "/about" },
-              { label: "For locksmiths", href: "/partner-tech" },
+              { label: "For businesses", href: "/for-businesses" },\n              { label: "For locksmiths", href: "/for-locksmiths" },
               { label: "Property managers", href: "/for-property-managers" },
               { label: "Real estate agents", href: "/for-real-estate-agents" },
               { label: "Contact", href: "/contact" },
