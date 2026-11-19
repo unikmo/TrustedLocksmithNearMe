@@ -1,14 +1,18 @@
 # Trusted Locksmith
 
-> Business locksmith coordination for property managers, landlords, rental operators and real-estate businesses. Operated by PlanetHike OÜ.
+> Keys happen. Have a plan. Free household backup planning, clear locksmith guidance and property-access coordination for businesses. Operated by TSquare Ventures LLC.
 
 ## Scope and availability
-- B2B only. New consumer booking and household membership enrollment are closed.
+- The free Keys Happen household plan is informational, without sign-up or booking. New consumer booking, paid memberships and business website intake are not active.
 - Boston and Greater Boston, Massachusetts are the primary launch market. Northeast expansion pages are enquiry locations, not evidence of active coverage.
 - Participating independent locksmiths perform field work. Every address, provider, appointment and project scope requires confirmation. No emergency response-time guarantee is advertised.
 - Master-key and commercial access-control content is planning guidance. Specialist coverage and suitability must be confirmed before any commitment.
 
 ## Main pages
+- [Free Keys Happen Plan](https://trustedlocksmithnearme.com/keys-happen)
+- [Proposed membership](https://trustedlocksmithnearme.com/pricing)
+- [For businesses](https://trustedlocksmithnearme.com/for-businesses)
+- [For locksmiths](https://trustedlocksmithnearme.com/for-locksmiths)
 - [Property managers](https://trustedlocksmithnearme.com/for-property-managers)
 - [Landlords](https://trustedlocksmithnearme.com/landlords)
 - [Real-estate businesses](https://trustedlocksmithnearme.com/for-real-estate-agents)
