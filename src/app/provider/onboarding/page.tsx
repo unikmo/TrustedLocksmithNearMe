@@ -74,7 +74,7 @@ export default async function ProviderOnboarding({ searchParams }: { searchParam
   const stripeConfigured = hasAdminClientConfig() && hasStripeConnectConfig();
 
   return (
-    <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1 py-12"><div className="mx-auto max-w-5xl px-6">
+    <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="flex-1 py-12"><div className="mx-auto max-w-5xl px-6">
       <div className="eyebrow">Provider onboarding</div>
       <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between"><div><h1 className="font-display text-4xl text-parchment sm:text-5xl">Activate {provider.business_name}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">Choose the services and locations you actually cover, then complete Stripe-hosted payout setup. Trusted Locksmith never asks you to type bank-account or routing details into this site.</p></div><Link href="/provider" className="text-sm font-semibold text-brass">Provider dashboard →</Link></div>
       {notice && <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{notice}</div>}
