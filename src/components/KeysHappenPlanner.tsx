@@ -44,32 +44,32 @@ export function KeysHappenPlanner() {
 
   return <section className="kh-card mx-auto max-w-5xl rounded-3xl border p-6 sm:p-10" id="make-plan" aria-labelledby="make-plan-heading">
     <div className="kh-kicker">Free · No login · No access secrets</div>
-    <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl" id="make-plan-heading">Make your household plan.</h2>
-    <p className="mt-3 max-w-2xl text-sm opacity-75">Choose who you would contact. Tell those people about the plan separately. The card intentionally records roles—not names, phone numbers, door codes or locations.</p>
+    <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl" id="make-plan-heading">Who's your first call?</h2>
+    <p className="mt-3 max-w-2xl text-sm opacity-75">Two backup choices. One useful card. Pick your people—without putting their names or your access details online.</p>
     <div className="mt-7 grid gap-4 sm:grid-cols-3">
-      <label className="block text-sm font-semibold">1. First call
+      <label className="block text-sm font-semibold">1. Who saves the day?
         <select value={first} onChange={e=>setFirst(e.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-900">
           {FIRST.map(o=><option key={o} value={o}>{o}</option>)}
         </select>
       </label>
-      <label className="block text-sm font-semibold">2. Fallback
+      <label className="block text-sm font-semibold">2. And if they're busy?
         <select value={backup} onChange={e=>setBackup(e.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-900">
           {BACKUP.map(o=><option key={o} value={o}>{o}</option>)}
         </select>
       </label>
-      <label className="block text-sm font-semibold">3. Where to find help
+      <label className="block text-sm font-semibold">3. Need a professional?
         <select value={help} onChange={e=>setHelp(e.target.value)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white p-3 text-slate-900">
           {HELP.map(o=><option key={o} value={o}>{o}</option>)}
         </select>
       </label>
     </div>
     <div className="kh-plan-card mt-6 rounded-2xl bg-lime-100 p-5 text-sm text-slate-950">
-      <strong>Your shareable backup plan</strong>
+      <strong>Your plan is taking shape</strong>
       <pre className="mt-3 select-text whitespace-pre-wrap font-sans leading-7">{card}</pre>
     </div>
     <div className="mt-5 flex flex-wrap gap-3">
-      <button type="button" onClick={sharePlan} className="kh-primary rounded-full px-6 py-3 font-bold">Share / copy my plan →</button>
-      <button type="button" onClick={()=>window.print()} className="rounded-full border border-slate-400 px-6 py-3 font-semibold">Save card as PDF / print</button>
+      <button type="button" onClick={sharePlan} className="kh-primary rounded-full px-6 py-3 font-bold">Share the backup plan →</button>
+      <button type="button" onClick={()=>window.print()} className="rounded-full border border-slate-400 px-6 py-3 font-semibold">Keep a copy →</button>
     </div>
     {shared && <p role="status" className="mt-3 text-sm">Your backup plan was shared or copied. Confirm the people on it are happy to help.</p>}
     {message && <p role="alert" className="mt-3 text-sm text-red-700">{message}</p>}
