@@ -17,12 +17,12 @@ export default async function ProviderRegisterPage({
   const next = `/providers/claim${nextParams.size ? `?${nextParams.toString()}` : ""}`;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
+    <div className="kh-theme flex min-h-screen items-center justify-center bg-ink px-5 py-12">
       <div className="w-full max-w-md rounded-3xl border border-line bg-surface p-7 sm:p-8">
         <div className="text-center">
-          <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><Keyhole className="h-5 w-4 text-brass" />Trusted Locksmith</Link>
+          <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><strong className="text-2xl tracking-tight">TLNM</strong></Link>
           <div className="mt-7 eyebrow">Provider account</div>
-          <h1 className="mt-2 font-display text-3xl text-parchment">Set up your provider account</h1>
+          <h1 className="mt-2 font-display text-3xl text-parchment">Join the TLNM provider network</h1>
           <p className="mt-2 text-sm leading-6 text-parchment-dim">Use the business email that received the invitation. After the profile is claimed, Stripe securely collects payout and identity information.</p>
         </div>
 
