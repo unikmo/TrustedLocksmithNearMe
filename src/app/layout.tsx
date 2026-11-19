@@ -6,27 +6,27 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Trusted Locksmith | Property & Portfolio Locksmith Services",
+    default: "TLNM | Keys happen. Have a plan.",
     template: `%s | ${SITE.brandName}`,
   },
   description:
-    "Business locksmith coordination for property managers, landlords and rental portfolios. Turnover rekeys and property service history; address-specific coverage.",
+    "Create a free household Keys Happen backup plan and explore clear, no-pressure locksmith and business property-access guidance. Service availability requires confirmation.",
   applicationName: SITE.brandName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.brandName,
-    title: "Trusted Locksmith | Business Property Services",
+    title: "TLNM | Keys happen. Have a plan.",
     description:
-      "Turnover rekeys and locksmith coordination for managed properties. Independent providers; coverage confirmed by address.",
+      "Free Keys Happen household planning and transparent locksmith scopes, plus business rekeying guidance. Availability and appointments require confirmation.",
     url: SITE.url,
-    images: [PAGE_VISUALS.services.src],
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trusted Locksmith | Business Property Services",
+    title: "TLNM | Keys happen. Have a plan.",
     description:
-      "Business locksmith workflows for property managers and rental operators.",
+      "Make a free household backup plan and find clear next steps without pressure.",
     images: [PAGE_VISUALS.services.src],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 } },
@@ -38,6 +38,8 @@ const organizationSchema = {
   "@id": `${SITE.url}/#organization`,
   name: SITE.operatorName,
   url: SITE.url,
+  legalName: SITE.operatorName,
+  address: { "@type": "PostalAddress", ...SITE.operatorAddress },
   brand: {
     "@type": "Brand",
     "@id": `${SITE.url}/#brand`,

@@ -1,0 +1,16 @@
+import assert from "node:assert/strict";
+import { canAcceptAdditionalWork } from "../src/lib/no-pressure-policy.ts";
+const t0=Date.parse("2026-11-19T12:00:00Z"),h=3600000;
+const base={id:"Q-1",kind:"optional",customerVisibleAt:new Date(t0).toISOString(),expiresAt:new Date(t0+72*h).toISOString(),providerOnSite:false,acceptedVersion:1,currentVersion:1,writtenTotalCents:11000,originalJobClosed:true,independentApproval:false};
+const check=(name,quote,when,expected)=>assert.equal(canAcceptAdditionalWork(quote,new Date(when)).allowed,expected,name);
+check("23 hours cannot approve",base,t0+23*h,false);
+check("24 hours eligible",base,t0+24*h,true);
+check("on-site approval blocked",{...base,providerOnSite:true},t0+25*h,false);
+check("stale quote version blocked",{...base,currentVersion:2},t0+25*h,false);
+check("job unfinished blocked",{...base,originalJobClosed:false},t0+25*h,false);
+check("expired quote blocked",base,t0+73*h,false);
+check("insufficient quote validity blocked",{...base,expiresAt:new Date(t0+48*h).toISOString()},t0+25*h,false);
+check("emergency needs independent approval",{...base,kind:"urgent_security"},t0+1*h,false);
+check("B2B advance authorization requires separate approval",{...base,kind:"b2b_preauthorized"},t0+1*h,false);
+check("documented exception eligible for separate authenticated consent",{...base,kind:"scope_exception",independentApproval:true},t0+1*h,true);
+console.log("No-pressure quote policy checks passed");

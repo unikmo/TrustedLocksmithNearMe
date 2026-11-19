@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Keyhole } from "./Keyhole";
+
 
 const POPULAR_LOCATIONS = [
   ["Boston", "/boston-ma"],
@@ -23,19 +23,20 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-[1.45fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3 font-display text-xl font-medium text-parchment">
-              <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/20 bg-surface-raised/70">
-                <Keyhole className="h-4 w-3 text-brass" />
-              </span>
-              Trusted Locksmith
+              <span className="text-2xl font-black tracking-tighter">TLNM<span className="text-brass">/</span></span>
+              <span className="text-sm">Trusted Locksmith</span>
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Property access work, organized.
+              Keys happen. Have a plan. Start free, compare clear prices, and choose the next step without pressure. Locksmith work, where available, is performed by independent providers.
             </p>
           </div>
 
           <FooterColumn
-            title="Business services"
+            title="Explore"
             links={[
+              { label: "Free Keys Happen Plan", href: "/keys-happen" },
+              { label: "Membership proposal", href: "/pricing" },
+              { label: "Digital concierge", href: "/concierge" },
               { label: "Business enquiry", href: "/business-enquiry" },
               { label: "Services & prices", href: "/services" },
               { label: "How it works", href: "/how-it-works" },
@@ -44,10 +45,11 @@ export function Footer() {
             ]}
           />
           <FooterColumn
-            title="More"
+            title="For businesses & providers"
             links={[
               { label: "About", href: "/about" },
-              { label: "For locksmiths", href: "/partner-tech" },
+              { label: "For businesses", href: "/for-businesses" },
+              { label: "For locksmiths", href: "/for-locksmiths" },
               { label: "Property managers", href: "/for-property-managers" },
               { label: "Real estate agents", href: "/for-real-estate-agents" },
               { label: "Contact", href: "/contact" },
@@ -56,7 +58,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-line/70 pt-6">
-          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Business enquiry areas</div>
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Location guides · availability must be confirmed</div>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {POPULAR_LOCATIONS.map(([label, href]) => (
               <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
@@ -65,7 +67,7 @@ export function Footer() {
         </div>
 
         <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ · Trusted Locksmith</span>
+          <span>&copy; {new Date().getFullYear()} TSquare Ventures LLC · Trusted Locksmith</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/terms" className="hover:text-parchment">Terms</Link>

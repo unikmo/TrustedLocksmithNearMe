@@ -1,0 +1,40 @@
+name: Verify Trusted Locksmith
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Security audit (high and critical)
+        run: npm audit --audit-level=high
+      - name: Verify TSquare legal operator identity
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';let s=fs.readFileSync('src/lib/site.ts','utf8');let o=fs.readFileSync('src/components/OperatorDetails.tsx','utf8');if(!s.includes('TSquare Ventures LLC')||!s.includes('2026-002072750')||!o.includes('operatorFilingId'))process.exit(1)"
+          if git grep -n -i -E 'PlanetHike|17233027|Järvevana|Estonian commercial register' -- README.md public src; then
+            echo "Obsolete legal operator text detected" >&2
+            exit 1
+          fi
+      - run: npx tsc --noEmit
+      - run: node scripts/check-b2b-policy.mjs
+      - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
+      - run: node --experimental-strip-types scripts/check-member-benefit.mjs
+      - run: npm run build
+      - name: Assert free plan and deferred quote safeguards
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';let p=fs.readFileSync('src/components/KeysHappenPlanner.tsx','utf8');let q=fs.readFileSync('src/lib/no-pressure-policy.ts','utf8');if(!p.includes('no free-text fields')||!q.includes('24*HOUR')||!q.includes('providerOnSite'))process.exit(1)"
+      - name: Assert consumer discovery is public while transactions remain closed
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';let h=fs.readFileSync('src/app/page.tsx','utf8');let c=fs.readFileSync('src/app/concierge/page.tsx','utf8');let b=fs.readFileSync('src/lib/business-only.ts','utf8');if(!h.includes('Keys happen.')||!c.includes('Email the concierge')||!b.includes('CLOSED_CONSUMER_ROOTS')||b.includes('pricing'))process.exit(1)"

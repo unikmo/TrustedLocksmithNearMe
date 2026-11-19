@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Trusted Locksmith provider directory",
-  description: "Provider profiles being assembled for the Trusted Locksmith marketplace.",
+  description: "Prepared independent locksmith profiles for the TLNM pilot network. Claim and operational readiness must be confirmed.",
   robots: { index: false, follow: true },
 };
 
@@ -15,12 +15,12 @@ export default async function ProvidersPage() {
   const { data: providers } = await supabase.from("provider_profiles").select("id,slug,business_name,city,state,claim_status,is_available").order("business_name");
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="kh-theme flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1 py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="eyebrow">Provider network</div>
-          <h1 className="mt-3 font-display text-4xl text-parchment">Locksmith provider profiles</h1>
+          <h1 className="mt-3 font-display text-4xl text-parchment">Local locksmith profiles</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">Preloaded profiles are marked unclaimed until a business owner or authorized representative connects a provider account to the business profile. A verified business claim confirms that account-to-business connection; it does not by itself represent every launch credential, insurance, licensing or KYC check.</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(providers ?? []).map((provider: any) => (

@@ -18,7 +18,7 @@ export function PageHero({
         <div className={visual ? "grid gap-9 lg:grid-cols-[.88fr_1.12fr] lg:items-center lg:gap-14" : ""}>
           <div className="max-w-3xl">
             <div className="eyebrow">{eyebrow}</div>
-            <h1 className="mt-4 font-display text-4xl font-medium leading-[1.02] tracking-[-.03em] text-parchment sm:text-5xl lg:text-[58px]">
+            <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-.03em] text-parchment sm:text-5xl lg:text-[58px]">
               {title}
             </h1>
             {body && (

@@ -10,7 +10,7 @@ export default async function LoginPage({
   const { error, notice, next } = await searchParams;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
+    <div className="kh-theme flex min-h-screen items-center justify-center bg-ink px-6 py-16">
       <div className="w-full max-w-sm rounded-2xl border border-line bg-surface p-8">
         <div className="flex flex-col items-center text-center">
           <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
@@ -18,7 +18,7 @@ export default async function LoginPage({
             Trusted Locksmith
           </Link>
           <h1 className="mt-6 font-display text-2xl font-medium text-parchment">Welcome back</h1>
-          <p className="mt-1 text-sm text-parchment-dim">Log in to your Trusted Locksmith account</p>
+          <p className="mt-1 text-sm text-parchment-dim">Sign in to your business or locksmith workspace. Free household plans need no account.</p>
         </div>
 
         {notice && (

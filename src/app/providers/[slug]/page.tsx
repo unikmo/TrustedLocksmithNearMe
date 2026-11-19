@@ -16,7 +16,7 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
   const claimVerified = provider.claim_status === "verified";
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="kh-theme flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1 py-16">
         <div className="mx-auto max-w-3xl px-6">
@@ -48,8 +48,8 @@ export default async function ProviderProfilePage({ params }: { params: Promise<
                   Claim this business
                 </Link>
               )}
-              <Link href="/book" className="rounded-full border border-line px-5 py-2.5 text-center text-sm font-semibold text-parchment">
-                Request service through Trusted Locksmith
+              <Link href="/concierge" className="rounded-full border border-line px-5 py-2.5 text-center text-sm font-semibold text-parchment">
+                Explore guidance — no live dispatch
               </Link>
             </div>
           </div>
