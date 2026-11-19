@@ -39,15 +39,26 @@ async def run():
             record(f"{device} hero tagline","A little foresight. A lot less drama." in text,text[:350])
             record(f"{device} operator","TSquare Ventures LLC" in text,"TSquare footer present")
           if path=="/pricing":
-            record(f"{device} membership closed",("$30" in text and "$100" in text and ("Enrollment closed" in text or "not yet" in text)),"Pricing must be informational only")
+            flags={"price":"$30" in text, "benefit":"$100" in text, "closed":("enrollment closed" in text.lower() or "not yet" in text.lower() or "enrollment isn't open" in text.lower())}
+            record(f"{device} membership closed",all(flags.values()),f"Flags={flags}, content excerpt={text[:800]!r}")
+            record(f"{device} pricing canonical path",page.url.rstrip("/") == BASE+"/pricing",f"Actual final URL: {page.url}")
           if path=="/for-businesses":
             record(f"{device} business disclosure",("Pilot enquiries" in text or "Availability" in text),"No promise of confirmed availability")
           if path=="/faq":
             record(f"{device} FAQ scope",("24-hour" in text or "24 hours" in text) and "TSquare Ventures LLC" in text,"Contains operator and optional quote detail")
+            first=page.locator("main details summary").first
+            await first.click()
+            record(f"{device} FAQ expands",await page.locator("main details").first.evaluate("(el)=>el.open"),"Disclosure can open")
           overflow=await page.evaluate("document.documentElement.scrollWidth > window.innerWidth+3")
           record(f"{device} horizontal overflow {path}",not overflow,"No significant horizontal scroll",severity="P2")
           if path in ["/","/keys-happen","/for-businesses","/pricing"]:
             await page.screenshot(path=str(OUT/f"{device}-{path.strip('/').replace('/','-') or 'home'}.png"),full_page=True)
+          if path=="/":
+            cta=page.get_by_role("link",name="Make my free plan").first
+            await cta.click(timeout=5000)
+            await page.wait_for_timeout(500)
+            top=await page.locator("#make-plan").evaluate("(el)=>Math.round(el.getBoundingClientRect().top)")
+            record(f"{device} free CTA scroll",page.url.endswith("#make-plan") or abs(top)<200,f"URL after click: {page.url}; plan top relative to viewport={top}")
           if path=="/keys-happen":
             selects=page.locator("#make-plan select")
             record(f"{device} planner inputs",await selects.count()==3, "3 preset selectors; no free-text secrets")
