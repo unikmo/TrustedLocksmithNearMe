@@ -54,7 +54,7 @@ export default async function ProviderDashboard({ searchParams }: { searchParams
   </div></Shell>;
 }
 
-function Shell({children}:{children:ReactNode}) { return <div className="flex min-h-screen flex-col"><Nav /><main className="flex-1">{children}</main><Footer /></div>; }
+function Shell({children}:{children:ReactNode}) { return <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="flex-1">{children}</main><Footer /></div>; }
 function Stat({label,value}:{label:string;value:string}) { return <div className="rounded-2xl border border-line bg-surface p-5"><div className="font-mono text-[10px] uppercase tracking-[.12em] text-parchment-dim">{label}</div><div className="mt-2 font-display text-3xl text-parchment">{value}</div></div>; }
 function Notice({children}:{children:ReactNode}) { return <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{children}</div>; }
 function ErrorBox({children}:{children:ReactNode}) { return <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{children}</div>; }
