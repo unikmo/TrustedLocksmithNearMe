@@ -33,6 +33,8 @@ jobs:
             echo 'Public pricing must not redirect' >&2
             exit 1
           fi
+      - name: Enforce desire-first public copy without relaxing release gates
+        run: node scripts/check-editorial-consistency.mjs
       - run: npx tsc --noEmit
       - run: node scripts/check-b2b-policy.mjs
       - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
