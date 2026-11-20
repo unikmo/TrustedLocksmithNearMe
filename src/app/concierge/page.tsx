@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const options = [
- { title: "I'm locked out", description: "First, check lawful access via a trusted key holder or building contact. If a locksmith is needed, scope and timing must be confirmed.", subject: "Lockout guidance enquiry", id: "lockout"},
- { title: "I need keys or a rekey", description: "Ask whether the existing cylinder can be rekeyed before replacing the lock. Have the number of cylinders and your location ready.", subject: "Rekey guidance enquiry", id: "rekey"},
- { title: "I want a smarter lock", description: "Check door compatibility, access method and backup entry before buying hardware.", subject: "Smart lock guidance enquiry", id: "smart-lock"}
+ { title: "The door won. What's next?", description: "First, check lawful access via a trusted key holder or building contact. If a locksmith is needed, scope and timing must be confirmed.", subject: "Lockout guidance enquiry", id: "lockout"},
+ { title: "New keys. Same lock? Maybe.", description: "Ask whether the existing cylinder can be rekeyed before replacing the lock. Have the number of cylinders and your location ready.", subject: "Rekey guidance enquiry", id: "rekey"},
+ { title: "A smarter entrance starts here.", description: "Check door compatibility, access method and backup entry before buying hardware.", subject: "Smart lock guidance enquiry", id: "smart-lock"}
 ];
 export default async function Concierge({searchParams}:{searchParams: Promise<{need?: string}>}) {
  const {need} = await searchParams;

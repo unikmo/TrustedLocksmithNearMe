@@ -26,7 +26,13 @@ async def run():
        ("/pricing","An extra cushion?"),("/for-businesses","Many doors. Fewer headaches."),
        ("/for-locksmiths","More jobs that fit."),("/faq","The useful stuff"),
        ("/how-it-works","Small plan. Big difference."),
-       ("/concierge","Locked out?"),("/contact","Good questions start here."),
+       ("/concierge","Locked out?"),("/contact","Start here."),
+       ("/for-property-managers","property"),("/landlords","turnover"),
+       ("/for-real-estate-agents","handover"),("/locations","Massachusetts"),
+       ("/services","price"),("/services/turnover-rekeying","rekey"),
+       ("/services/master-key-systems","key"),("/services/access-control","access"),
+       ("/guides/turnover-rekey-cost","calculator"),("/boston-ma","Boston"),
+       ("/boston-ma/turnover-rekeying","rekey"),("/partner-tech","Good jobs."),
       ]:
         name=f"{device} {path}"
         try:

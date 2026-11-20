@@ -17,8 +17,8 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
             Trusted Locksmith
           </Link>
           <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">Property business</div>
-          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Business workspace (pilot)</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">For property managers, landlords, rental operators and real-estate businesses. Consumer membership enrollment is closed.</p>
+          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">A calmer property workflow is taking shape.</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Built for the teams with more doors than spare time. Business onboarding is not open yet; explore the approach before creating an account.</p>
         </div>
 
         {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
