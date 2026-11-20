@@ -22,8 +22,8 @@ export default async function ProviderRegisterPage({
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><strong className="text-2xl tracking-tight">TLNM</strong></Link>
           <div className="mt-7 eyebrow">Provider account</div>
-          <h1 className="mt-2 font-display text-3xl text-parchment">Join the TLNM provider network</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">Use the business email that received the invitation. After the profile is claimed, Stripe securely collects payout and identity information.</p>
+          <h1 className="mt-2 font-display text-3xl text-parchment">Your next good job starts here.</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Ready to explore a simpler way to find work that fits? Start with your business email. Profile verification and secure payout onboarding are separate steps.</p>
         </div>
 
         {error && <div className="mt-5 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
