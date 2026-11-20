@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { createOnboardingLink } from "@/lib/stripe-connect";
+import { createOnboardingLink, retrieveConnectedAccount } from "@/lib/stripe-connect";
 
 export const dynamic = "force-dynamic";
 
@@ -14,8 +14,10 @@ export async function GET(request: Request) {
 
   try {
     const origin = new URL(request.url).origin;
+    const account = await retrieveConnectedAccount(provider.stripe_account_id);
     const link = await createOnboardingLink({
-      accountId: provider.stripe_account_id,
+      accountId: account.id,
+      apiVersion: account.apiVersion,
       refreshUrl: `${origin}/provider/onboarding/stripe/refresh`,
       returnUrl: `${origin}/provider/onboarding/stripe/return`,
     });
