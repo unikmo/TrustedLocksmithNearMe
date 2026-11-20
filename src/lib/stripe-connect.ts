@@ -87,7 +87,7 @@ async function stripeRequest<T>(
     );
   }
 
-  return payload as T;
+  return payload as unknown as T;
 }
 
 function isV1Account(account: StripeConnectAccount) {
