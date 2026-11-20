@@ -27,6 +27,14 @@ jobs:
             echo "Obsolete legal operator text detected" >&2
             exit 1
           fi
+      - name: Verify membership pricing remains public
+        run: |
+          if grep -nF 'source: "/pricing"' next.config.ts; then
+            echo 'Public pricing must not redirect' >&2
+            exit 1
+          fi
+      - name: Enforce desire-first public copy without relaxing release gates
+        run: node scripts/check-editorial-consistency.mjs
       - run: npx tsc --noEmit
       - run: node scripts/check-b2b-policy.mjs
       - run: node --experimental-strip-types scripts/check-no-pressure-policy.mjs
@@ -37,4 +45,4 @@ jobs:
           node --input-type=module -e "import fs from 'node:fs';let p=fs.readFileSync('src/components/KeysHappenPlanner.tsx','utf8');let q=fs.readFileSync('src/lib/no-pressure-policy.ts','utf8');if(!p.includes('no free-text fields')||!q.includes('24*HOUR')||!q.includes('providerOnSite'))process.exit(1)"
       - name: Assert consumer discovery is public while transactions remain closed
         run: |
-          node --input-type=module -e "import fs from 'node:fs';let h=fs.readFileSync('src/app/page.tsx','utf8');let c=fs.readFileSync('src/app/concierge/page.tsx','utf8');let b=fs.readFileSync('src/lib/business-only.ts','utf8');if(!h.includes('Keys happen.')||!c.includes('Email the concierge')||!b.includes('CLOSED_CONSUMER_ROOTS')||b.includes('pricing'))process.exit(1)"
+          node --input-type=module -e "import fs from 'node:fs';let h=fs.readFileSync('src/app/page.tsx','utf8');let c=fs.readFileSync('src/app/concierge/page.tsx','utf8');let b=fs.readFileSync('src/lib/business-only.ts','utf8');if(!h.includes('Keys happen.')||!c.includes('Ask about this option')||!c.includes('mailto:')||!b.includes('CLOSED_CONSUMER_ROOTS')||b.includes('pricing'))process.exit(1)"

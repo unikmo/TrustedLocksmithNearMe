@@ -10,7 +10,7 @@ export const metadata = { title: "Business property workspace", robots: { index:
 
 export default async function PropertyManagerWorkspace({ searchParams }: { searchParams: Promise<{ notice?: string; error?: string }> }) {
   const { notice, error } = await searchParams;
-  if (!BUSINESS_REQUESTS_AVAILABLE) return <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="mx-auto w-full max-w-4xl flex-1 px-6 py-16"><div className="eyebrow">Business workspace</div><h1 className="mt-5 font-display text-4xl">We are preparing business onboarding.</h1><p role="status" className="mt-6 max-w-2xl leading-8 text-parchment-dim">{BUSINESS_UNAVAILABLE_MESSAGE}</p><Link href="/for-property-managers" className="mt-8 inline-block text-brass underline">Explore the property-manager workflow →</Link></main><Footer /></div>;
+  if (!BUSINESS_REQUESTS_AVAILABLE) return <div className="kh-theme flex min-h-screen flex-col"><Nav /><main className="mx-auto w-full max-w-4xl flex-1 px-6 py-16"><div className="eyebrow">Business workspace</div><h1 className="mt-5 font-display text-4xl">Less chasing. More clarity. Coming soon.</h1><p role="status" className="mt-6 max-w-2xl leading-8 text-parchment-dim">{BUSINESS_UNAVAILABLE_MESSAGE}</p><Link href="/for-property-managers" className="mt-8 inline-block text-brass underline">See what a smoother handover could look like →</Link></main><Footer /></div>;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/property-manager");
