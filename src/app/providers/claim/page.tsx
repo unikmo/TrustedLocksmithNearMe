@@ -7,7 +7,7 @@ import { createAdminClient, hasAdminClientConfig } from "@/lib/supabase/admin";
 import { hashProviderInviteToken } from "@/lib/provider-outreach";
 import { claimProvider } from "./actions";
 
-export const metadata: Metadata = { title: "Claim a locksmith provider profile", robots: { index: false } };
+export const metadata: Metadata = { title: "Claim your locksmith profile", robots: { index: false } };
 
 export default async function ClaimProviderPage({ searchParams }: { searchParams: Promise<{ provider?: string; invite?: string; error?: string }> }) {
   let { provider: providerParam, invite, error } = await searchParams;
