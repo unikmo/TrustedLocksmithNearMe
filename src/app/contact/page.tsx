@@ -34,11 +34,11 @@ export default async function ContactPage({
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
             <div>
               <div className="eyebrow">Contact Trusted Locksmith</div>
-              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Good questions start here.</h1>
+              <h1 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">Something on your mind? Start here.</h1>
               <p className="mt-5 max-w-xl leading-7 text-parchment-dim">
-                Questions about rekeying, property access, working with TLNM, or keeping your keys plan simple? Tell us what you need—no pressure.
+                A building full of doors? A keys question you can't quite shake? We'd rather help you find the right next step than sell you the wrong one.
               </p>
-              <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Business services and scope</a>
+              <a href="/services" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Explore what might fit →</a>
 
               <figure className="relative mt-9 overflow-hidden rounded-[24px] border border-sky/18 bg-surface-raised shadow-[0_22px_52px_rgba(3,18,37,0.22)]">
                 <img
