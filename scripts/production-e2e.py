@@ -44,6 +44,22 @@ async def run():
           if path=="/":
             record(f"{device} hero tagline","A little foresight. A lot less drama." in text,text[:350])
             record(f"{device} operator","TSquare Ventures LLC" in text,"TSquare footer present")
+          desire_heads={
+            "/for-property-managers":"One less thing for your tenants",
+            "/landlords":"New tenant. Fresh start.",
+            "/for-real-estate-agents":"A great closing deserves",
+            "/services":"Know the price. Lose the guesswork.",
+            "/locations":"Your building has a postcode.",
+            "/services/turnover-rekeying":"New tenant. Fresh keys.",
+            "/services/master-key-systems":"One building. Many doors.",
+            "/services/access-control":"Fewer keys. More control.",
+            "/guides/turnover-rekey-cost":"How much will those turnover keys",
+            "/boston-ma":"Fewer locksmith headaches.",
+            "/boston-ma/turnover-rekeying":"Fresh tenant. Fresh keys.",
+            "/contact":"Something on your mind? Start here."
+          }
+          if path in desire_heads:
+            record(f"{device} desire-first {path}",desire_heads[path].lower() in text.lower(),f"Expected {desire_heads[path]!r}, got {text[:260]!r}")
           if path=="/pricing":
             flags={"price":"$30" in text, "benefit":"$100" in text, "closed":("enrollment closed" in text.lower() or "not yet" in text.lower() or "enrollment isn't open" in text.lower())}
             record(f"{device} membership closed",all(flags.values()),f"Flags={flags}, content excerpt={text[:800]!r}")
