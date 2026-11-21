@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
   }
 
   const origin = request.nextUrl.origin;
-  const review = new URL("/book/review", origin);
+  const review = new URL("/stripe-test-checkout", origin);
   review.searchParams.set("service_id", service.id);
 
   const successUrl = new URL(review);
@@ -50,3 +50,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unable to start test checkout." }, { status: 502 });
   }
 }
+
