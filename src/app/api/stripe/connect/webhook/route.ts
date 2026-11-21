@@ -1,8 +1,18 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { verifyStripeWebhook, type StripeConnectAccount } from "@/lib/stripe-connect";
+import { getPayoutStatus, retrieveConnectedAccount, verifyStripeWebhook } from "@/lib/stripe-connect";
 
 export const dynamic = "force-dynamic";
+
+type StripeAccountEvent = {
+  id: string;
+  type: string;
+  data?: {
+    object?: {
+      id?: string;
+    };
+  };
+};
 
 export async function POST(request: Request) {
   const rawBody = await request.text();
@@ -12,45 +22,42 @@ export async function POST(request: Request) {
     return NextResponse.json({ received: false }, { status: 400 });
   }
 
-  const event = JSON.parse(rawBody) as { id: string; type: string; data?: { object?: StripeConnectAccount } };
-  if (event.type !== "account.updated" || !event.data?.object?.id) {
+  const event = JSON.parse(rawBody) as StripeAccountEvent;
+  const accountId = event.data?.object?.id;
+  if (!accountId || !event.type.includes("account") || !event.type.includes("updated")) {
     return NextResponse.json({ received: true });
   }
 
-  const account = event.data.object;
-  const providerId = account.metadata?.provider_id;
-  if (!providerId) return NextResponse.json({ received: true });
-
   const supabase = createAdminClient();
-  const now = new Date().toISOString();
-  const payoutReady = Boolean(account.details_submitted && account.payouts_enabled);
-
   const { data: provider } = await supabase
     .from("provider_profiles")
     .select("id,stripe_payouts_enabled")
-    .eq("id", providerId)
-    .eq("stripe_account_id", account.id)
+    .eq("stripe_account_id", accountId)
     .maybeSingle();
 
   if (!provider) return NextResponse.json({ received: true });
 
+  const account = await retrieveConnectedAccount(accountId);
+  const status = getPayoutStatus(account);
+  const now = new Date().toISOString();
+
   await supabase
     .from("provider_profiles")
     .update({
-      stripe_details_submitted: Boolean(account.details_submitted),
-      stripe_charges_enabled: Boolean(account.charges_enabled),
-      stripe_payouts_enabled: Boolean(account.payouts_enabled),
-      payout_ready_at: payoutReady ? now : null,
+      stripe_details_submitted: status.detailsSubmitted,
+      stripe_charges_enabled: status.chargesEnabled,
+      stripe_payouts_enabled: status.payoutsEnabled,
+      payout_ready_at: status.payoutReady ? now : null,
       updated_at: now,
     })
-    .eq("id", providerId)
-    .eq("stripe_account_id", account.id);
+    .eq("id", provider.id)
+    .eq("stripe_account_id", accountId);
 
-  if (payoutReady && !provider.stripe_payouts_enabled) {
+  if (status.payoutReady && !provider.stripe_payouts_enabled) {
     await supabase.from("provider_acquisition_events").insert({
-      provider_id: providerId,
+      provider_id: provider.id,
       event_name: "payout_ready",
-      metadata: { stripe_account_id: account.id, stripe_event_id: event.id },
+      metadata: { stripe_account_id: accountId, stripe_api_version: account.apiVersion, stripe_event_id: event.id },
     });
   }
 

@@ -5,7 +5,14 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, hasAdminClientConfig } from "@/lib/supabase/admin";
-import { createConnectedAccount, createOnboardingLink, hasStripeConnectConfig, retrieveConnectedAccount } from "@/lib/stripe-connect";
+import {
+  createConnectedAccount,
+  createOnboardingLink,
+  getPayoutStatus,
+  hasStripeConnectConfig,
+  retrieveConnectedAccount,
+  type StripeConnectAccount,
+} from "@/lib/stripe-connect";
 import { hasPendingExpansionCredentialGate } from "@/lib/provider-eligibility";
 import { SITE_URL } from "@/lib/site";
 
@@ -52,17 +59,26 @@ export async function startPayoutOnboarding() {
 
   const admin = createAdminClient();
   let accountId = provider.stripe_account_id as string | null | undefined;
+  let account: StripeConnectAccount;
+
   if (!accountId) {
-    const account = await createConnectedAccount({ providerId: provider.id, businessName: provider.business_name, email: user.email });
+    account = await createConnectedAccount({ providerId: provider.id, businessName: provider.business_name, email: user.email });
     accountId = account.id;
     const { error } = await admin.from("provider_profiles").update({ stripe_account_id: accountId, updated_at: new Date().toISOString() }).eq("id", provider.id).eq("claimed_user_id", user.id);
     if (error) redirect(`/provider/onboarding?error=${encodeURIComponent(error.message)}`);
-    await admin.from("provider_acquisition_events").insert({ provider_id: provider.id, event_name: "payout_onboarding_started", metadata: { stripe_account_id: accountId } });
+    await admin.from("provider_acquisition_events").insert({ provider_id: provider.id, event_name: "payout_onboarding_started", metadata: { stripe_account_id: accountId, stripe_api_version: account.apiVersion } });
+  } else {
+    account = await retrieveConnectedAccount(accountId);
   }
 
   const requestHeaders = await headers();
   const origin = currentOrigin(requestHeaders);
-  const link = await createOnboardingLink({ accountId, refreshUrl: `${origin}/provider/onboarding/stripe/refresh`, returnUrl: `${origin}/provider/onboarding/stripe/return` });
+  const link = await createOnboardingLink({
+    accountId,
+    apiVersion: account.apiVersion,
+    refreshUrl: `${origin}/provider/onboarding/stripe/refresh`,
+    returnUrl: `${origin}/provider/onboarding/stripe/return`,
+  });
   redirect(link.url);
 }
 
@@ -72,21 +88,21 @@ export async function syncPayoutStatus() {
   if (!accountId || !hasAdminClientConfig() || !hasStripeConnectConfig()) redirect("/provider/onboarding?error=Payout onboarding has not started yet.");
 
   const account = await retrieveConnectedAccount(accountId);
+  const status = getPayoutStatus(account);
   const admin = createAdminClient();
-  const payoutReady = Boolean(account.details_submitted && account.payouts_enabled);
   const wasReady = Boolean(provider.stripe_payouts_enabled);
   const now = new Date().toISOString();
   const { error } = await admin.from("provider_profiles").update({
-    stripe_details_submitted: Boolean(account.details_submitted),
-    stripe_charges_enabled: Boolean(account.charges_enabled),
-    stripe_payouts_enabled: Boolean(account.payouts_enabled),
-    payout_ready_at: payoutReady ? now : null,
+    stripe_details_submitted: status.detailsSubmitted,
+    stripe_charges_enabled: status.chargesEnabled,
+    stripe_payouts_enabled: status.payoutsEnabled,
+    payout_ready_at: status.payoutReady ? now : null,
     updated_at: now,
   }).eq("id", provider.id).eq("claimed_user_id", user.id);
   if (error) redirect(`/provider/onboarding?error=${encodeURIComponent(error.message)}`);
 
-  if (payoutReady && !wasReady) await admin.from("provider_acquisition_events").insert({ provider_id: provider.id, event_name: "payout_ready", metadata: { stripe_account_id: accountId, source: "provider_sync" } });
+  if (status.payoutReady && !wasReady) await admin.from("provider_acquisition_events").insert({ provider_id: provider.id, event_name: "payout_ready", metadata: { stripe_account_id: accountId, stripe_api_version: account.apiVersion, source: "provider_sync" } });
   revalidatePath("/provider/onboarding");
   revalidatePath("/provider");
-  redirect(`/provider/onboarding?notice=${encodeURIComponent(payoutReady ? "Secure payout setup is complete." : "Stripe still needs additional information. Continue secure onboarding.")}`);
+  redirect(`/provider/onboarding?notice=${encodeURIComponent(status.payoutReady ? "Secure payout setup is complete." : "Stripe still needs additional information. Continue secure onboarding.")}`);
 }

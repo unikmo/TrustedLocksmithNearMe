@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Keyhole } from "@/components/Keyhole";
 import { createGuestBooking } from "../actions";
 import { defaultServiceForJobType, formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
+import { hasStripeTestCheckoutConfig } from "@/lib/stripe-connect";
 
 export const metadata: Metadata = { title: "Review locksmith request", robots: { index: false } };
 
@@ -16,10 +17,12 @@ export default async function BookReviewPage({
     phone?: string;
     email?: string;
     error?: string;
+    checkout?: string;
   }>;
 }) {
-  const { service_id, job_type, address, phone, email, error } = await searchParams;
+  const { service_id, job_type, address, phone, email, error, checkout } = await searchParams;
   const service = getServiceMenuItem(service_id) ?? defaultServiceForJobType(job_type)!;
+  const canRunTestCheckout = hasStripeTestCheckoutConfig();
 
   return (
     <div className="min-h-screen bg-ink px-5 py-8 sm:py-12">
@@ -40,6 +43,8 @@ export default async function BookReviewPage({
         </div>
 
         {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
+        {checkout === "success" && <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 px-4 py-3 text-sm text-verdigris">Stripe test payment completed. No locksmith has been dispatched.</div>}
+        {checkout === "cancelled" && <div className="mt-6 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-parchment-dim">Test checkout was cancelled. No payment was taken.</div>}
 
         <div className="mt-8 border-y border-line/70 py-2 text-sm">
           <Row label="Service" value={service.title} />
@@ -65,6 +70,14 @@ export default async function BookReviewPage({
           <input type="hidden" name="email" value={email ?? ""} />
           <button type="submit" className="w-full rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink transition hover:brightness-110">Submit locksmith request</button>
         </form>
+        {canRunTestCheckout && (
+          <form action="/api/stripe/checkout" method="post" className="mt-3">
+            <input type="hidden" name="service_id" value={service.id} />
+            <input type="hidden" name="email" value={email ?? ""} />
+            <button type="submit" className="w-full rounded-full border border-verdigris/50 px-6 py-3 text-sm font-semibold text-verdigris transition hover:bg-verdigris/10">Run Stripe test checkout</button>
+            <p className="mt-2 text-center text-[11px] leading-5 text-parchment-dim">Preview/test mode only. This test payment does not dispatch a locksmith.</p>
+          </form>
+        )}
         <p className="mt-3 text-center text-[11px] leading-5 text-parchment-dim">Submitting a request does not guarantee provider availability. Provider identity and ETA appear only after acceptance.</p>
         <p className="mt-5 text-center text-xs text-parchment-dim"><Link href={`/book/details?service_id=${service.id}`} className="hover:text-parchment">← Edit details</Link></p>
       </div>
