@@ -291,8 +291,7 @@ export async function createOnboardingLink(input: {
   });
 }
 
-export function verifyStripeWebhook(rawBody: string, signatureHeader: string | null) {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+export function verifyStripeWebhookWithSecret(rawBody: string, signatureHeader: string | null, secret: string | undefined) {
   if (!secret || !signatureHeader) return false;
 
   const parts = signatureHeader.split(",");
@@ -315,3 +314,8 @@ export function verifyStripeWebhook(rawBody: string, signatureHeader: string | n
     }
   });
 }
+
+export function verifyStripeWebhook(rawBody: string, signatureHeader: string | null) {
+  return verifyStripeWebhookWithSecret(rawBody, signatureHeader, process.env.STRIPE_WEBHOOK_SECRET);
+}
+
