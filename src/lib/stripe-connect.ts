@@ -3,6 +3,10 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 const STRIPE_ACCOUNTS_V2_VERSION = "2026-11-18.endive";
 
+function isStripeTestSecret(key: string | undefined) {
+  return key?.startsWith("sk_test_") === true || key?.startsWith("rk_test_") === true;
+}
+
 export type StripeConnectApiVersion = "v1" | "v2";
 
 export type StripeConnectAccount = {
@@ -58,19 +62,34 @@ function stripeSecret() {
   return key;
 }
 
+/**
+ * Checkout deliberately has its own restricted test key. It must never share
+ * the Connect credential, and accepting only a test key keeps this feature
+ * unavailable to live customers unless it is redesigned and reviewed.
+ */
+function stripeTestCheckoutSecret() {
+  const key = process.env.STRIPE_CHECKOUT_SECRET_KEY;
+  if (!isStripeTestSecret(key)) {
+    throw new Error("Stripe test checkout is not configured with a test key.");
+  }
+
+  return key;
+}
+
 async function stripeRequest<T>(
   path: string,
   init?: {
     method?: "GET" | "POST";
     body?: URLSearchParams | Record<string, unknown>;
     idempotencyKey?: string;
+    secretKey?: string;
   },
 ) {
   const isForm = init?.body instanceof URLSearchParams;
   const response = await fetch(`https://api.stripe.com${path}`, {
     method: init?.method ?? "GET",
     headers: {
-      Authorization: `Bearer ${stripeSecret()}`,
+      Authorization: `Bearer ${init?.secretKey ?? stripeSecret()}`,
       ...(path.startsWith("/v2/") ? { "Stripe-Version": STRIPE_ACCOUNTS_V2_VERSION } : {}),
       ...(init?.idempotencyKey ? { "Idempotency-Key": init.idempotencyKey } : {}),
       ...(init?.body ? { "Content-Type": isForm ? "application/x-www-form-urlencoded" : "application/json" } : {}),
@@ -100,6 +119,51 @@ function canFallBackToV1(error: unknown) {
 
 export function hasStripeConnectConfig() {
   return Boolean(process.env.STRIPE_SECRET_KEY);
+}
+
+/**
+ * This is deliberately separate from the Connect configuration check. A
+ * customer-facing checkout is enabled only on an explicitly opted-in test
+ * deployment; a live key can never turn it on by accident.
+ */
+export function hasStripeTestCheckoutConfig() {
+  return process.env.STRIPE_TEST_CHECKOUT_ENABLED === "true"
+    && isStripeTestSecret(process.env.STRIPE_CHECKOUT_SECRET_KEY);
+}
+
+export async function createTestCheckoutSession(input: {
+  serviceId: string;
+  serviceTitle: string;
+  amountCents: number;
+  customerEmail?: string;
+  successUrl: string;
+  cancelUrl: string;
+}) {
+  if (!hasStripeTestCheckoutConfig()) {
+    throw new Error("Test checkout is not enabled.");
+  }
+
+  const body = new URLSearchParams();
+  body.set("mode", "payment");
+  body.set("success_url", input.successUrl);
+  body.set("cancel_url", input.cancelUrl);
+  body.set("line_items[0][price_data][currency]", "usd");
+  body.set("line_items[0][price_data][product_data][name]", input.serviceTitle);
+  body.set("line_items[0][price_data][unit_amount]", String(input.amountCents));
+  body.set("line_items[0][quantity]", "1");
+  body.set("metadata[service_id]", input.serviceId);
+
+  if (input.customerEmail) body.set("customer_email", input.customerEmail);
+
+  return stripeRequest<{
+    id: string;
+    object: "checkout.session";
+    url: string;
+  }>("/v1/checkout/sessions", {
+    method: "POST",
+    body,
+    secretKey: stripeTestCheckoutSecret(),
+  });
 }
 
 export function getPayoutStatus(account: StripeConnectAccount) {
