@@ -6,6 +6,7 @@ import { PAGE_VISUALS } from "@/lib/visuals";
 import { submitContact } from "./actions";
 import { SITE } from "@/lib/site";
 import { OperatorDetails } from "@/components/OperatorDetails";
+import { EmailContactForm } from "@/components/EmailContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -85,7 +86,10 @@ export default async function ContactPage({
                 <p className="text-xs leading-5 text-parchment-dim">Do not include access codes, identity documents or private resident details. Read our <a href="/privacy" className="text-brass underline">Privacy Policy</a> and <a href="/terms" className="text-brass underline">Terms</a>.</p>
                 <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Send business enquiry</button>
               </fieldset></form>
-              </> : <p role="status" className="mt-5 text-sm leading-6 text-parchment-dim">Online form submissions are temporarily unavailable. Please use the email link above.</p>}
+              </> : <>
+              <p role="status" className="mt-5 text-sm leading-6 text-parchment-dim">Business onboarding and portfolio requests are temporarily unavailable. For any other question, send us a message below or use the email link above.</p>
+              <EmailContactForm />
+              </>}
             </div>
           </div>
         </div>
